@@ -1,558 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CucinaAI — Trova ricette con 3 ingredienti</title>
-  <style>
-    :root {
-      --bg: #0f172a;
-      --panel: #111827;
-      --panel-2: #1f2937;
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --accent: #22c55e;
-      --accent-2: #16a34a;
-      --border: rgba(255,255,255,.08);
-      --danger: #ef4444;
-      --shadow: 0 10px 30px rgba(0,0,0,.25);
-    }
-
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: radial-gradient(circle at top, #1e293b 0%, var(--bg) 40%);
-      color: var(--text);
-      min-height: 100vh;
-    }
-
-    .container {
-      width: min(1100px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 32px 0 48px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-top: 16px;
-    }
-
-    .card {
-      background: rgba(17, 24, 39, 0.82);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero-copy {
-      padding: 32px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.12);
-      border: 1px solid rgba(34, 197, 94, 0.22);
-      color: #bbf7d0;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .02em;
-    }
-
-    h1 {
-      font-size: clamp(36px, 6vw, 62px);
-      line-height: .95;
-      margin: 16px 0 12px;
-      letter-spacing: -0.04em;
-    }
-
-    .sub {
-      color: var(--muted);
-      font-size: 18px;
-      line-height: 1.6;
-      max-width: 58ch;
-      margin: 0;
-    }
-
-    .stats {
-      display: flex;
-      gap: 16px;
-      margin-top: 24px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      flex: 1 1 160px;
-      padding: 16px;
-      background: rgba(255,255,255,.03);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-    }
-
-    .stat strong { display: block; font-size: 22px; }
-    .stat span { color: var(--muted); font-size: 14px; }
-
-    .form-card {
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .section-title {
-      margin: 0;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .section-copy {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
-      font-size: 15px;
-    }
-
-    form {
-      display: grid;
-      gap: 14px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    label {
-      display: block;
-      font-size: 13px;
-      font-weight: 700;
-      color: #cbd5e1;
-      margin-bottom: 8px;
-    }
-
-    input, select {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(2, 6, 23, 0.65);
-      color: var(--text);
-      padding: 14px 16px;
-      border-radius: 14px;
-      outline: none;
-      font-size: 15px;
-      transition: .18s ease;
-    }
-
-    input:focus, select:focus {
-      border-color: rgba(34, 197, 94, .7);
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, .15);
-    }
-
-    .btn {
-      appearance: none;
-      border: 0;
-      cursor: pointer;
-      padding: 14px 18px;
-      border-radius: 14px;
-      font-size: 15px;
-      font-weight: 800;
-      transition: .18s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #052e16;
-    }
-
-    .btn-primary:hover { transform: translateY(-1px); }
-    .btn-secondary {
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .hint {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .result-wrap {
-      margin-top: 28px;
-      display: grid;
-      gap: 20px;
-    }
-
-    .status {
-      display: none;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.03);
-      color: #e2e8f0;
-      font-size: 14px;
-    }
-
-    .status.show { display: block; }
-    .status.error {
-      background: rgba(239, 68, 68, .08);
-      border-color: rgba(239, 68, 68, .25);
-      color: #fecaca;
-    }
-
-    .results {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .recipe {
-      padding: 22px;
-      min-height: 100%;
-    }
-
-    .recipe h3 {
-      margin: 0 0 8px;
-      font-size: 24px;
-      letter-spacing: -0.03em;
-    }
-
-    .meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 18px;
-    }
-
-    .chip {
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid var(--border);
-      color: #dbeafe;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .block {
-      margin-top: 16px;
-    }
-
-    .block h4 {
-      margin: 0 0 10px;
-      font-size: 14px;
-      color: #cbd5e1;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }
-
-    ul, ol {
-      margin: 0;
-      padding-left: 18px;
-      color: #e5e7eb;
-      line-height: 1.7;
-    }
-
-    .footer-note {
-      margin-top: 28px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .empty {
-      padding: 28px;
-      text-align: center;
-      color: var(--muted);
-      border: 1px dashed rgba(255,255,255,.12);
-      border-radius: 22px;
-      background: rgba(255,255,255,.02);
-    }
-
-    @media (max-width: 920px) {
-      .hero, .results { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 640px) {
-      .container { width: min(100% - 20px, 1100px); }
-      .hero-copy, .form-card, .recipe { padding: 20px; }
-      .grid { grid-template-columns: 1fr; }
-      .actions { flex-direction: column; }
-      .btn { width: 100%; }
-    }
-  </style>
+  <title>CucinAI</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
     <section class="hero">
       <div class="card hero-copy">
-        <div class="badge">🍳 CucinaAI • Prototype Page</div>
+        <div class="demo-badge">DEMO</div>
+        <div class="badge">🍳 CucinAI • Prototipo</div>
         <h1>Cucina con quello che hai già in casa.</h1>
         <p class="sub">
-          Scrivi 3 ingredienti, scegli il tempo massimo e lascia che l'AI ti proponga ricette semplici,
-          realistiche e facili da seguire.
+          Scrivi 3 ingredienti, scegli il tempo massimo e lascia che l’AI ti proponga
+          ricette semplici, realistiche e facili da seguire.
         </p>
-        <div class="stats">
-          <div class="stat">
-            <strong>3 ingredienti</strong>
-            <span>Input veloce e chiaro</span>
-          </div>
-          <div class="stat">
-            <strong>2 ricette</strong>
-            <span>Output immediato</span>
-          </div>
-          <div class="stat">
-            <strong>JSON pronto</strong>
-            <span>Facile da salvare nel database</span>
-          </div>
+
+        <div class="feature-grid">
+          <div class="feature-card"><span class="feature-number">1</span><strong>3 ingredienti</strong></div>
+          <div class="feature-card"><span class="feature-number">2</span><strong>3 ricette</strong></div>
+          <div class="feature-card"><span class="feature-number">3</span><strong>In pochi secondi</strong></div>
+          <div class="feature-card"><span class="feature-number">4</span><strong>Condividi le tue ricette</strong></div>
+          <div class="feature-card"><span class="feature-number">5</span><strong>Salva le tue ricette</strong></div>
+          <div class="feature-card"><span class="feature-number">6</span><strong>Affidati a noi</strong></div>
         </div>
+
+        <img src="images/hero.jpg" alt="Immagine cucina" class="hero-image" />
       </div>
 
       <aside class="card form-card">
-        <div>
-          <h2 class="section-title">Trova una ricetta</h2>
-          <p class="section-copy">Questa pagina è già pronta per collegarsi a un backend con OpenAI API.</p>
-        </div>
+        <h2 class="section-title">Trova una ricetta</h2>
+        <p>Questa pagina è pronta per collegarsi al backend con OpenAI API.</p>
 
         <form id="recipeForm">
-          <div>
-            <label for="ingredient1">Ingrediente 1</label>
-            <input id="ingredient1" name="ingredient1" placeholder="Es. uova" required />
-          </div>
+          <label for="ingredient1">Ingrediente 1</label>
+          <input id="ingredient1" name="ingredient1" placeholder="Es. uova" required />
 
-          <div>
-            <label for="ingredient2">Ingrediente 2</label>
-            <input id="ingredient2" name="ingredient2" placeholder="Es. zucchine" required />
-          </div>
+          <label for="ingredient2">Ingrediente 2</label>
+          <input id="ingredient2" name="ingredient2" placeholder="Es. zucchine" required />
 
-          <div>
-            <label for="ingredient3">Ingrediente 3</label>
-            <input id="ingredient3" name="ingredient3" placeholder="Es. parmigiano" required />
-          </div>
+          <label for="ingredient3">Ingrediente 3</label>
+          <input id="ingredient3" name="ingredient3" placeholder="Es. parmigiano" required />
 
-          <div class="grid">
-            <div>
-              <label for="maxTime">Tempo massimo</label>
-              <select id="maxTime" name="maxTime">
-                <option value="15">15 minuti</option>
-                <option value="20" selected>20 minuti</option>
-                <option value="30">30 minuti</option>
-                <option value="45">45 minuti</option>
-              </select>
-            </div>
-            <div>
-              <label for="difficulty">Difficoltà</label>
-              <select id="difficulty" name="difficulty">
-                <option value="facile" selected>Facile</option>
-                <option value="media">Media</option>
-                <option value="qualsiasi">Qualsiasi</option>
-              </select>
-            </div>
-          </div>
+          <label for="maxTime">Tempo massimo</label>
+          <select id="maxTime" name="maxTime">
+            <option value="15">15 minuti</option>
+            <option value="20" selected>20 minuti</option>
+            <option value="30">30 minuti</option>
+            <option value="45">45 minuti</option>
+          </select>
 
-          <div class="actions">
-            <button class="btn btn-primary" type="submit">Genera ricetta</button>
-            <button class="btn btn-secondary" type="button" id="demoBtn">Usa esempio</button>
-          </div>
+          <label for="difficulty">Difficoltà</label>
+          <select id="difficulty" name="difficulty">
+            <option value="facile">Facile</option>
+            <option value="media">Media</option>
+            <option value="difficile">Difficile</option>
+          </select>
 
-          <p class="hint">Per collegarla davvero al backend, crea una route <code>/api/recipe</code>.</p>
+          <button type="submit">Genera ricette</button>
         </form>
       </aside>
     </section>
-
-    <section class="result-wrap">
-      <div class="status" id="statusBox"></div>
-
-      <div class="results" id="results">
-        <div class="empty" id="emptyState">
-          Inserisci 3 ingredienti e premi <strong>Genera ricetta</strong>.
-        </div>
-      </div>
-    </section>
-
-    <p class="footer-note">
-      Pagina demo front-end. Se il backend non risponde, usa automaticamente una risposta locale di prova.
-    </p>
   </div>
 
-  <script>
-    const form = document.getElementById('recipeForm');
-    const statusBox = document.getElementById('statusBox');
-    const resultsEl = document.getElementById('results');
-    const emptyState = document.getElementById('emptyState');
-    const demoBtn = document.getElementById('demoBtn');
-
-    function setStatus(message, isError = false) {
-      statusBox.textContent = message;
-      statusBox.className = 'status show' + (isError ? ' error' : '');
-    }
-
-    function clearStatus() {
-      statusBox.textContent = '';
-      statusBox.className = 'status';
-    }
-
-    function escapeHtml(value) {
-      return String(value)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
-
-    function renderRecipes(data) {
-      const recipes = Array.isArray(data?.recipes) ? data.recipes : [];
-      resultsEl.innerHTML = '';
-
-      if (!recipes.length) {
-        resultsEl.innerHTML = '<div class="empty">Nessuna ricetta trovata.</div>';
-        return;
-      }
-
-      for (const recipe of recipes) {
-        const article = document.createElement('article');
-        article.className = 'card recipe';
-
-        const extraPantry = Array.isArray(recipe.extra_pantry) ? recipe.extra_pantry : [];
-        const steps = Array.isArray(recipe.steps) ? recipe.steps : [];
-        const ingredients = Array.isArray(recipe.ingredients_used) ? recipe.ingredients_used : [];
-
-        article.innerHTML = `
-          <h3>${escapeHtml(recipe.title || 'Ricetta senza titolo')}</h3>
-          <div class="meta">
-            <span class="chip">⏱ ${escapeHtml(recipe.time_minutes ?? '-')} min</span>
-            <span class="chip">🔥 ${escapeHtml(recipe.difficulty || '-')}</span>
-            <span class="chip">🍽 ${escapeHtml(recipe.servings || 2)} porzioni</span>
-          </div>
-
-          <div class="block">
-            <h4>Ingredienti usati</h4>
-            <ul>${ingredients.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
-          </div>
-
-          <div class="block">
-            <h4>Dispensa extra</h4>
-            <ul>${extraPantry.map(item => `<li>${escapeHtml(item)}</li>`).join('') || '<li>Nessuno</li>'}</ul>
-          </div>
-
-          <div class="block">
-            <h4>Procedimento</h4>
-            <ol>${steps.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
-          </div>
-        `;
-
-        resultsEl.appendChild(article);
-      }
-    }
-
-    function demoPayload(ingredients) {
-      return {
-        recipes: [
-          {
-            title: `Frittata veloce con ${ingredients[1]}`,
-            time_minutes: 18,
-            difficulty: 'facile',
-            servings: 2,
-            ingredients_used: ingredients,
-            extra_pantry: ['olio', 'sale', 'pepe'],
-            steps: [
-              `Taglia ${ingredients[1]} in pezzi piccoli e cuocilo in padella con poco olio per 5-6 minuti.`,
-              `Sbatti ${ingredients[0]} con ${ingredients[2]}, sale e pepe.`,
-              'Versa il composto in padella e cuoci a fuoco basso fino a rassodamento.',
-              'Piega o gira la frittata e servi calda.'
-            ]
-          },
-          {
-            title: `${ingredients[1]} gratinate con crema di ${ingredients[0]}`,
-            time_minutes: 22,
-            difficulty: 'facile',
-            servings: 2,
-            ingredients_used: ingredients,
-            extra_pantry: ['olio', 'sale', 'pangrattato'],
-            steps: [
-              `Cuoci ${ingredients[1]} a fette per 8 minuti in forno o air fryer.`,
-              `Prepara una crema rapida con ${ingredients[0]} e ${ingredients[2]}.`,
-              'Aggiungi la crema sopra le verdure, completa con pangrattato e un filo d’olio.',
-              'Gratina per altri 6-8 minuti e servi.'
-            ]
-          }
-        ]
-      };
-    }
-
-    async function requestRecipes(payload) {
-      const response = await fetch('/api/recipe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (!response.ok) {
-        throw new Error(`Errore API: ${response.status}`);
-      }
-
-      return response.json();
-    }
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      clearStatus();
-
-      const ingredients = [
-        form.ingredient1.value.trim(),
-        form.ingredient2.value.trim(),
-        form.ingredient3.value.trim()
-      ].filter(Boolean);
-
-      if (ingredients.length !== 3) {
-        setStatus('Inserisci esattamente 3 ingredienti.', true);
-        return;
-      }
-
-      const payload = {
-        ingredients,
-        maxTime: Number(form.maxTime.value),
-        difficulty: form.difficulty.value
-      };
-
-      setStatus('Sto generando le ricette...');
-
-      try {
-        const data = await requestRecipes(payload);
-        renderRecipes(data);
-        setStatus('Ricette generate dal backend.');
-      } catch (error) {
-        console.error(error);
-        renderRecipes(demoPayload(ingredients));
-        setStatus('Backend non disponibile. Ti mostro una demo locale.', false);
-      }
-    });
-
-    demoBtn.addEventListener('click', () => {
-      form.ingredient1.value = 'uova';
-      form.ingredient2.value = 'zucchine';
-      form.ingredient3.value = 'parmigiano';
-      form.maxTime.value = '20';
-      form.difficulty.value = 'facile';
-      clearStatus();
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
