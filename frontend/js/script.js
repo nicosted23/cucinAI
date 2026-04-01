@@ -76,19 +76,11 @@ function renderRecipes(recipes) {
           </div>
 
           <div class="recipe-section">
-            <h4>Ingredienti principali</h4>
-            <ul class="recipe-list">
-              ${recipe.ingredients_used.map((item) => `<li>${item}</li>`).join("")}
-            </ul>
-          </div>
-
-          <div class="recipe-section">
-            <h4>Extra dispensa</h4>
-            <ul class="recipe-list">
-              ${recipe.extra_pantry.map((item) => `<li>${item}</li>`).join("")}
-            </ul>
-          </div>
-
+  <h4>Ingredienti</h4>
+  <ul class="recipe-list">
+    ${recipe.ingredients.map((item) => `<li>${item}</li>`).join("")}
+  </ul>
+</div>
           <div class="recipe-section">
             <h4>Procedimento</h4>
             <ol class="recipe-steps">

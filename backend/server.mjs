@@ -40,109 +40,60 @@ const difficulty = difficultyRaw === "qualsiasi" ? null : difficultyRaw;
       });
     }
 
-    const prompt = `
-Sei uno chef creativo, tecnico e pratico, specializzato nel trasformare pochi ingredienti in ricette originali, realistiche e ben spiegate.
+   const prompt = `
+Sei uno chef pratico, creativo e preciso.
 
-Il tuo compito è generare ESATTAMENTE 3 ricette diverse tra loro usando principalmente questi 3 ingredienti:
+Genera ESATTAMENTE 3 ricette diverse tra loro usando principalmente questi 3 ingredienti:
 ${ingredients.join(", ")}.
 
-PARAMETRI DA RISPETTARE:
+PARAMETRI:
 - Ingredienti obbligatori: ${ingredients.join(", ")}
-- Tempo massimo: ${maxTime ? `${maxTime} minuti` : "libero, ma resta pratico e realistico"}
+- Tempo massimo: ${maxTime ? `${maxTime} minuti` : "qualsiasi, ma resta pratico e realistico"}
 - Difficoltà richiesta: ${difficulty ? difficulty : "qualsiasi"}
 - Lingua: italiano
 
 OBIETTIVO:
-Creare 3 ricette che siano:
-- innovative ma realizzabili in una cucina normale
-- diverse davvero tra loro per tecnica, consistenza, idea e risultato finale
-- appetitose, coerenti e credibili
-- facili da capire e utili da eseguire
+Crea 3 ricette:
+- realmente fattibili in una cucina di casa
+- diverse tra loro per idea, tecnica e risultato
+- appetitose, chiare e credibili
+- pratiche da seguire
+- non ripetitive
 
-REGOLE FONDAMENTALI:
+REGOLE:
 1. Usa davvero tutti e 3 gli ingredienti principali in ogni ricetta.
-2. Non ripetere la stessa idea con piccole variazioni.
-3. Evita ricette banali, troppo generiche, inutilmente gourmet o poco realistiche.
-4. Evita ricette troppo simili tra loro per cottura, struttura o presentazione.
-5. Le ricette devono sembrare create da uno chef pratico, non da un testo casuale.
-6. Ogni ricetta deve avere una propria identità chiara.
-7. Non usare ingredienti extra strani, costosi o difficili da trovare.
-8. Puoi usare solo ingredienti base da dispensa comuni, come:
-   olio extravergine, sale, pepe, acqua, burro, latte, farina, pangrattato, aglio, cipolla, limone, erbe aromatiche comuni, parmigiano, spezie base.
-9. Se una ricetta richiede un extra importante, deve essere comune e giustificato.
-10. Scrivi in modo chiaro, concreto, pratico, ordinato.
+2. Non proporre ricette quasi uguali tra loro.
+3. Evita ricette banali, poco realistiche o troppo simili.
+4. Puoi aggiungere solo ingredienti extra comuni da dispensa.
+5. Gli ingredienti devono essere scritti con quantità realistiche e precise.
+6. Ogni ricetta deve avere massimo 5 passaggi chiari e concreti.
+7. Le spiegazioni devono essere pratiche, non lunghe.
+8. Non aggiungere testo fuori dal JSON richiesto.
 
-VARIAZIONE IN BASE ALLA DIFFICOLTÀ:
-- Se la difficoltà è "facile":
-  - proponi ricette molto accessibili
-  - pochi passaggi
-  - tecniche semplici
-  - strumenti comuni
-  - risultato buono e veloce
-- Se la difficoltà è "media":
-  - proponi ricette più curate
-  - tecniche leggermente più interessanti
-  - maggiore attenzione a consistenze, equilibrio e rifinitura
-- Se la difficoltà è "difficile":
-  - proponi ricette più tecniche, creative e strutturate
-  - passaggi più raffinati
-  - maggiore profondità culinaria
-  - combinazioni più originali
-  - impiattamento e costruzione più evoluti
-  - ma sempre realistiche da eseguire in casa da una persona motivata
-- Se la difficoltà è "qualsiasi":
-  - scegli liberamente il livello più adatto al tipo di ricetta
-  - varia il livello tra le 3 ricette se ha senso
-  - mantieni sempre chiarezza e fattibilità
-COME DEVONO ESSERE LE 3 RICETTE:
-- La ricetta 1 deve essere la più immediata e comfort.
-- La ricetta 2 deve avere un’idea più creativa o una tecnica diversa.
-- La ricetta 3 deve essere la più originale, sorprendente o elegante.
-- Se è stato indicato un tempo massimo preciso, tutte e 3 devono rispettarlo.
-- Se il tempo è "qualsiasi", resta comunque entro un tempo realistico da cucina domestica.
+GESTIONE DELLA DIFFICOLTÀ:
+- facile = pochi passaggi, tecniche semplici, strumenti comuni
+- media = maggiore cura e combinazioni più interessanti
+- difficile = più tecnica, più struttura, ma sempre realistica
+- qualsiasi = scegli liberamente il livello più adatto alla ricetta
 
-PER OGNI RICETTA:
-- crea un titolo forte, invogliante e diverso dalle altre
-- indica tempo reale stimato
-- indica difficoltà coerente con quella richiesta
-- indica porzioni
-- specifica gli ingredienti principali usati
-- specifica gli ingredienti extra di dispensa
-- scrivi passaggi numerati, pratici e molto chiari
-- fai capire bene ordine, tecnica e risultato atteso
-- inserisci dettagli utili che migliorano davvero l’esecuzione
-- evita frasi vaghe come "cuoci quanto basta" o "fai normalmente"
-- spiega in modo preciso ma non prolisso
+STRUTTURA DELLE 3 RICETTE:
+- Ricetta 1: più semplice e immediata
+- Ricetta 2: più creativa
+- Ricetta 3: più originale o elegante
 
-QUALITÀ DELLE SPIEGAZIONI:
-Le istruzioni devono essere:
-- pratiche
-- precise
-- leggibili
-- concrete
-- facili da seguire mentre si cucina
-- senza teoria inutile
-- senza ripetizioni
+Per ogni ricetta restituisci:
+- titolo
+- tempo in minuti
+- difficoltà
+- porzioni
+- lista completa ingredienti con quantità
+- procedimento in 5 passaggi massimo
 
-EVITA ASSOLUTAMENTE:
-- ricette duplicate o quasi uguali
-- titoli banali
-- istruzioni generiche
-- risultati improbabili
-- abbinamenti senza senso
-- ingredienti non coerenti
-- ricette troppo simili tra loro
-- varianti pigre della stessa preparazione
+Se è stato indicato un tempo massimo preciso, rispettalo.
+Se il tempo è qualsiasi, resta comunque entro un tempo realistico da cucina domestica.
 
-IMPORTANTE:
-Prima di rispondere, controlla mentalmente che le 3 ricette siano davvero diverse per:
-- tecnica
-- struttura
-- esperienza finale
-- stile del piatto
-
-Restituisci il risultato nello schema JSON richiesto, senza testo fuori formato.
 `;
+
 
     const response = await client.responses.create({
       model: "gpt-5.4",
@@ -167,29 +118,26 @@ Restituisci il risultato nello schema JSON richiesto, senza testo fuori formato.
                     time_minutes: { type: "number" },
                     difficulty: { type: "string" },
                     servings: { type: "number" },
-                    ingredients_used: {
-                      type: "array",
-                      items: { type: "string" }
-                    },
-                    extra_pantry: {
-                      type: "array",
-                      items: { type: "string" }
-                    },
-                    steps: {
-                      type: "array",
-                      minItems: 3,
-                      items: { type: "string" }
-                    }
-                  },
+                    ingredients: {
+  type: "array",
+  minItems: 3,
+  items: { type: "string" }
+},
+   steps: {
+    type: "array",
+    minItems: 3,
+    maxItems: 5,
+    items: { type: "string" }
+  }
+},             
                   required: [
-                    "title",
-                    "time_minutes",
-                    "difficulty",
-                    "servings",
-                    "ingredients_used",
-                    "extra_pantry",
-                    "steps"
-                  ]
+  "title",
+  "time_minutes",
+  "difficulty",
+  "servings",
+  "ingredients",
+  "steps"
+]
                 }
               }
             },
