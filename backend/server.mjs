@@ -28,8 +28,11 @@ function normalizeIngredients(ingredients = []) {
 app.post("/api/recipe", async (req, res) => {
   try {
     const ingredients = normalizeIngredients(req.body.ingredients);
-    const maxTime = Number(req.body.maxTime || 20);
-    const difficulty = String(req.body.difficulty || "facile");
+    const maxTimeRaw = String(req.body.maxTime || "qualsiasi");
+const difficultyRaw = String(req.body.difficulty || "qualsiasi");
+
+const maxTime = maxTimeRaw === "qualsiasi" ? null : Number(maxTimeRaw);
+const difficulty = difficultyRaw === "qualsiasi" ? null : difficultyRaw;
 
     if (ingredients.length !== 3) {
       return res.status(400).json({
@@ -45,8 +48,8 @@ ${ingredients.join(", ")}.
 
 PARAMETRI DA RISPETTARE:
 - Ingredienti obbligatori: ${ingredients.join(", ")}
-- Tempo massimo: ${maxTime} minuti
-- Difficoltà richiesta: ${difficulty}
+- Tempo massimo: ${maxTime ? `${maxTime} minuti` : "libero, ma resta pratico e realistico"}
+- Difficoltà richiesta: ${difficulty ? difficulty : "qualsiasi"}
 - Lingua: italiano
 
 OBIETTIVO:
@@ -87,12 +90,16 @@ VARIAZIONE IN BASE ALLA DIFFICOLTÀ:
   - combinazioni più originali
   - impiattamento e costruzione più evoluti
   - ma sempre realistiche da eseguire in casa da una persona motivata
-
+- Se la difficoltà è "qualsiasi":
+  - scegli liberamente il livello più adatto al tipo di ricetta
+  - varia il livello tra le 3 ricette se ha senso
+  - mantieni sempre chiarezza e fattibilità
 COME DEVONO ESSERE LE 3 RICETTE:
 - La ricetta 1 deve essere la più immediata e comfort.
 - La ricetta 2 deve avere un’idea più creativa o una tecnica diversa.
 - La ricetta 3 deve essere la più originale, sorprendente o elegante.
-- Tutte e 3 devono rientrare nel tempo massimo richiesto.
+- Se è stato indicato un tempo massimo preciso, tutte e 3 devono rispettarlo.
+- Se il tempo è "qualsiasi", resta comunque entro un tempo realistico da cucina domestica.
 
 PER OGNI RICETTA:
 - crea un titolo forte, invogliante e diverso dalle altre
