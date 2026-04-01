@@ -157,7 +157,138 @@ Se il tempo è qualsiasi, resta comunque entro un tempo realistico da cucina dom
     });
   }
 });
+app.post("/api/search-recipes", async (req, res) => {
+  try {
+    const query = String(req.body.query || "").trim();
+    const maxTimeRaw = String(req.body.maxTime || "qualsiasi");
+    const difficultyRaw = String(req.body.difficulty || "qualsiasi");
+    const mode = String(req.body.mode || "qualsiasi");
 
+    const maxTime = maxTimeRaw === "qualsiasi" ? null : Number(maxTimeRaw);
+    const difficulty = difficultyRaw === "qualsiasi" ? null : difficultyRaw;
+
+    if (!query) {
+      return res.status(400).json({
+        error: "Inserisci una ricerca valida."
+      });
+    }
+
+    const prompt = `
+Sei uno chef pratico, creativo e preciso.
+
+Genera ESATTAMENTE 3 ricette diverse tra loro in base a questa richiesta:
+"${query}"
+
+PARAMETRI:
+- Tempo massimo: ${maxTime ? `${maxTime} minuti` : "qualsiasi, ma resta realistico"}
+- Difficoltà: ${difficulty ? difficulty : "qualsiasi"}
+- Modalità: ${mode}
+
+REGOLE:
+- Le ricette devono essere realistiche e fattibili a casa
+- Devono essere diverse tra loro
+- Devono avere ingredienti con quantità precise
+- Devono avere massimo 5 passaggi chiari
+- Se la modalità è fitness, vegetariano, senza-glutine o economico, rispettala davvero
+- Restituisci solo JSON valido
+`;
+
+    const response = await client.responses.create({
+      model: "gpt-5.4",
+      input: prompt,
+      text: {
+        format: {
+          type: "json_schema",
+          name: "search_recipe_response",
+          schema: {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              recipes: {
+                type: "array",
+                minItems: 3,
+                maxItems: 3,
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  properties: {
+                    title: { type: "string" },
+                    time_minutes: { type: "number" },
+                    difficulty: { type: "string" },
+                    servings: { type: "number" },
+                    ingredients: {
+                      type: "array",
+                      minItems: 3,
+                      items: { type: "string" }
+                    },
+                    steps: {
+                      type: "array",
+                      minItems: 3,
+                      maxItems: 5,
+                      items: { type: "string" }
+                    }
+                  },
+                  required: [
+                    "title",
+                    "time_minutes",
+                    "difficulty",
+                    "servings",
+                    "ingredients",
+                    "steps"
+                  ]
+                }
+              }
+            },
+            required: ["recipes"]
+          }
+        }
+      }
+    });
+
+    const data = JSON.parse(response.output_text);
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Errore nella ricerca delle ricette.",
+      details: error?.message || "Errore sconosciuto"
+    });
+  }
+});
+
+app.post("/api/generate-recipe-image", async (req, res) => {
+  try {
+    const recipe = req.body.recipe;
+
+    if (!recipe || !recipe.title) {
+      return res.status(400).json({
+        error: "Ricetta non valida per la generazione dell'immagine."
+      });
+    }
+
+    const imagePrompt = `
+Foto professionale di un piatto cucinato chiamato "${recipe.title}".
+Stile food photography premium, realistico, appetitoso, luce naturale, impiattamento moderno, alta qualità, cucina reale, dettaglio ricco, molto invitante.
+`;
+
+    const imageResponse = await client.images.generate({
+      model: "gpt-image-1",
+      prompt: imagePrompt,
+      size: "1024x1024"
+    });
+
+    const imageBase64 = imageResponse.data[0].b64_json;
+    const imageUrl = `data:image/png;base64,${imageBase64}`;
+
+    res.json({ imageUrl });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Errore nella generazione dell'immagine.",
+      details: error?.message || "Errore sconosciuto"
+    });
+  }
+});
 const port = process.env.PORT || 3000;
 
 app.listen(port, "0.0.0.0", () => {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ricerca ricette - CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <h1 class="page-title">Ricerca ricette</h1>
+    <p class="sub">Trova nuove idee in base a quello che vuoi mangiare, al tempo che hai e al tuo stile alimentare.</p>
+
+    <section class="card">
+      <form id="searchRecipeForm">
+        <label for="recipeQuery">Cosa vuoi cucinare?</label>
+        <input id="recipeQuery" name="recipeQuery" placeholder="Es. pasta cremosa, pollo leggero, cena veloce..." required />
+
+        <label for="searchMaxTime">Tempo massimo</label>
+        <select id="searchMaxTime" name="searchMaxTime">
+          <option value="qualsiasi" selected>Qualsiasi</option>
+          <option value="15">15 minuti</option>
+          <option value="20">20 minuti</option>
+          <option value="30">30 minuti</option>
+          <option value="45">45 minuti</option>
+        </select>
+
+        <label for="searchDifficulty">Difficoltà</label>
+        <select id="searchDifficulty" name="searchDifficulty">
+          <option value="qualsiasi" selected>Qualsiasi</option>
+          <option value="facile">Facile</option>
+          <option value="media">Media</option>
+          <option value="difficile">Difficile</option>
+        </select>
+
+        <label for="searchMode">Modalità</label>
+        <select id="searchMode" name="searchMode">
+          <option value="qualsiasi" selected>Qualsiasi</option>
+          <option value="fitness">Fitness</option>
+          <option value="vegetariano">Vegetariano</option>
+          <option value="senza-glutine">Senza glutine</option>
+          <option value="economico">Economico</option>
+        </select>
+
+        <div class="form-actions">
+          <button type="submit">Cerca ricette</button>
+          <button type="button" id="searchRegenerateBtn" class="secondary-btn">Rigenera</button>
+        </div>
+      </form>
+    </section>
+
+    <div id="searchResults" class="results-grid"></div>
+  </div>
+
+  <script src="js/search-recipes.js"></script>
+</body>
+</html>
