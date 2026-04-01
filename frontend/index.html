@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="card hero-copy">
+        <div class="demo-badge">DEMO</div>
+        <div class="badge">🍳 CucinAI • Prototipo</div>
+        <h1>Cucina con quello che hai già in casa.</h1>
+        <p class="sub">
+          Scrivi 3 ingredienti, scegli il tempo massimo e lascia che l’AI ti proponga
+          ricette semplici, realistiche e facili da seguire.
+        </p>
+
+        <div class="feature-grid">
+          <div class="feature-card"><span class="feature-number">1</span><strong>3 ingredienti</strong></div>
+          <div class="feature-card"><span class="feature-number">2</span><strong>3 ricette</strong></div>
+          <div class="feature-card"><span class="feature-number">3</span><strong>In pochi secondi</strong></div>
+          <div class="feature-card"><span class="feature-number">4</span><strong>Condividi le tue ricette</strong></div>
+          <div class="feature-card"><span class="feature-number">5</span><strong>Salva le tue ricette</strong></div>
+          <div class="feature-card"><span class="feature-number">6</span><strong>Affidati a noi</strong></div>
+        </div>
+
+        <img src="images/hero.jpg" alt="Immagine cucina" class="hero-image" />
+      </div>
+
+      <aside class="card form-card">
+        <h2 class="section-title">Trova una ricetta</h2>
+        <p>Questa pagina è pronta per collegarsi al backend con OpenAI API.</p>
+
+        <form id="recipeForm">
+          <label for="ingredient1">Ingrediente 1</label>
+          <input id="ingredient1" name="ingredient1" placeholder="Es. uova" required />
+
+          <label for="ingredient2">Ingrediente 2</label>
+          <input id="ingredient2" name="ingredient2" placeholder="Es. zucchine" required />
+
+          <label for="ingredient3">Ingrediente 3</label>
+          <input id="ingredient3" name="ingredient3" placeholder="Es. parmigiano" required />
+
+          <label for="maxTime">Tempo massimo</label>
+          <select id="maxTime" name="maxTime">
+            <option value="15">15 minuti</option>
+            <option value="20" selected>20 minuti</option>
+            <option value="30">30 minuti</option>
+            <option value="45">45 minuti</option>
+          </select>
+
+          <label for="difficulty">Difficoltà</label>
+          <select id="difficulty" name="difficulty">
+            <option value="facile">Facile</option>
+            <option value="media">Media</option>
+            <option value="difficile">Difficile</option>
+          </select>
+
+          <button type="submit">Genera ricette</button>
+        </form>
+      </aside>
+    </section>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
