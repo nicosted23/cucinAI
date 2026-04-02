@@ -1068,3 +1068,62 @@ button {
     border-bottom: none;
   }
 }
+
+
+.about-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 24px;
+}
+
+.about-hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
+
+.about-visual-inner h3 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 28px;
+}
+
+.about-visual-inner p {
+  margin: 0;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.84);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.about-card h2,
+.about-wide-card h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 30px;
+}
+
+.about-card p,
+.about-wide-card p {
+  line-height: 1.8;
+  color: rgba(255,255,255,0.84);
+}
+
+.about-wide-card {
+  margin-bottom: 22px;
+}
+
+@media (max-width: 980px) {
+  .about-hero,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
