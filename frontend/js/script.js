@@ -1,9 +1,53 @@
 const form = document.getElementById("recipeForm");
 const resultsBox = document.getElementById("results");
 const regenerateBtn = document.getElementById("regenerateBtn");
+const randomGenerateBtn = document.getElementById("randomGenerateBtn");
 
 let lastRequestPayload = null;
+const randomIngredientsPool = [
+  "uova",
+  "zucchine",
+  "parmigiano",
+  "patate",
+  "cipolla",
+  "pomodori",
+  "mozzarella",
+  "riso",
+  "pollo",
+  "tonno",
+  "pane",
+  "spinaci",
+  "funghi",
+  "carote",
+  "piselli",
+  "prosciutto cotto",
+  "ricotta",
+  "melanzane",
+  "peperoni",
+  "pasta",
+  "ceci",
+  "fagioli",
+  "salmone",
+  "avocado",
+  "limone",
+  "broccoli",
+  "cavolfiore",
+  "olive",
+  "mais",
+  "latte"
+];
 
+const randomTimes = ["15", "20", "30", "45", "qualsiasi"];
+const randomDifficulties = ["facile", "media", "difficile", "qualsiasi"];
+
+function getRandomUniqueIngredients(pool, count = 3) {
+  const shuffled = [...pool].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+}
+
+function getRandomItem(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
 function getSavedRecipes() {
   try {
     return JSON.parse(localStorage.getItem("savedRecipes")) || [];
@@ -162,6 +206,27 @@ if (regenerateBtn) {
       resultsBox.innerHTML = `<div class="recipe-error">Genera prima almeno una volta le ricette.</div>`;
       return;
     }
+
+    await generateRecipes(lastRequestPayload);
+  });
+}
+if (randomGenerateBtn) {
+  randomGenerateBtn.addEventListener("click", async () => {
+    const [ingredient1, ingredient2, ingredient3] = getRandomUniqueIngredients(randomIngredientsPool, 3);
+    const maxTime = getRandomItem(randomTimes);
+    const difficulty = getRandomItem(randomDifficulties);
+
+    document.getElementById("ingredient1").value = ingredient1;
+    document.getElementById("ingredient2").value = ingredient2;
+    document.getElementById("ingredient3").value = ingredient3;
+    document.getElementById("maxTime").value = maxTime;
+    document.getElementById("difficulty").value = difficulty;
+
+    lastRequestPayload = {
+      ingredients: [ingredient1, ingredient2, ingredient3],
+      maxTime,
+      difficulty
+    };
 
     await generateRecipes(lastRequestPayload);
   });
