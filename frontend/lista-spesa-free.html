@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista Spesa Free - CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/lista-spesa-free.css?v=1" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <section class="shopping-free-hero">
+  <span class="shopping-free-tag">🛒 Lista spesa semplice e ordinata</span>
+  <h1 class="page-title">Lista Spesa Free</h1>
+  <p class="shopping-free-sub">
+    Crea la tua lista in pochi secondi, aggiungi prodotti, spunta ciò che hai comprato
+    e tieni tutto in ordine in una pagina chiara, pratica e pensata soprattutto per il telefono.
+  </p>
+</section>
+
+<section class="shopping-free-top-grid">
+  <article class="shopping-info-card">
+    <h2>✅ Cosa puoi fare</h2>
+    <p>
+      Aggiungi manualmente prodotti, quantità e categorie. Gestisci una lista semplice,
+      utile e pronta da usare ogni giorno.
+    </p>
+  </article>
+
+  <article class="shopping-info-card shopping-upgrade-card">
+    <h2>✨ Vuoi di più?</h2>
+    <p>
+      Passa alla versione Premium per collegare la spesa a ricette salvate, menu settimana
+      e funzioni smart con AI.
+    </p>
+    <a href="lista-spesa-premium.html" class="shopping-premium-btn">
+      Scopri Lista Spesa Premium
+    </a>
+  </article>
+</section>
+
+<section class="shopping-free-form-section">
+  <div class="shopping-main-card">
+    <div class="shopping-card-header">
+      <h3>Aggiungi un prodotto</h3>
+      <p>Inserisci un elemento e aggiungilo subito alla tua lista.</p>
+    </div>
+
+    <form id="shoppingFreeForm" class="shopping-free-form">
+      <div class="form-group">
+        <label for="free-product-name">Prodotto</label>
+        <input type="text" id="free-product-name" placeholder="Es. Latte" />
+      </div>
+
+      <div class="form-group">
+        <label for="free-product-qty">Quantità</label>
+        <input type="text" id="free-product-qty" placeholder="Es. 2 bottiglie" />
+      </div>
+
+      <div class="form-group">
+        <label for="free-product-category">Categoria</label>
+        <select id="free-product-category">
+          <option value="Altro">Altro</option>
+          <option value="Verdura e frutta">Verdura e frutta</option>
+          <option value="Carne e pesce">Carne e pesce</option>
+          <option value="Latticini">Latticini</option>
+          <option value="Dispensa">Dispensa</option>
+          <option value="Surgelati">Surgelati</option>
+          <option value="Bevande">Bevande</option>
+        </select>
+      </div>
+
+      <div class="form-group button-group">
+        <label>&nbsp;</label>
+        <button type="submit" class="shopping-green-btn">Aggiungi</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="shopping-free-summary" id="shoppingSummary">
+  <div class="shopping-summary-card">
+    <span class="summary-kicker">Totale articoli</span>
+    <strong id="summaryTotal">0</strong>
+  </div>
+
+  <div class="shopping-summary-card">
+    <span class="summary-kicker">Da comprare</span>
+    <strong id="summaryPending">0</strong>
+  </div>
+
+  <div class="shopping-summary-card">
+    <span class="summary-kicker">Comprati</span>
+    <strong id="summaryDone">0</strong>
+  </div>
+</section>
+
+<section class="shopping-free-list-section">
+  <div class="shopping-main-card">
+    <div class="shopping-card-header">
+      <h3>La tua lista</h3>
+      <p>Spunta i prodotti comprati oppure elimina quelli che non ti servono più.</p>
+    </div>
+
+    <div id="shoppingEmptyState" class="shopping-empty-state">
+      <h4>📋 La tua lista è vuota</h4>
+      <p>Aggiungi il primo prodotto per iniziare a organizzare la tua spesa.</p>
+    </div>
+
+    <div id="shoppingListContainer" class="shopping-list-container"></div>
+  </div>
+</section>  
+</div>
+
+  <script src="js/menu.js"></script>
+<script src="js/lista-spesa-free.js"></script>
+</body>
+</html>
