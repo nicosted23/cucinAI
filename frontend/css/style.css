@@ -1127,3 +1127,65 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+
+.about-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.about-value-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.about-value-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.about-value-card h3 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+}
+
+.about-value-card p {
+  margin: 0;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.82);
+}
+
+.about-highlight-card {
+  margin-bottom: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.about-highlight-card h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+  font-size: 32px;
+}
+
+.about-highlight-card p {
+  line-height: 1.85;
+  color: rgba(255,255,255,0.85);
+}
+
+@media (max-width: 980px) {
+  .about-values {
+    grid-template-columns: 1fr;
+  }
+}
+
