@@ -39,7 +39,7 @@ aiGeneratorSection.style.display = "none";
 
 renderPremiumList();
 updatePremiumSummary();
-renderAiOutput();
+renderAiOutput([]);
 
 toggleAiGeneratorButton.addEventListener("click", function () {
   const isHidden = aiGeneratorSection.style.display === "none";
@@ -77,7 +77,7 @@ premiumForm.addEventListener("submit", function (event) {
   premiumNameInput.focus();
 });
 
-premiumAiForm.addEventListener("submit", function (event) {
+premiumAiForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
   const people = document.getElementById("ai-people").value;
@@ -87,18 +87,48 @@ premiumAiForm.addEventListener("submit", function (event) {
   const meals = document.getElementById("ai-meals").value;
   const preferences = document.getElementById("ai-preferences").value.trim();
 
-  generatedAiItems = generateAiShoppingList({
-    people,
-    days,
-    style,
-    budget,
-    meals,
-    preferences
-  });
+  const submitButton = premiumAiForm.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  submitButton.textContent = "Generazione in corso...";
 
-  aiOutputMeta.textContent = `Lista generata per ${people}, ${days}, stile ${style}, budget ${budget}, pasti: ${meals}.`;
-  saveAiGeneratedItems();
-  renderAiOutput();
+  try {
+    const response = await fetch("/api/genera-lista-spesa-ai", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        people,
+        days,
+        style,
+        budget,
+        meals,
+        preferences
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || "Errore nella risposta AI.");
+    }
+
+    const data = result.data;
+
+    generatedAiItems = flattenAiCategories(data.categories);
+
+    aiOutputMeta.textContent =
+      `Lista generata per ${data.meta.people}, ${data.meta.days}, stile ${data.meta.style}, budget ${data.meta.budget}, pasti: ${data.meta.meals}.`;
+
+    saveAiGeneratedItems();
+    renderAiOutput(data.notes || []);
+  } catch (error) {
+    console.error(error);
+    alert("Errore durante la generazione della lista spesa AI.");
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "Genera lista intelligente";
+  }
 });
 
 addAiListToPremiumButton.addEventListener("click", function () {
@@ -122,7 +152,7 @@ resetAiListButton.addEventListener("click", function () {
   generatedAiItems = [];
   aiOutputMeta.textContent = "Qui comparirà la tua proposta generata.";
   saveAiGeneratedItems();
-  renderAiOutput();
+  renderAiOutput([]);
 });
 
 function loadPremiumItems() {
@@ -224,7 +254,7 @@ function renderPremiumList() {
   });
 }
 
-function renderAiOutput() {
+function renderAiOutput(notes = []) {
   aiOutputContainer.innerHTML = "";
 
   if (generatedAiItems.length === 0) {
@@ -241,6 +271,25 @@ function renderAiOutput() {
 
   addAiListToPremiumButton.disabled = false;
   resetAiListButton.disabled = false;
+
+  if (notes.length > 0) {
+    const notesBlock = document.createElement("div");
+    notesBlock.className = "shopping-ai-category-block";
+
+    const notesTitle = document.createElement("h4");
+    notesTitle.textContent = "🧠 Note AI";
+    notesBlock.appendChild(notesTitle);
+
+    const notesList = document.createElement("ul");
+    notes.forEach(note => {
+      const li = document.createElement("li");
+      li.textContent = note;
+      notesList.appendChild(li);
+    });
+
+    notesBlock.appendChild(notesList);
+    aiOutputContainer.appendChild(notesBlock);
+  }
 
   const groupedItems = groupItemsByCategory(generatedAiItems);
 
@@ -264,6 +313,23 @@ function renderAiOutput() {
     categoryBlock.appendChild(list);
     aiOutputContainer.appendChild(categoryBlock);
   });
+}
+
+function flattenAiCategories(categories) {
+  const result = [];
+
+  categories.forEach(categoryBlock => {
+    categoryBlock.items.forEach(item => {
+      result.push({
+        name: item.name,
+        quantity: item.quantity,
+        category: categoryBlock.category,
+        checked: false
+      });
+    });
+  });
+
+  return result;
 }
 
 function groupItemsByCategory(items) {
@@ -295,180 +361,4 @@ function deletePremiumItem(itemId) {
   savePremiumItems();
   renderPremiumList();
   updatePremiumSummary();
-}
-
-function generateAiShoppingList(config) {
-  const stylePresets = {
-    Classico: [
-      { name: "Pomodori", quantity: "1 kg", category: "Verdura e frutta" },
-      { name: "Insalata", quantity: "2 confezioni", category: "Verdura e frutta" },
-      { name: "Pasta", quantity: "2 confezioni", category: "Dispensa" },
-      { name: "Passata di pomodoro", quantity: "2 bottiglie", category: "Dispensa" },
-      { name: "Parmigiano", quantity: "250 g", category: "Latticini" },
-      { name: "Petto di pollo", quantity: "700 g", category: "Carne e pesce" }
-    ],
-    Fitness: [
-      { name: "Zucchine", quantity: "1 kg", category: "Verdura e frutta" },
-      { name: "Spinaci", quantity: "500 g", category: "Verdura e frutta" },
-      { name: "Petto di pollo", quantity: "1 kg", category: "Proteine" },
-      { name: "Uova", quantity: "10", category: "Proteine" },
-      { name: "Riso basmati", quantity: "1 kg", category: "Dispensa" },
-      { name: "Yogurt greco", quantity: "4 vasetti", category: "Latticini" }
-    ],
-    Equilibrato: [
-      { name: "Pomodori", quantity: "1 kg", category: "Verdura e frutta" },
-      { name: "Zucchine", quantity: "1 kg", category: "Verdura e frutta" },
-      { name: "Uova", quantity: "8", category: "Proteine" },
-      { name: "Tonno", quantity: "3 scatolette", category: "Proteine" },
-      { name: "Pasta", quantity: "2 confezioni", category: "Dispensa" },
-      { name: "Latte", quantity: "2 bottiglie", category: "Latticini" }
-    ],
-    Economico: [
-      { name: "Patate", quantity: "2 kg", category: "Verdura e frutta" },
-      { name: "Cipolle", quantity: "1 kg", category: "Verdura e frutta" },
-      { name: "Pasta", quantity: "3 confezioni", category: "Dispensa" },
-      { name: "Riso", quantity: "1 kg", category: "Dispensa" },
-      { name: "Uova", quantity: "10", category: "Proteine" },
-      { name: "Passata di pomodoro", quantity: "2 bottiglie", category: "Dispensa" }
-    ],
-    Vegetariano: [
-      { name: "Zucchine", quantity: "1 kg", category: "Verdura e frutta" },
-      { name: "Melanzane", quantity: "800 g", category: "Verdura e frutta" },
-      { name: "Ceci", quantity: "3 barattoli", category: "Dispensa" },
-      { name: "Lenticchie", quantity: "500 g", category: "Dispensa" },
-      { name: "Uova", quantity: "8", category: "Proteine" },
-      { name: "Mozzarella", quantity: "3 confezioni", category: "Latticini" }
-    ],
-    Veloce: [
-      { name: "Insalata", quantity: "3 confezioni", category: "Verdura e frutta" },
-      { name: "Tonno", quantity: "4 scatolette", category: "Proteine" },
-      { name: "Pane in cassetta", quantity: "2 confezioni", category: "Dispensa" },
-      { name: "Pasta", quantity: "2 confezioni", category: "Dispensa" },
-      { name: "Yogurt", quantity: "6 vasetti", category: "Latticini" },
-      { name: "Frutta mista", quantity: "1.5 kg", category: "Verdura e frutta" }
-    ]
-  };
-
-  const budgetExtras = {
-    Risparmio: [
-      { name: "Carote", quantity: "1 kg", category: "Verdura e frutta" }
-    ],
-    Equilibrato: [
-      { name: "Pane", quantity: "2 confezioni", category: "Dispensa" }
-    ],
-    "Più completo": [
-      { name: "Avocado", quantity: "3", category: "Verdura e frutta" },
-      { name: "Salmone", quantity: "400 g", category: "Carne e pesce" }
-    ]
-  };
-
-  const mealExtras = {
-    "Solo cene": [
-      { name: "Insalata mista", quantity: "2 confezioni", category: "Verdura e frutta" }
-    ],
-    "Pranzi e cene": [
-      { name: "Pane", quantity: "1 confezione", category: "Dispensa" },
-      { name: "Frutta mista", quantity: "1 kg", category: "Verdura e frutta" }
-    ],
-    "Giornata completa": [
-      { name: "Latte", quantity: "2 bottiglie", category: "Latticini" },
-      { name: "Fette biscottate", quantity: "2 confezioni", category: "Dispensa" }
-    ]
-  };
-
-  const baseItems = stylePresets[config.style] || stylePresets.Equilibrato;
-  const budgetItems = budgetExtras[config.budget] || [];
-  const mealItems = mealExtras[config.meals] || [];
-
-  let result = [...baseItems, ...budgetItems, ...mealItems];
-
-  if (config.days === "7 giorni") {
-    result.push({ name: "Acqua", quantity: "2 casse", category: "Bevande" });
-  }
-
-  if (config.people === "3-4 persone" || config.people === "5+ persone") {
-    result = result.map(item => ({
-      ...item,
-      quantity: increaseQuantity(item.quantity)
-    }));
-  }
-
-  if (config.preferences.toLowerCase().includes("poco lattic")) {
-    result = result.filter(item => item.category !== "Latticini");
-  }
-
-  if (config.preferences.toLowerCase().includes("no pesce")) {
-    result = result.filter(item => item.name.toLowerCase() !== "salmone" && item.name.toLowerCase() !== "tonno");
-  }
-
-  if (config.preferences.toLowerCase().includes("più verdure")) {
-    result.push({ name: "Broccoli", quantity: "700 g", category: "Verdura e frutta" });
-  }
-
-  return deduplicateItems(result);
-}
-
-function increaseQuantity(quantity) {
-  if (quantity.includes("kg")) {
-    const value = parseFloat(quantity.replace(",", "."));
-    if (!Number.isNaN(value)) {
-      return `${(value * 1.5).toFixed(1).replace(".0", "")} kg`;
-    }
-  }
-
-  if (quantity.includes("g")) {
-    const value = parseInt(quantity, 10);
-    if (!Number.isNaN(value)) {
-      return `${Math.round(value * 1.5)} g`;
-    }
-  }
-
-  if (quantity.includes("confezioni")) {
-    const value = parseInt(quantity, 10);
-    if (!Number.isNaN(value)) {
-      return `${value + 1} confezioni`;
-    }
-  }
-
-  if (quantity.includes("bottiglie")) {
-    const value = parseInt(quantity, 10);
-    if (!Number.isNaN(value)) {
-      return `${value + 1} bottiglie`;
-    }
-  }
-
-  if (quantity.includes("vasetti")) {
-    const value = parseInt(quantity, 10);
-    if (!Number.isNaN(value)) {
-      return `${value + 2} vasetti`;
-    }
-  }
-
-  if (quantity.includes("scatolette")) {
-    const value = parseInt(quantity, 10);
-    if (!Number.isNaN(value)) {
-      return `${value + 1} scatolette`;
-    }
-  }
-
-  const numericValue = parseInt(quantity, 10);
-  if (!Number.isNaN(numericValue)) {
-    return String(Math.round(numericValue * 1.5));
-  }
-
-  return quantity;
-}
-
-function deduplicateItems(items) {
-  const map = new Map();
-
-  items.forEach(item => {
-    const key = `${item.category}-${item.name}`.toLowerCase();
-
-    if (!map.has(key)) {
-      map.set(key, item);
-    }
-  });
-
-  return Array.from(map.values());
 }

@@ -290,7 +290,138 @@ Stile food photography premium, realistico, appetitoso, luce naturale, impiattam
   }
 });
 const port = process.env.PORT || 3000;
+app.post("/api/genera-lista-spesa-ai", async (req, res) => {
+  try {
+    const { people, days, style, budget, meals, preferences } = req.body || {};
 
+    if (!people || !days || !style || !budget || !meals) {
+      return res.status(400).json({
+        error: "Dati mancanti nel questionario."
+      });
+    }
+
+    const promptSistema = `
+Sei CucinAI, un assistente culinario italiano esperto di organizzazione pasti e spesa.
+Devi generare una lista spesa settimanale realmente utile, concreta e coerente con le richieste utente.
+
+Regole obbligatorie:
+- Rispetta SEMPRE persone, giorni, stile alimentare, budget e pasti da coprire.
+- Interpreta il campo preferenze in modo intelligente e realistico.
+- Se l'utente scrive allergie, intolleranze, esclusioni o varianti, NON inserire ingredienti incompatibili.
+- Se l'utente scrive "no pesce", evita qualsiasi pesce.
+- Se l'utente scrive "senza lattosio", evita latticini non compatibili.
+- Se l'utente scrive "vegetariano", non inserire carne o pesce.
+- Se l'utente scrive richieste economiche, scegli ingredienti versatili e meno costosi.
+- Genera ingredienti realistici per una cucina italiana quotidiana.
+- Evita liste assurde, troppo gourmet o troppo casuali.
+- Le quantità devono essere credibili.
+- Raggruppa gli ingredienti in categorie chiare.
+- Restituisci solo JSON valido secondo lo schema richiesto.
+`;
+
+    const promptUtente = `
+Genera una lista spesa settimanale con questi dati:
+
+- Persone: ${people}
+- Giorni: ${days}
+- Stile: ${style}
+- Budget: ${budget}
+- Pasti da coprire: ${meals}
+- Preferenze / allergie / varianti / note: ${preferences || "nessuna preferenza specifica"}
+
+Obiettivo:
+creare una lista spesa realistica, utile e ben organizzata per il supermercato.
+`;
+
+    const response = await client.responses.create({
+      model: "gpt-5.4",
+      input: [
+        {
+          role: "developer",
+          content: promptSistema
+        },
+        {
+          role: "user",
+          content: promptUtente
+        }
+      ],
+      text: {
+        format: {
+          type: "json_schema",
+          name: "shopping_list_response",
+          strict: true,
+          schema: {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              meta: {
+                type: "object",
+                additionalProperties: false,
+                properties: {
+                  people: { type: "string" },
+                  days: { type: "string" },
+                  style: { type: "string" },
+                  budget: { type: "string" },
+                  meals: { type: "string" },
+                  preferences_summary: { type: "string" }
+                },
+                required: [
+                  "people",
+                  "days",
+                  "style",
+                  "budget",
+                  "meals",
+                  "preferences_summary"
+                ]
+              },
+              notes: {
+                type: "array",
+                items: { type: "string" }
+              },
+              categories: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  properties: {
+                    category: { type: "string" },
+                    items: {
+                      type: "array",
+                      items: {
+                        type: "object",
+                        additionalProperties: false,
+                        properties: {
+                          name: { type: "string" },
+                          quantity: { type: "string" }
+                        },
+                        required: ["name", "quantity"]
+                      }
+                    }
+                  },
+                  required: ["category", "items"]
+                }
+              }
+            },
+            required: ["meta", "notes", "categories"]
+          }
+        }
+      }
+    });
+
+    const parsed = JSON.parse(response.output_text);
+
+    return res.json({
+      success: true,
+      data: parsed
+    });
+  } catch (error) {
+    console.error("Errore generazione lista spesa AI:", error);
+
+    return res.status(500).json({
+      error: "Errore durante la generazione AI della lista spesa."
+    });
+  }
+});
 app.listen(port, "0.0.0.0", () => {
   console.log("Server avviato su http://localhost:" + port);
 });
