@@ -10,77 +10,84 @@
   <div class="container">
     <nav class="navbar">
       <div class="nav-logo">CucinAI</div>
-         <div class="nav-links">
-  <a href="index.html">Home</a>
-  <a href="tre-ingredienti.html">3 Ingredienti</a>
-  <a href="ricerca-ricette.html">Ricerca ricette</a>
-  <a href="ricette-salvate.html">Ricette salvate</a>
-  <a href="abbonamenti.html">Abbonamenti</a>
-</div>
-</nav>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
 
-    <section class="hero">
-      <div class="card hero-copy">
-        <div class="demo-badge">DEMO</div>
-        <div class="badge">🍳 CucinAI • </div>
-        <h1>Cucina con quello che hai già in casa.</h1>
-        <p class="sub">
-          Scrivi 3 ingredienti, scegli il tempo massimo e lascia che l’AI ti proponga
-          ricette semplici, realistiche e facili da seguire.
+    <section class="home-hero">
+      <div class="home-hero-copy">
+        <span class="home-badge">Cucina smart • Community • Organizzazione</span>
+        <h1 class="home-title">Cucina meglio, organizza i tuoi pasti, scopri nuove idee.</h1>
+        <p class="home-subtitle">
+          Trova ricette con quello che hai in casa, salva le migliori, organizza i tuoi pasti
+          e confrontati con una community guidata da due cuochi italiani.
         </p>
 
-        <div class="feature-grid">
-          <div class="feature-card"><span class="feature-number">1</span><strong>3 ingredienti</strong></div>
-          <div class="feature-card"><span class="feature-number">2</span><strong>3 ricette</strong></div>
-          <div class="feature-card"><span class="feature-number">3</span><strong>In pochi secondi</strong></div>
-          <div class="feature-card"><span class="feature-number">4</span><strong>Condividi le tue ricette</strong></div>
-          <div class="feature-card"><span class="feature-number">5</span><strong>Salva le tue ricette</strong></div>
-          <div class="feature-card"><span class="feature-number">6</span><strong>Affidati a noi</strong></div>
+        <div class="home-actions">
+          <a href="tre-ingredienti.html" class="home-btn home-btn-primary">Prova CucinAI</a>
+          <a href="abbonamenti.html" class="home-btn home-btn-secondary">Entra nella community</a>
         </div>
-
-        <img src="images/hero.jpg" alt="Immagine cucina" class="hero-image" />
       </div>
 
-      <aside class="card form-card">
-        <h2 class="section-title">Trova una ricetta</h2>
-        <p>Scrivici cosa hai nel frigo e ottieni 3 ricette pratiche, diverse e facili da seguire.</p>
+      <div class="home-hero-visual card">
+        <div class="hero-preview-top">
+          <span class="preview-pill">3 Ingredienti</span>
+          <span class="preview-pill">Ricerca ricette</span>
+          <span class="preview-pill">Ricette salvate</span>
+        </div>
 
-        <form id="recipeForm">
-          <label for="ingredient1">Ingrediente 1</label>
-          <input id="ingredient1" name="ingredient1" placeholder="Es. uova" required />
+        <div class="hero-preview-card">
+          <h3>Un solo spazio per cucinare meglio</h3>
+          <p>
+            Idee pratiche, ricette spiegate bene, funzioni smart e una community pensata
+            per chi vuole vivere la cucina in modo più semplice e organizzato.
+          </p>
+        </div>
 
-          <label for="ingredient2">Ingrediente 2</label>
-          <input id="ingredient2" name="ingredient2" placeholder="Es. zucchine" required />
+        <div class="hero-preview-grid">
+          <div class="mini-feature-card">
+            <strong>Ricette su misura</strong>
+            <span>In base a ingredienti, tempo e stile alimentare.</span>
+          </div>
+          <div class="mini-feature-card">
+            <strong>Salvataggio veloce</strong>
+            <span>Tieni da parte le ricette migliori in un click.</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <label for="ingredient3">Ingrediente 3</label>
-          <input id="ingredient3" name="ingredient3" placeholder="Es. parmigiano" required />
+    <section class="home-links-section">
+      <div class="home-links-grid">
+        <a href="chi-siamo.html" class="home-link-card">
+          <h3>Chi siamo</h3>
+          <p>Scopri la visione dietro CucinAI.</p>
+        </a>
 
-          <label for="maxTime">Tempo massimo</label>
-<select id="maxTime" name="maxTime">
-  <option value="qualsiasi" selected>Qualsiasi</option>
-  <option value="15">15 minuti</option>
-  <option value="20">20 minuti</option>
-  <option value="30">30 minuti</option>
-  <option value="45">45 minuti</option>
-</select>
+        <a href="ricette-salvate.html" class="home-link-card">
+          <h3>Salva le tue ricette</h3>
+          <p>Tieni sempre con te le tue idee migliori.</p>
+        </a>
 
-<label for="difficulty">Difficoltà</label>
-<select id="difficulty" name="difficulty">
-  <option value="qualsiasi" selected>Qualsiasi</option>
-  <option value="facile">Facile</option>
-  <option value="media">Media</option>
-  <option value="difficile">Difficile</option>
-</select>
-          
-<div class="form-actions">
-  <button type="submit">Genera ricette</button>
-  <button type="button" id="regenerateBtn" class="secondary-btn">Rigenera</button>
-</div>
-                  </form><div id="results" class="results-grid"></div>
-      </aside>
+        <a href="abbonamenti.html" class="home-link-card">
+          <h3>Scopri la community</h3>
+          <p>Accedi ai vantaggi riservati agli abbonati.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="home-contact card">
+      <h2>Contattaci</h2>
+      <p>
+        Per collaborazioni, informazioni o richieste, scrivici direttamente.
+      </p>
+      <a href="mailto:INSERISCI-LA-TUA-EMAIL" class="contact-link">Contattaci</a>
     </section>
   </div>
-
-  <script src="js/script.js"></script>
 </body>
 </html>
