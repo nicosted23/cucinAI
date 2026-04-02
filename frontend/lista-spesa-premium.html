@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista Spesa Premium - CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/lista-spesa-premium.css?v=1" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <section class="shopping-premium-hero">
+      <span class="shopping-premium-tag">✨ Organizzazione smart con CucinAI</span>
+      <h1 class="page-title">Lista Spesa Premium</h1>
+      <p class="shopping-premium-sub">
+        Una lista più evoluta, collegata alla tua organizzazione in cucina e arricchita
+        da strumenti intelligenti per creare una spesa più utile, più ordinata e più vicina alle tue esigenze.
+      </p>
+    </section>
+
+    <section class="shopping-premium-top-grid">
+      <article class="shopping-premium-info-card">
+        <h2>📌 Cosa sblocchi con la Premium</h2>
+        <p>
+          Oltre alla lista manuale, puoi partire da ricette salvate, dal menu settimana
+          e da una generazione intelligente pensata per darti una base più completa.
+        </p>
+      </article>
+
+      <article class="shopping-premium-info-card shopping-premium-highlight">
+        <h2>🤖 Funzione AI inclusa</h2>
+        <p>
+          Rispondi a poche domande e genera una proposta di lista spesa settimanale
+          in base a persone, giorni, stile alimentare, budget e preferenze.
+        </p>
+      </article>
+    </section>
+
+    <section class="shopping-premium-actions">
+      <article class="shopping-premium-action-card">
+        <h3>📚 Da ricette salvate</h3>
+        <p>In futuro potrai aggiungere ingredienti direttamente dalle ricette che hai salvato.</p>
+        <a href="ricette-salvate.html" class="shopping-premium-secondary-btn">Vai alle ricette salvate</a>
+      </article>
+
+      <article class="shopping-premium-action-card">
+        <h3>🗓️ Dal menu settimana</h3>
+        <p>In futuro potrai trasformare il tuo piano pasti in una lista spesa pronta da usare.</p>
+        <a href="menu-settimana.html" class="shopping-premium-secondary-btn">Vai al menu settimana</a>
+      </article>
+
+      <article class="shopping-premium-action-card shopping-premium-ai-card">
+        <h3>⚡ Crea lista spesa intelligente</h3>
+        <p>Genera una proposta settimanale più smart e aggiungila alla tua lista premium.</p>
+        <button type="button" id="toggleAiGenerator" class="shopping-premium-btn">
+          Apri generatore AI
+        </button>
+      </article>
+    </section>
+
+    <section id="aiGeneratorSection" class="shopping-premium-generator-section">
+      <div class="shopping-premium-main-card">
+        <div class="shopping-premium-card-header">
+          <h3>Mini questionario AI</h3>
+          <p>Compila i campi qui sotto per creare una proposta di lista più adatta alle tue esigenze.</p>
+        </div>
+
+        <form id="premiumAiForm" class="shopping-premium-form-grid">
+          <div class="form-group">
+            <label for="ai-people">Per quante persone?</label>
+            <select id="ai-people">
+              <option value="1 persona">1 persona</option>
+              <option value="2 persone">2 persone</option>
+              <option value="3-4 persone">3-4 persone</option>
+              <option value="5+ persone">5+ persone</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ai-days">Per quanti giorni?</label>
+            <select id="ai-days">
+              <option value="3 giorni">3 giorni</option>
+              <option value="5 giorni">5 giorni</option>
+              <option value="7 giorni">7 giorni</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ai-style">Che stile vuoi seguire?</label>
+            <select id="ai-style">
+              <option value="Classico">Classico</option>
+              <option value="Fitness">Fitness</option>
+              <option value="Equilibrato">Equilibrato</option>
+              <option value="Economico">Economico</option>
+              <option value="Vegetariano">Vegetariano</option>
+              <option value="Veloce">Veloce</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ai-budget">Budget</label>
+            <select id="ai-budget">
+              <option value="Risparmio">Risparmio</option>
+              <option value="Equilibrato">Equilibrato</option>
+              <option value="Più completo">Più completo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="ai-meals">Pasti da coprire</label>
+            <select id="ai-meals">
+              <option value="Solo cene">Solo cene</option>
+              <option value="Pranzi e cene">Pranzi e cene</option>
+              <option value="Giornata completa">Giornata completa</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="ai-preferences">Preferenze o ingredienti da evitare</label>
+            <textarea id="ai-preferences" rows="4" placeholder="Es. pochi latticini, pasti veloci, più verdure..."></textarea>
+          </div>
+
+          <div class="form-group full-width">
+            <button type="submit" class="shopping-premium-btn">Genera lista intelligente</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="aiOutputSection" class="shopping-premium-output-section">
+      <div class="shopping-premium-main-card">
+        <div class="shopping-premium-card-header">
+          <h3>🧠 Lista consigliata dall'AI</h3>
+          <p id="aiOutputMeta">Qui comparirà la tua proposta generata.</p>
+        </div>
+
+        <div id="aiOutputContainer" class="shopping-ai-output-container">
+          <div class="shopping-ai-empty">
+            <h4>Nessuna lista generata</h4>
+            <p>Compila il mini questionario qui sopra per ottenere una proposta smart.</p>
+          </div>
+        </div>
+
+        <div class="shopping-ai-output-actions">
+          <button type="button" id="addAiListToPremium" class="shopping-premium-btn" disabled>
+            Aggiungi alla lista premium
+          </button>
+          <button type="button" id="resetAiList" class="shopping-premium-secondary-btn" disabled>
+            Svuota proposta
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="shopping-premium-form-section">
+      <div class="shopping-premium-main-card">
+        <div class="shopping-premium-card-header">
+          <h3>Gestisci la tua lista premium</h3>
+          <p>Aggiungi manualmente prodotti, quantità e categorie, proprio come nella versione Free.</p>
+        </div>
+
+        <form id="shoppingPremiumForm" class="shopping-premium-manual-form">
+          <div class="form-group">
+            <label for="premium-product-name">Prodotto</label>
+            <input type="text" id="premium-product-name" placeholder="Es. Petto di pollo" />
+          </div>
+
+          <div class="form-group">
+            <label for="premium-product-qty">Quantità</label>
+            <input type="text" id="premium-product-qty" placeholder="Es. 500 g" />
+          </div>
+
+          <div class="form-group">
+            <label for="premium-product-category">Categoria</label>
+            <select id="premium-product-category">
+              <option value="Altro">Altro</option>
+              <option value="Verdura e frutta">Verdura e frutta</option>
+              <option value="Carne e pesce">Carne e pesce</option>
+              <option value="Latticini">Latticini</option>
+              <option value="Dispensa">Dispensa</option>
+              <option value="Surgelati">Surgelati</option>
+              <option value="Bevande">Bevande</option>
+              <option value="Proteine">Proteine</option>
+            </select>
+          </div>
+
+          <div class="form-group button-group">
+            <label>&nbsp;</label>
+            <button type="submit" class="shopping-premium-btn">Aggiungi</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="shopping-premium-summary">
+      <div class="shopping-premium-summary-card">
+        <span class="summary-kicker">Totale articoli</span>
+        <strong id="premiumSummaryTotal">0</strong>
+      </div>
+
+      <div class="shopping-premium-summary-card">
+        <span class="summary-kicker">Da comprare</span>
+        <strong id="premiumSummaryPending">0</strong>
+      </div>
+
+      <div class="shopping-premium-summary-card">
+        <span class="summary-kicker">Comprati</span>
+        <strong id="premiumSummaryDone">0</strong>
+      </div>
+    </section>
+
+    <section class="shopping-premium-list-section">
+      <div class="shopping-premium-main-card">
+        <div class="shopping-premium-card-header">
+          <h3>La tua lista premium</h3>
+          <p>Spunta i prodotti comprati, elimina quelli inutili e tieni tutto organizzato per categoria.</p>
+        </div>
+
+        <div id="premiumEmptyState" class="shopping-premium-empty-state">
+          <h4>📋 La tua lista premium è vuota</h4>
+          <p>Aggiungi prodotti manualmente oppure genera una proposta con l'AI per iniziare.</p>
+        </div>
+
+        <div id="premiumListContainer" class="shopping-premium-list-container"></div>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/menu.js"></script>
+  <script src="js/lista-spesa-premium.js"></script>
+</body>
+</html>
