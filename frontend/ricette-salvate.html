@@ -3,37 +3,110 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ricette salvate - CucinAI</title>
+  <title>Ricette Salvate - CucinAI</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/ricette-salvate.css?v=1" />
 </head>
 <body>
   <div class="container">
     <nav class="navbar">
-  <div class="nav-logo">CucinAI</div>
+      <div class="nav-logo">CucinAI</div>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
-    ☰
-  </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
 
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="tre-ingredienti.html">3 Ingredienti</a>
-    <a href="ricerca-ricette.html">Ricerca ricette</a>
-    <a href="ricette-salvate.html">Ricette salvate</a>
-    <a href="fitness.html">Fitness</a>
-    <a href="lista-spesa.html">Lista spesa</a>
-    <a href="menu-settimana.html">Menu settimana</a>
-    <a href="chi-siamo.html">Chi siamo</a>
-    <a href="abbonamenti.html">Abbonamenti</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <section class="saved-hero">
+      <span class="saved-tag">📚 La tua raccolta personale</span>
+      <h1 class="page-title">Ricette Salvate</h1>
+      <p class="saved-sub">
+        Raccogli le ricette che vuoi cucinare, organizzale meglio e usale per creare
+        il tuo menu settimana o la tua lista spesa premium.
+      </p>
+    </section>
+
+    <section class="saved-top-grid">
+      <article class="saved-info-card">
+        <h2>✨ Una pagina utile davvero</h2>
+        <p>
+          Qui non salvi solo idee: puoi trasformare le ricette in azioni concrete,
+          aggiungendole al menu settimana oppure portando gli ingredienti nella lista spesa premium.
+        </p>
+      </article>
+
+      <article class="saved-info-card saved-stats-card">
+        <h2>📌 Riepilogo</h2>
+        <div class="saved-stats-grid">
+          <div class="saved-stat-box">
+            <span>Totale</span>
+            <strong id="savedTotalCount">0</strong>
+          </div>
+          <div class="saved-stat-box">
+            <span>Visibili</span>
+            <strong id="savedVisibleCount">0</strong>
+          </div>
+          <div class="saved-stat-box">
+            <span>Filtro</span>
+            <strong id="savedCurrentFilter">Tutte</strong>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="saved-toolbar">
+      <div class="saved-search-box">
+        <label for="savedSearchInput">Cerca una ricetta</label>
+        <input
+          type="text"
+          id="savedSearchInput"
+          placeholder="Es. carbonara, tiramisù, pollo..."
+        />
+      </div>
+
+      <div class="saved-filter-group" id="savedFilterGroup">
+        <button type="button" class="saved-filter-btn active" data-filter="Tutte">Tutte</button>
+        <button type="button" class="saved-filter-btn" data-filter="Primi">Primi</button>
+        <button type="button" class="saved-filter-btn" data-filter="Secondi">Secondi</button>
+        <button type="button" class="saved-filter-btn" data-filter="Antipasti / Dolci">Antipasti / Dolci</button>
+      </div>
+    </section>
+
+    <section class="saved-list-section">
+      <div id="savedEmptyState" class="saved-empty-state">
+        <h3>🧑‍🍳 Non hai ancora salvato ricette</h3>
+        <p>
+          Cerca nuove idee e salva quelle che vuoi riutilizzare per organizzare menu e spesa.
+        </p>
+        <div class="saved-empty-actions">
+          <a href="ricerca-ricette.html" class="saved-primary-btn">Vai a Ricerca Ricette</a>
+          <a href="index.html" class="saved-secondary-btn">Torna alla Home</a>
+        </div>
+      </div>
+
+      <div id="savedRecipesGrid" class="saved-recipes-grid"></div>
+
+      <div class="saved-load-more-wrap">
+        <button type="button" id="savedLoadMoreBtn" class="saved-secondary-btn" hidden>
+          Mostra altre
+        </button>
+      </div>
+    </section>
   </div>
-</nav>
 
-    <h1 class="page-title">Le tue ricette salvate</h1>
-    <p class="sub">Qui trovi tutte le ricette che hai salvato con la stellina.</p>
-
-    <div id="savedRecipesContainer" class="results-grid"></div>
-  </div>
-
-  <script src="js/saved-recipes.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/ricette-salvate.js"></script>
 </body>
 </html>
