@@ -5,74 +5,131 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ricerca ricette - CucinAI</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/ricerca-ricette.css?v=1" />
 </head>
 <body>
   <div class="container">
     <nav class="navbar">
-  <div class="nav-logo">CucinAI</div>
+      <div class="nav-logo">CucinAI</div>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
-    ☰
-  </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
 
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="tre-ingredienti.html">3 Ingredienti</a>
-    <a href="ricerca-ricette.html">Ricerca ricette</a>
-    <a href="ricette-salvate.html">Ricette salvate</a>
-    <a href="fitness.html">Fitness</a>
-    <a href="lista-spesa.html">Lista spesa</a>
-    <a href="menu-settimana.html">Menu settimana</a>
-    <a href="chi-siamo.html">Chi siamo</a>
-    <a href="abbonamenti.html">Abbonamenti</a>
-  </div>
-</nav>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
 
-
-    <h1 class="page-title">Ricerca ricette</h1>
-    <p class="sub">Trova nuove idee in base a quello che vuoi mangiare, al tempo che hai e al tuo stile alimentare.</p>
-
-    <section class="card">
-      <form id="searchRecipeForm">
-        <label for="recipeQuery">Cosa vuoi cucinare?</label>
-        <input id="recipeQuery" name="recipeQuery" placeholder="Es. pasta cremosa, pollo leggero, cena veloce..." required />
-
-        <label for="searchMaxTime">Tempo massimo</label>
-        <select id="searchMaxTime" name="searchMaxTime">
-          <option value="qualsiasi" selected>Qualsiasi</option>
-          <option value="15">15 minuti</option>
-          <option value="20">20 minuti</option>
-          <option value="30">30 minuti</option>
-          <option value="45">45 minuti</option>
-        </select>
-
-        <label for="searchDifficulty">Difficoltà</label>
-        <select id="searchDifficulty" name="searchDifficulty">
-          <option value="qualsiasi" selected>Qualsiasi</option>
-          <option value="facile">Facile</option>
-          <option value="media">Media</option>
-          <option value="difficile">Difficile</option>
-        </select>
-
-        <label for="searchMode">Modalità</label>
-        <select id="searchMode" name="searchMode">
-          <option value="qualsiasi" selected>Qualsiasi</option>
-          <option value="fitness">Fitness</option>
-          <option value="vegetariano">Vegetariano</option>
-          <option value="senza-glutine">Senza glutine</option>
-          <option value="economico">Economico</option>
-        </select>
-
-        <div class="form-actions">
-          <button type="submit">Cerca ricette</button>
-          <button type="button" id="searchRegenerateBtn" class="secondary-btn">Rigenera</button>
-        </div>
-      </form>
+    <section class="search-hero">
+      <span class="search-tag">🔎 Trova ricette in modo più intelligente</span>
+      <h1 class="page-title">Ricerca Ricette</h1>
+      <p class="search-sub">
+        Cerca nuove idee in base a quello che vuoi mangiare, al tempo che hai e al tuo stile alimentare.
+        Una pagina più chiara, più utile e più forte da usare ogni giorno.
+      </p>
     </section>
 
-    <div id="searchResults" class="results-grid"></div>
+    <section class="search-top-grid">
+      <article class="search-info-card">
+        <h2>✨ Più ricerca, meno confusione</h2>
+        <p>
+          Scrivi ciò che vuoi cucinare, imposta i filtri principali e lascia che CucinAI
+          ti proponga ricette più adatte alle tue esigenze.
+        </p>
+      </article>
+
+      <article class="search-info-card search-highlight-card">
+        <h2>📌 Dalla scoperta all’organizzazione</h2>
+        <p>
+          Da qui puoi salvare ricette, generare immagini e iniziare a portare i piatti
+          verso il tuo menu personalizzato.
+        </p>
+      </article>
+    </section>
+
+    <section class="search-main-section">
+      <div class="search-main-card">
+        <div class="search-card-header">
+          <h3>Cerca la ricetta giusta</h3>
+          <p>
+            Inserisci un’idea, scegli tempo, difficoltà e modalità. Poi esplora i risultati e salva quelli migliori.
+          </p>
+        </div>
+
+        <form id="searchRecipeForm" class="search-form-grid">
+          <div class="form-group full-width">
+            <label for="recipeQuery">Cosa vuoi cucinare?</label>
+            <input
+              id="recipeQuery"
+              name="recipeQuery"
+              placeholder="Es. pasta cremosa, pollo leggero, cena veloce..."
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="searchMaxTime">Tempo massimo</label>
+            <select id="searchMaxTime" name="searchMaxTime">
+              <option value="qualsiasi" selected>Qualsiasi</option>
+              <option value="15">15 minuti</option>
+              <option value="20">20 minuti</option>
+              <option value="30">30 minuti</option>
+              <option value="45">45 minuti</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="searchDifficulty">Difficoltà</label>
+            <select id="searchDifficulty" name="searchDifficulty">
+              <option value="qualsiasi" selected>Qualsiasi</option>
+              <option value="facile">Facile</option>
+              <option value="media">Media</option>
+              <option value="difficile">Difficile</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="searchMode">Modalità</label>
+            <select id="searchMode" name="searchMode">
+              <option value="qualsiasi" selected>Qualsiasi</option>
+              <option value="fitness">Fitness</option>
+              <option value="vegetariano">Vegetariano</option>
+              <option value="senza-glutine">Senza glutine</option>
+              <option value="economico">Economico</option>
+            </select>
+          </div>
+
+          <div class="form-group button-group">
+            <label>&nbsp;</label>
+            <div class="search-form-actions">
+              <button type="submit" class="search-primary-btn">Cerca ricette</button>
+              <button type="button" id="searchRegenerateBtn" class="search-secondary-btn">Rigenera</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="search-results-section">
+      <div class="search-results-head">
+        <h3>Risultati</h3>
+        <p>Qui troverai le ricette generate in base alla tua ricerca.</p>
+      </div>
+
+      <div id="searchResults" class="search-results-grid"></div>
+    </section>
   </div>
 
+  <script src="js/menu.js"></script>
   <script src="js/search-recipes.js"></script>
 </body>
 </html>

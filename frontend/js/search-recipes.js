@@ -4,44 +4,252 @@ const searchRegenerateBtn = document.getElementById("searchRegenerateBtn");
 
 let lastSearchPayload = null;
 
+const SAVED_RECIPE_KEYS = [
+  "cucinai_saved_recipes",
+  "savedRecipes",
+  "cucinai_savedRecipes"
+];
+
+const CUSTOM_MENU_PENDING_KEY = "cucinai_menu_pending_recipe";
+
 function getSavedRecipes() {
-  try {
-    return JSON.parse(localStorage.getItem("savedRecipes")) || [];
-  } catch {
-    return [];
+  for (const key of SAVED_RECIPE_KEYS) {
+    try {
+      const raw = localStorage.getItem(key);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          return parsed;
+        }
+      }
+    } catch (error) {
+      console.error(`Errore lettura ricette salvate da ${key}:`, error);
+    }
   }
+
+  return [];
 }
 
 function setSavedRecipes(recipes) {
-  localStorage.setItem("savedRecipes", JSON.stringify(recipes));
+  SAVED_RECIPE_KEYS.forEach((key) => {
+    localStorage.setItem(key, JSON.stringify(recipes));
+  });
+}
+
+function normalizeCategory(recipe) {
+  const text = `${recipe.title || ""} ${recipe.query || ""}`.toLowerCase();
+
+  if (
+    text.includes("pasta") ||
+    text.includes("riso") ||
+    text.includes("risotto") ||
+    text.includes("lasagna") ||
+    text.includes("gnocchi")
+  ) {
+    return "Primi";
+  }
+
+  if (
+    text.includes("pollo") ||
+    text.includes("carne") ||
+    text.includes("pesce") ||
+    text.includes("bistecca") ||
+    text.includes("cotoletta")
+  ) {
+    return "Secondi";
+  }
+
+  if (
+    text.includes("dolce") ||
+    text.includes("torta") ||
+    text.includes("tiramis") ||
+    text.includes("cheesecake") ||
+    text.includes("antipasto") ||
+    text.includes("bruschetta")
+  ) {
+    return "Antipasti / Dolci";
+  }
+
+  return "Primi";
+}
+
+function inferIngredientCategory(name) {
+  const text = String(name || "").toLowerCase();
+
+  if (
+    text.includes("pomodor") ||
+    text.includes("insalata") ||
+    text.includes("zucchin") ||
+    text.includes("melanz") ||
+    text.includes("patat") ||
+    text.includes("cipoll") ||
+    text.includes("carot") ||
+    text.includes("broccoli") ||
+    text.includes("spinaci") ||
+    text.includes("frutta")
+  ) {
+    return "Verdura e frutta";
+  }
+
+  if (
+    text.includes("pollo") ||
+    text.includes("manzo") ||
+    text.includes("pesce") ||
+    text.includes("salmone")
+  ) {
+    return "Carne e pesce";
+  }
+
+  if (
+    text.includes("latte") ||
+    text.includes("parmig") ||
+    text.includes("mozzarella") ||
+    text.includes("yogurt") ||
+    text.includes("burro") ||
+    text.includes("ricotta")
+  ) {
+    return "Latticini";
+  }
+
+  if (
+    text.includes("pasta") ||
+    text.includes("riso") ||
+    text.includes("pane") ||
+    text.includes("passata") ||
+    text.includes("ceci") ||
+    text.includes("lenticchie") ||
+    text.includes("farina") ||
+    text.includes("zucchero")
+  ) {
+    return "Dispensa";
+  }
+
+  if (
+    text.includes("tonno") ||
+    text.includes("uova")
+  ) {
+    return "Proteine";
+  }
+
+  return "Altro";
+}
+
+function normalizeIngredients(recipe) {
+  if (!Array.isArray(recipe.ingredients)) {
+    return [];
+  }
+
+  return recipe.ingredients.map((item) => {
+    if (typeof item === "string") {
+      return {
+        name: item,
+        quantity: "q.b.",
+        category: inferIngredientCategory(item)
+      };
+    }
+
+    return {
+      name: item.name || item.ingredient || "Ingrediente",
+      quantity: item.quantity || item.amount || "q.b.",
+      category: item.category || inferIngredientCategory(item.name || item.ingredient || "")
+    };
+  });
+}
+
+function normalizeProcedure(recipe) {
+  const source = recipe.procedure || recipe.instructions || recipe.steps || recipe.method || recipe.preparation;
+
+  if (!source) {
+    return ["Procedimento non disponibile."];
+  }
+
+  if (Array.isArray(source)) {
+    return source.map((step) => {
+      if (typeof step === "string") return step;
+      return step.text || step.description || step.step || "Passaggio non disponibile.";
+    });
+  }
+
+  if (typeof source === "string") {
+    const cleaned = source
+      .split(/\n|\.\s+/)
+      .map((step) => step.trim())
+      .filter(Boolean);
+
+    return cleaned.length ? cleaned : ["Procedimento non disponibile."];
+  }
+
+  return ["Procedimento non disponibile."];
+}
+
+function normalizeRecipeForSave(recipe) {
+  return {
+    id: makeRecipeId(recipe),
+    title: recipe.title || "Ricetta senza titolo",
+    description: recipe.description || `Ricetta trovata con Ricerca Ricette di CucinAI.`,
+    category: recipe.category || normalizeCategory(recipe),
+    time: recipe.time || `${recipe.time_minutes || 30} min`,
+    difficulty: recipe.difficulty || "Facile",
+    servings: recipe.servings || 2,
+    image: recipe.image || "",
+    tags: Array.isArray(recipe.tags) ? recipe.tags : [
+      recipe.mode || "Ricerca",
+      recipe.difficulty || "Facile",
+      `${recipe.time_minutes || 30} min`
+    ],
+    ingredients: normalizeIngredients(recipe),
+    procedure: normalizeProcedure(recipe)
+  };
 }
 
 function makeRecipeId(recipe) {
-  return `${recipe.title}-${recipe.time_minutes}-${recipe.difficulty}`.toLowerCase();
+  return `${recipe.title}-${recipe.time_minutes || recipe.time}-${recipe.difficulty}`.toLowerCase();
 }
 
 function isRecipeSaved(recipe) {
   const saved = getSavedRecipes();
   const recipeId = makeRecipeId(recipe);
-  return saved.some((item) => makeRecipeId(item) === recipeId);
+  return saved.some((item) => (item.id || makeRecipeId(item)) === recipeId);
 }
 
-function toggleSaveRecipe(recipe, button) {
+function toggleSaveRecipe(recipe, button, messageElement) {
   const saved = getSavedRecipes();
-  const recipeId = makeRecipeId(recipe);
-  const existingIndex = saved.findIndex((item) => makeRecipeId(item) === recipeId);
+  const normalizedRecipe = normalizeRecipeForSave(recipe);
+  const recipeId = normalizedRecipe.id;
+
+  const existingIndex = saved.findIndex((item) => (item.id || makeRecipeId(item)) === recipeId);
 
   if (existingIndex >= 0) {
     saved.splice(existingIndex, 1);
     setSavedRecipes(saved);
     button.textContent = "☆";
     button.classList.remove("saved");
+    showCardMessage(messageElement, "Ricetta rimossa dalle salvate.");
   } else {
-    saved.push(recipe);
+    saved.push(normalizedRecipe);
     setSavedRecipes(saved);
     button.textContent = "★";
     button.classList.add("saved");
+    showCardMessage(messageElement, "Ricetta salvata con successo.");
   }
+}
+
+function addRecipeToCustomMenu(recipe, messageElement) {
+  const normalizedRecipe = normalizeRecipeForSave(recipe);
+  localStorage.setItem(CUSTOM_MENU_PENDING_KEY, JSON.stringify(normalizedRecipe));
+  showCardMessage(messageElement, "📌 Ricetta aggiunta al menu personalizzato.");
+}
+
+function showCardMessage(element, text) {
+  if (!element) return;
+
+  element.textContent = text;
+  element.style.display = "block";
+
+  clearTimeout(element._messageTimeout);
+  element._messageTimeout = setTimeout(() => {
+    element.style.display = "none";
+  }, 2600);
 }
 
 async function generateRecipeImage(recipe, button, imageContainer) {
@@ -107,7 +315,7 @@ function renderSearchRecipes(recipes) {
         <div class="recipe-section">
           <h4>Ingredienti</h4>
           <ul class="recipe-list">
-            ${recipe.ingredients.map((item) => `<li>${item}</li>`).join("")}
+            ${recipe.ingredients.map((item) => `<li>${typeof item === "string" ? item : `${item.name} — ${item.quantity || "q.b."}`}</li>`).join("")}
           </ul>
         </div>
 
@@ -119,12 +327,16 @@ function renderSearchRecipes(recipes) {
         </div>
 
         <div class="form-actions">
-          <button type="button" class="secondary-btn generate-image-btn" data-index="${index}">
+          <button type="button" class="search-image-btn generate-image-btn" data-index="${index}">
             Genera foto
+          </button>
+          <button type="button" class="search-menu-btn add-menu-btn" data-index="${index}">
+            Aggiungi a menu personalizzato
           </button>
         </div>
 
         <div class="recipe-image-container" id="recipe-image-${index}"></div>
+        <div class="search-recipe-message" id="recipe-message-${index}" style="display:none;"></div>
       </article>
     `;
   }).join("");
@@ -132,7 +344,8 @@ function renderSearchRecipes(recipes) {
   document.querySelectorAll(".save-star").forEach((button) => {
     button.addEventListener("click", () => {
       const recipe = recipes[Number(button.dataset.index)];
-      toggleSaveRecipe(recipe, button);
+      const messageElement = document.getElementById(`recipe-message-${button.dataset.index}`);
+      toggleSaveRecipe(recipe, button, messageElement);
     });
   });
 
@@ -142,6 +355,15 @@ function renderSearchRecipes(recipes) {
       const recipe = recipes[index];
       const imageContainer = document.getElementById(`recipe-image-${index}`);
       generateRecipeImage(recipe, button, imageContainer);
+    });
+  });
+
+  document.querySelectorAll(".add-menu-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.index);
+      const recipe = recipes[index];
+      const messageElement = document.getElementById(`recipe-message-${index}`);
+      addRecipeToCustomMenu(recipe, messageElement);
     });
   });
 }
