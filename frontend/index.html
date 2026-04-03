@@ -1,203 +1,228 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CucinAI</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/home-desktop.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home-desktop.css?v=3" />
 </head>
 <body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
 
-  <header class="site-header">
-    <div class="logo">CucinAI</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
 
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="tre-ingredienti.html">3 Ingredienti</a>
-      <a href="ricerca-ricette.html">Ricerca Ricette</a>
-      <a href="lista-spesa.html">Lista Spesa</a>
-      <a href="menu-settimana.html">Menu Settimana</a>
-      <a href="fitness.html">Fitness</a>
-      <a href="chi-siamo.html">Chi siamo</a>
-    </nav>
-
-    <a href="abbonamenti.html" class="header-btn">Scopri Premium</a>
-
-    <button class="menu-toggle">☰</button>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-content">
-        <p class="hero-label">Cucina smart • Ricette • Organizzazione</p>
-        <h1>La cucina intelligente che ti aiuta a trovare idee, organizzare i pasti e mangiare meglio</h1>
-        <p class="hero-text">
-          Con CucinAI puoi scoprire ricette in base a ciò che hai in casa, salvare i tuoi piatti preferiti,
-          creare la lista spesa e usare strumenti pensati per rendere la cucina più semplice ogni giorno.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="ricerca-ricette.html" class="btn-primary">Prova CucinAI</a>
-          <a href="abbonamenti.html" class="btn-secondary">Scopri i piani</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="hero-cards">
-      <div class="hero-card">
-        <h3>3 Ingredienti</h3>
-        <p>Trova idee partendo da quello che hai già.</p>
-      </div>
-
-      <div class="hero-card">
-        <h3>Ricerca Ricette</h3>
-        <p>Cerca piatti in modo semplice e veloce.</p>
-      </div>
-
-      <div class="hero-card">
-        <h3>Lista Spesa</h3>
-        <p>Trasforma le ricette in organizzazione vera.</p>
-      </div>
-    </section>
-
-    <section class="features-overview">
-      <div class="section-title">
-        <h2>Tutto quello che ti serve in un solo posto</h2>
-        <p>Dalla ricerca ricette all’organizzazione dei pasti, CucinAI riunisce strumenti utili per cucinare meglio senza perdere tempo.</p>
-      </div>
-
-      <div class="overview-grid">
-        <div class="overview-card">
-          <h3>Trova ricette</h3>
-          <p>Scopri idee in base agli ingredienti, al tempo che hai e a quello che vuoi cucinare.</p>
-        </div>
-
-        <div class="overview-card">
-          <h3>Organizza i pasti</h3>
-          <p>Salva ricette, pianifica la settimana e prepara la lista spesa in modo più semplice.</p>
-        </div>
-
-        <div class="overview-card">
-          <h3>Segui i tuoi obiettivi</h3>
-          <p>Usa strumenti pensati per chi vuole mangiare meglio e avere più controllo.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="main-tools">
-      <div class="section-title">
-        <h2>Esplora le funzioni di CucinAI</h2>
-      </div>
-
-      <div class="tools-grid">
-        <a href="tre-ingredienti.html" class="tool-card">
-          <h3>3 Ingredienti</h3>
-          <p>Inserisci pochi ingredienti e trova idee pratiche da preparare subito.</p>
-        </a>
-
-        <a href="ricerca-ricette.html" class="tool-card">
-          <h3>Ricerca Ricette</h3>
-          <p>Cerca ricette in modo diretto e trova nuove ispirazioni.</p>
-        </a>
-
-        <a href="ricette-salvate.html" class="tool-card">
-          <h3>Ricette Salvate</h3>
-          <p>Tieni tutto in ordine e ritrova facilmente le ricette preferite.</p>
-        </a>
-
-        <a href="lista-spesa.html" class="tool-card">
-          <h3>Lista Spesa</h3>
-          <p>Organizza meglio i tuoi pasti e crea una spesa più semplice.</p>
-        </a>
-
-        <a href="menu-settimana.html" class="tool-card">
-          <h3>Menu Settimana</h3>
-          <p>Scopri un menu pronto oppure usa strumenti più avanzati.</p>
-        </a>
-
-        <a href="fitness.html" class="tool-card">
-          <h3>Fitness</h3>
-          <p>Collega cucina, alimentazione e obiettivi fisici.</p>
-        </a>
-      </div>
-    </section>
-
-    <section class="plans-preview">
-      <div class="section-title">
-        <h2>Scegli come usare CucinAI</h2>
-        <p>Inizia gratis con le funzioni base oppure passa a un’esperienza più completa.</p>
-      </div>
-
-      <div class="plans-grid">
-        <div class="plan-card">
-          <h3>Free</h3>
-          <p>Accesso semplice e immediato alle funzioni base del progetto.</p>
-          <a href="abbonamenti.html" class="btn-secondary">Inizia gratis</a>
-        </div>
-
-        <div class="plan-card premium">
-          <h3>Premium</h3>
-          <p>Strumenti avanzati, più personalizzazione e accesso completo.</p>
-          <a href="abbonamenti.html" class="btn-primary">Scopri Premium</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-preview">
-      <div class="about-preview-content">
-        <h2>Un progetto creato da due cuochi italiani</h2>
-        <p>
-          CucinAI nasce dall’unione tra esperienza reale in cucina e voglia di costruire qualcosa di utile,
-          moderno e concreto per chi cucina ogni giorno.
-        </p>
-        <a href="chi-siamo.html" class="btn-secondary">Chi siamo</a>
-      </div>
-    </section>
-
-    <section class="fitness-preview">
-      <h2>Mangiare bene non significa solo trovare ricette</h2>
-      <p>
-        CucinAI guarda anche al lato pratico dell’alimentazione: organizzazione, costanza,
-        obiettivi fisici e strumenti utili per migliorare davvero.
-      </p>
-      <a href="fitness.html" class="btn-primary">Scopri la sezione Fitness</a>
-    </section>
-
-    <section class="final-cta">
-      <h2>Inizia a usare CucinAI oggi</h2>
-      <p>Scopri ricette, organizza i pasti e porta più ordine nella tua cucina.</p>
-      <div class="hero-buttons">
-        <a href="ricerca-ricette.html" class="btn-primary">Prova ora</a>
-        <a href="abbonamenti.html" class="btn-secondary">Vedi i piani</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <h3>CucinAI</h3>
-        <p>La piattaforma per cucinare, organizzarti e trovare idee in modo intelligente.</p>
-      </div>
-
-      <div>
-        <h4>Navigazione</h4>
+      <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
-        <a href="ricerca-ricette.html">Ricerca Ricette</a>
         <a href="tre-ingredienti.html">3 Ingredienti</a>
-        <a href="lista-spesa.html">Lista Spesa</a>
-        <a href="menu-settimana.html">Menu Settimana</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
         <a href="fitness.html">Fitness</a>
-      </div>
-
-      <div>
-        <h4>Info</h4>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
         <a href="chi-siamo.html">Chi siamo</a>
         <a href="abbonamenti.html">Abbonamenti</a>
       </div>
-    </div>
-  </footer>
+    </nav>
+
+    <section class="home-hero">
+      <div class="home-hero-content">
+        <span class="home-badge">👨‍🍳 Cucina smart guidata da esperienza reale</span>
+        <h1 class="home-title">CucinAI ti aiuta a cucinare, organizzarti e sprecare meno</h1>
+        <p class="home-subtitle">
+          Trova ricette, usa quello che hai in casa, crea il tuo menu settimana
+          e collega tutto alla lista spesa in una piattaforma pensata per la cucina quotidiana.
+        </p>
+
+        <div class="home-hero-actions">
+          <a href="tre-ingredienti.html" class="home-primary-btn">Prova CucinAI</a>
+          <a href="abbonamenti.html" class="home-secondary-btn">Passa a Premium</a>
+        </div>
+
+        <div class="home-hero-points">
+          <span>Ricette intelligenti</span>
+          <span>Spesa più organizzata</span>
+          <span>Menu settimanale più semplice</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-quick-start">
+      <div class="section-heading">
+        <h2>Da dove vuoi iniziare?</h2>
+        <p>Scegli subito la funzione che ti serve e vai diretto al punto.</p>
+      </div>
+
+      <div class="home-quick-grid">
+        <article class="home-quick-card">
+          <h3>🥄 3 Ingredienti</h3>
+          <p>Parti da quello che hai in casa e ottieni idee pratiche da cucinare davvero.</p>
+          <a href="tre-ingredienti.html" class="home-card-link">Apri</a>
+        </article>
+
+        <article class="home-quick-card">
+          <h3>🔎 Ricerca Ricette</h3>
+          <p>Trova nuove idee in base a gusto, tempo, difficoltà e modalità alimentare.</p>
+          <a href="ricerca-ricette.html" class="home-card-link">Apri</a>
+        </article>
+
+        <article class="home-quick-card">
+          <h3>🛒 Lista Spesa</h3>
+          <p>Organizza ingredienti e acquisti in modo più semplice e più ordinato.</p>
+          <a href="lista-spesa.html" class="home-card-link">Apri</a>
+        </article>
+
+        <article class="home-quick-card">
+          <h3>📅 Menu Settimana</h3>
+          <p>Struttura pranzi e cene con più ordine e collega tutto alla tua cucina reale.</p>
+          <a href="menu-settimana.html" class="home-card-link">Apri</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-features">
+      <div class="section-heading">
+        <h2>Una piattaforma che ti aiuta davvero in cucina</h2>
+        <p>CucinAI non è solo un tool: mette insieme ricette, spesa e organizzazione.</p>
+      </div>
+
+      <div class="home-feature-grid">
+        <article class="home-feature-card">
+          <h3>Trova ricette con quello che hai</h3>
+          <p>Usa pochi ingredienti e ottieni idee concrete da preparare davvero.</p>
+        </article>
+
+        <article class="home-feature-card">
+          <h3>Cerca in modo più mirato</h3>
+          <p>Filtra per tempo, difficoltà, modalità alimentari e obiettivi.</p>
+        </article>
+
+        <article class="home-feature-card">
+          <h3>Organizza meglio la spesa</h3>
+          <p>Trasforma ricette e menu in una lista più utile e più ordinata.</p>
+        </article>
+
+        <article class="home-feature-card">
+          <h3>Pianifica la tua settimana</h3>
+          <p>Costruisci un menu più semplice da seguire, collegato alla tua cucina quotidiana.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-difference">
+      <div class="section-heading">
+        <h2>Perché CucinAI è diverso</h2>
+        <p>Qui tecnologia e cucina reale lavorano insieme con più logica.</p>
+      </div>
+
+      <div class="home-difference-grid">
+        <article class="home-difference-card">
+          <h3>👨‍🍳 Guidato da due cuochi italiani</h3>
+          <p>Dietro il progetto ci sono persone del mestiere, non solo automazione.</p>
+        </article>
+
+        <article class="home-difference-card">
+          <h3>🤖 AI utile davvero</h3>
+          <p>L’intelligenza artificiale viene usata per aiutarti meglio, non solo per generare testo.</p>
+        </article>
+
+        <article class="home-difference-card">
+          <h3>📌 Più ordine nella cucina reale</h3>
+          <p>Ricette, spesa e settimana lavorano insieme per rendere tutto più semplice.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-plans">
+      <div class="section-heading">
+        <h2>Scegli come usare CucinAI</h2>
+        <p>Inizia dalle funzioni base oppure passa alla versione completa.</p>
+      </div>
+
+      <div class="home-plans-grid">
+        <article class="home-plan-card">
+          <span class="plan-badge">Free</span>
+          <h3>Versione Free</h3>
+          <ul class="home-plan-list">
+            <li>3 ricette a settimana</li>
+            <li>Accesso base alle funzioni iniziali</li>
+            <li>Primo approccio a CucinAI</li>
+          </ul>
+          <a href="tre-ingredienti.html" class="home-secondary-btn home-plan-btn">Inizia gratis</a>
+        </article>
+
+        <article class="home-plan-card home-plan-card-premium">
+          <span class="plan-badge premium-plan-badge">Premium</span>
+          <h3>Versione Premium</h3>
+          <ul class="home-plan-list">
+            <li>3 ingredienti illimitato</li>
+            <li>Ricerca ricette</li>
+            <li>Modalità fitness</li>
+            <li>Lista spesa e menu settimana</li>
+            <li>AI avanzata e funzioni complete</li>
+          </ul>
+          <a href="abbonamenti.html" class="home-primary-btn home-plan-btn">Scopri la Premium</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-steps">
+      <div class="section-heading">
+        <h2>Come funziona CucinAI</h2>
+        <p>Un flusso semplice per passare dalle idee all’organizzazione reale.</p>
+      </div>
+
+      <div class="home-steps-grid">
+        <article class="home-step-card">
+          <span class="step-number">1</span>
+          <h3>Scegli la funzione giusta</h3>
+          <p>Parti da ingredienti, ricerca ricette o organizzazione settimanale.</p>
+        </article>
+
+        <article class="home-step-card">
+          <span class="step-number">2</span>
+          <h3>Ottieni idee o costruisci il tuo piano</h3>
+          <p>CucinAI ti aiuta a scegliere in modo più semplice e utile.</p>
+        </article>
+
+        <article class="home-step-card">
+          <span class="step-number">3</span>
+          <h3>Collega tutto a menu e spesa</h3>
+          <p>Trasforma le ricette in una settimana più ordinata e in una spesa più chiara.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-vision">
+      <div class="home-vision-card">
+        <span class="home-badge">Visione del progetto</span>
+        <h2>Una cucina più organizzata, senza perdere il lato umano</h2>
+        <p>
+          CucinAI nasce per aiutare le persone a cucinare meglio, ridurre gli sprechi
+          e organizzare davvero la propria settimana, mantenendo al centro esperienza reale,
+          cucina italiana e strumenti intelligenti.
+        </p>
+      </div>
+    </section>
+
+    <section class="home-final-cta">
+      <div class="home-final-cta-card">
+        <h2>Inizia dalla funzione più semplice o passa subito alla versione completa</h2>
+        <p>
+          Prova CucinAI da una funzione immediata oppure scopri tutto il potenziale della Premium.
+        </p>
+
+        <div class="home-hero-actions">
+          <a href="tre-ingredienti.html" class="home-primary-btn">Prova CucinAI</a>
+          <a href="abbonamenti.html" class="home-secondary-btn">Passa a Premium</a>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <script src="js/menu.js"></script>
 </body>
