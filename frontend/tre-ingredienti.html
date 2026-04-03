@@ -5,78 +5,155 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3 Ingredienti - CucinAI</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/tre-ingredienti.css?v=1" />
 </head>
 <body>
   <div class="container">
     <nav class="navbar">
-  <div class="nav-logo">CucinAI</div>
+      <div class="nav-logo">CucinAI</div>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
-    ☰
-  </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
 
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="tre-ingredienti.html">3 Ingredienti</a>
-    <a href="ricerca-ricette.html">Ricerca ricette</a>
-    <a href="ricette-salvate.html">Ricette salvate</a>
-    <a href="fitness.html">Fitness</a>
-    <a href="lista-spesa.html">Lista spesa</a>
-    <a href="menu-settimana.html">Menu settimana</a>
-    <a href="chi-siamo.html">Chi siamo</a>
-    <a href="abbonamenti.html">Abbonamenti</a>
-  </div>
-</nav>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
 
-    <h1 class="page-title">Cucina con 3 ingredienti</h1>
-    <p class="sub">Inserisci 3 ingredienti e ottieni 3 ricette diverse, pratiche e ben spiegate.</p>
+    <section class="three-hero">
+      <span class="three-tag">🥄 Parti da quello che hai in casa</span>
+      <h1 class="page-title">3 Ingredienti</h1>
+      <p class="three-sub">
+        Hai poco in cucina? Parti da lì. CucinAI trasforma 3 ingredienti reali in idee concrete,
+        pratiche e più intelligenti da portare in tavola.
+      </p>
+    </section>
 
-    <section class="tool-layout">
-      <aside class="card tool-sidebar">
-        <h2 class="section-title">Trova una ricetta</h2>
-        <p>Scegli ingredienti, tempo e difficoltà. Al resto pensiamo noi.</p>
+    <section class="three-top-grid">
+      <article class="three-info-card">
+        <h2>✨ Una funzione centrale di CucinAI</h2>
+        <p>
+          Non è solo un generatore: è il modo più veloce per usare quello che hai già,
+          trovare nuove idee e ridurre gli sprechi con più logica.
+        </p>
+      </article>
 
-        <form id="recipeForm">
-          <label for="ingredient1">Ingrediente 1</label>
-          <input id="ingredient1" name="ingredient1" placeholder="Es. uova" required />
+      <article class="three-info-card three-highlight-card">
+        <h2>⚡ Più veloce, più utile, più chiara</h2>
+        <p>
+          Una pagina ridisegnata per essere più professionale, più forte da telefono
+          e più coerente con l’evoluzione di CucinAI come piattaforma completa.
+        </p>
+      </article>
+    </section>
 
-          <label for="ingredient2">Ingrediente 2</label>
-          <input id="ingredient2" name="ingredient2" placeholder="Es. zucchine" required />
+    <section class="three-tool-section">
+      <div class="three-tool-card">
+        <div class="three-tool-head">
+          <h3>Inserisci gli ingredienti e genera le ricette</h3>
+          <p>
+            Scegli cosa hai in casa, imposta tempo e difficoltà e lascia che l’AI faccia il resto.
+          </p>
+        </div>
 
-          <label for="ingredient3">Ingrediente 3</label>
-          <input id="ingredient3" name="ingredient3" placeholder="Es. parmigiano" required />
+        <section class="tool-layout three-tool-layout-custom">
+          <aside class="card tool-sidebar">
+            <h2 class="section-title">Trova una ricetta</h2>
+            <p>Scegli ingredienti, tempo e difficoltà. Al resto pensiamo noi.</p>
 
-          <label for="maxTime">Tempo massimo</label>
-          <select id="maxTime" name="maxTime">
-            <option value="qualsiasi" selected>Qualsiasi</option>
-            <option value="15">15 minuti</option>
-            <option value="20">20 minuti</option>
-            <option value="30">30 minuti</option>
-            <option value="45">45 minuti</option>
-          </select>
+            <form id="recipeForm">
+              <label for="ingredient1">Ingrediente 1</label>
+              <input id="ingredient1" name="ingredient1" placeholder="Es. uova" required />
 
-          <label for="difficulty">Difficoltà</label>
-          <select id="difficulty" name="difficulty">
-            <option value="qualsiasi" selected>Qualsiasi</option>
-            <option value="facile">Facile</option>
-            <option value="media">Media</option>
-            <option value="difficile">Difficile</option>
-          </select>
+              <label for="ingredient2">Ingrediente 2</label>
+              <input id="ingredient2" name="ingredient2" placeholder="Es. zucchine" required />
 
-          <div class="form-actions">
-  <button type="submit">Genera ricette</button>
-  <button type="button" id="regenerateBtn" class="secondary-btn">Rigenera</button>
-  <button type="button" id="randomGenerateBtn" class="secondary-btn">Genera casualmente</button>
-</div>
-        </form>
-      </aside>
+              <label for="ingredient3">Ingrediente 3</label>
+              <input id="ingredient3" name="ingredient3" placeholder="Es. parmigiano" required />
 
-      <section class="tool-results">
-        <div id="results" class="results-grid three-recipe-layout"></div>
-      </section>
+              <label for="maxTime">Tempo massimo</label>
+              <select id="maxTime" name="maxTime">
+                <option value="qualsiasi" selected>Qualsiasi</option>
+                <option value="15">15 minuti</option>
+                <option value="20">20 minuti</option>
+                <option value="30">30 minuti</option>
+                <option value="45">45 minuti</option>
+              </select>
+
+              <label for="difficulty">Difficoltà</label>
+              <select id="difficulty" name="difficulty">
+                <option value="qualsiasi" selected>Qualsiasi</option>
+                <option value="facile">Facile</option>
+                <option value="media">Media</option>
+                <option value="difficile">Difficile</option>
+              </select>
+
+              <div class="form-actions">
+                <button type="submit">Genera ricette</button>
+                <button type="button" id="regenerateBtn" class="secondary-btn">Rigenera</button>
+                <button type="button" id="randomGenerateBtn" class="secondary-btn">Genera casualmente</button>
+              </div>
+            </form>
+          </aside>
+
+          <section class="tool-results">
+            <div id="results" class="results-grid three-recipe-layout"></div>
+          </section>
+        </section>
+      </div>
+    </section>
+
+    <section class="three-benefits">
+      <div class="three-benefits-grid">
+        <article class="three-benefit-card">
+          <h3>🧊 Meno sprechi</h3>
+          <p>
+            Parti dagli ingredienti che hai già e sfrutta meglio quello che c’è davvero in cucina.
+          </p>
+        </article>
+
+        <article class="three-benefit-card">
+          <h3>🍝 Più idee subito</h3>
+          <p>
+            Trova ricette e spunti più velocemente, senza partire sempre da zero.
+          </p>
+        </article>
+
+        <article class="three-benefit-card">
+          <h3>📌 Più continuità</h3>
+          <p>
+            Questa funzione è il primo passo per collegare ricette, lista spesa e organizzazione settimanale.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="three-upgrade-banner">
+      <div class="three-upgrade-box">
+        <span class="three-tag">🚀 Continua con CucinAI</span>
+        <h3>Vuoi fare un passo in più?</h3>
+        <p>
+          Dopo aver trovato un’idea con 3 Ingredienti, puoi continuare con la ricerca ricette,
+          salvare i piatti migliori e organizzare spesa e settimana in modo più completo.
+        </p>
+        <div class="three-upgrade-actions">
+          <a href="ricerca-ricette.html" class="three-primary-btn">Vai a Ricerca Ricette</a>
+          <a href="lista-spesa.html" class="three-secondary-btn">Vai a Lista Spesa</a>
+        </div>
+      </div>
     </section>
   </div>
 
+  <script src="js/menu.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
