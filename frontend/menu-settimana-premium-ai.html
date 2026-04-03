@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genera Menu con AI - CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu-settimana-premium-ai.css?v=1" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <section class="menu-ai-hero">
+      <span class="menu-ai-tag">🤖 CucinAI crea la tua settimana</span>
+      <h1 class="page-title">Genera Menu con AI</h1>
+      <p class="menu-ai-sub">
+        Compila il modulo e lascia che CucinAI generi un menu settimanale personalizzato
+        in base a esigenze, obiettivi, budget e preferenze.
+      </p>
+    </section>
+
+    <section class="menu-ai-form-card">
+      <div class="menu-ai-section-head">
+        <h3>Modulo AI</h3>
+        <p>Compila i dati principali e, se vuoi, aggiungi quelli opzionali.</p>
+      </div>
+
+      <form id="menuAiForm" class="menu-ai-form-grid">
+        <div class="form-group">
+          <label for="menuAiPeople">Per quante persone?</label>
+          <select id="menuAiPeople">
+            <option>1 persona</option>
+            <option>2 persone</option>
+            <option>3-4 persone</option>
+            <option>5+ persone</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="menuAiDays">Per quanti giorni?</label>
+          <select id="menuAiDays">
+            <option>3 giorni</option>
+            <option>5 giorni</option>
+            <option selected>7 giorni</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="menuAiStyle">Stile</label>
+          <select id="menuAiStyle">
+            <option>Classico</option>
+            <option>Equilibrato</option>
+            <option>Fitness</option>
+            <option>Economico</option>
+            <option>Vegetariano</option>
+            <option>Veloce</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="menuAiBudget">Budget</label>
+          <select id="menuAiBudget">
+            <option>Risparmio</option>
+            <option>Equilibrato</option>
+            <option>Più completo</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="menuAiMeals">Pasti da coprire</label>
+          <select id="menuAiMeals">
+            <option>Solo cene</option>
+            <option selected>Pranzi e cene</option>
+            <option>Giornata completa</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <label for="menuAiPreferences">Preferenze / allergie / ingredienti da evitare</label>
+          <textarea id="menuAiPreferences" rows="4" placeholder="Es. no pesce, senza lattosio, più verdure..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="menuAiCalories">Calorie settimanali indicative (opzionale)</label>
+          <input id="menuAiCalories" type="text" placeholder="Es. 14000" />
+        </div>
+
+        <div class="form-group">
+          <label for="menuAiProtein">Priorità proteine? (opzionale)</label>
+          <select id="menuAiProtein">
+            <option value="">Nessuna preferenza</option>
+            <option>Sì, più proteine</option>
+            <option>No, equilibrio normale</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="menuAiCookingTime">Tempo medio cucina (opzionale)</label>
+          <select id="menuAiCookingTime">
+            <option value="">Nessuna preferenza</option>
+            <option>Molto veloce</option>
+            <option>Normale</option>
+            <option>Più elaborato</option>
+          </select>
+        </div>
+
+        <div class="form-group full-width">
+          <button type="submit" class="menu-ai-primary-btn">Genera menu con AI</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="menu-ai-output-card">
+      <div class="menu-ai-section-head">
+        <h3>Il tuo menu consigliato</h3>
+        <p id="menuAiMeta">Qui comparirà il menu generato.</p>
+      </div>
+
+      <div id="menuAiOutput" class="menu-ai-output"></div>
+
+      <div class="menu-ai-actions">
+        <button type="button" id="saveAiMenuToShoppingList" class="menu-ai-primary-btn" disabled>
+          Salva su Lista Spesa
+        </button>
+      </div>
+
+      <div id="menuAiMessage" class="menu-ai-message" style="display:none;"></div>
+    </section>
+  </div>
+
+  <script src="js/menu.js"></script>
+  <script src="js/menu-settimana-premium-ai.js"></script>
+</body>
+</html>

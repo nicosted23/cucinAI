@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu dello Chef Premium - CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu-settimana-premium-chef.css?v=1" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <section class="menu-chef-hero">
+      <span class="menu-chef-tag">👨‍🍳 Base premium pronta</span>
+      <h1 class="page-title">Menu dello Chef</h1>
+      <p class="menu-chef-sub">
+        Una proposta pronta da usare subito, con la possibilità di inviare tutti gli ingredienti della settimana
+        direttamente alla Lista Spesa Premium.
+      </p>
+    </section>
+
+    <section class="menu-chef-note-card">
+      <h2>Nota dello chef</h2>
+      <p>
+        Questo menu è pensato per mantenere equilibrio, semplicità e una buona continuità nella spesa.
+        L’idea è darti una base concreta già pronta, ma utile davvero anche nella vita quotidiana.
+      </p>
+    </section>
+
+    <section class="menu-chef-plan-card">
+      <div class="menu-chef-plan-head">
+        <h3>Settimana dello chef</h3>
+        <p>Pranzo e cena organizzati giorno per giorno.</p>
+      </div>
+
+      <div id="menuChefWeek" class="menu-chef-days-grid"></div>
+
+      <div class="menu-chef-actions">
+        <button type="button" id="saveChefToShoppingList" class="menu-chef-primary-btn">
+          Salva su Lista Spesa
+        </button>
+      </div>
+
+      <div id="menuChefMessage" class="menu-chef-message" style="display:none;"></div>
+    </section>
+  </div>
+
+  <script src="js/menu.js"></script>
+  <script>
+    const chefMenu = {
+      lunedi: {
+        pranzo: {
+          title: "Pasta al pomodoro e basilico",
+          ingredients: [
+            { name: "Pasta", quantity: "320 g", category: "Dispensa" },
+            { name: "Passata di pomodoro", quantity: "1 bottiglia", category: "Dispensa" },
+            { name: "Basilico", quantity: "1 mazzetto", category: "Verdura e frutta" }
+          ]
+        },
+        cena: {
+          title: "Petto di pollo alla piastra con zucchine",
+          ingredients: [
+            { name: "Petto di pollo", quantity: "500 g", category: "Carne e pesce" },
+            { name: "Zucchine", quantity: "600 g", category: "Verdura e frutta" }
+          ]
+        }
+      },
+      martedi: {
+        pranzo: {
+          title: "Risotto alle zucchine",
+          ingredients: [
+            { name: "Riso", quantity: "320 g", category: "Dispensa" },
+            { name: "Zucchine", quantity: "500 g", category: "Verdura e frutta" }
+          ]
+        },
+        cena: {
+          title: "Frittata al forno con insalata",
+          ingredients: [
+            { name: "Uova", quantity: "6", category: "Proteine" },
+            { name: "Insalata", quantity: "2 buste", category: "Verdura e frutta" }
+          ]
+        }
+      },
+      mercoledi: {
+        pranzo: {
+          title: "Pasta tonno e olive",
+          ingredients: [
+            { name: "Pasta", quantity: "320 g", category: "Dispensa" },
+            { name: "Tonno", quantity: "2 scatolette", category: "Proteine" },
+            { name: "Olive", quantity: "100 g", category: "Dispensa" }
+          ]
+        },
+        cena: {
+          title: "Polpette al sugo con patate al forno",
+          ingredients: [
+            { name: "Carne macinata", quantity: "500 g", category: "Carne e pesce" },
+            { name: "Patate", quantity: "800 g", category: "Verdura e frutta" },
+            { name: "Passata di pomodoro", quantity: "1 bottiglia", category: "Dispensa" }
+          ]
+        }
+      },
+      giovedi: {
+        pranzo: {
+          title: "Riso freddo mediterraneo",
+          ingredients: [
+            { name: "Riso", quantity: "320 g", category: "Dispensa" },
+            { name: "Pomodori", quantity: "500 g", category: "Verdura e frutta" },
+            { name: "Mozzarella", quantity: "2 confezioni", category: "Latticini" }
+          ]
+        },
+        cena: {
+          title: "Filetti di pesce con verdure saltate",
+          ingredients: [
+            { name: "Filetti di pesce", quantity: "500 g", category: "Carne e pesce" },
+            { name: "Verdure miste", quantity: "700 g", category: "Verdura e frutta" }
+          ]
+        }
+      },
+      venerdi: {
+        pranzo: {
+          title: "Gnocchi al pomodoro",
+          ingredients: [
+            { name: "Gnocchi", quantity: "500 g", category: "Dispensa" },
+            { name: "Passata di pomodoro", quantity: "1 bottiglia", category: "Dispensa" }
+          ]
+        },
+        cena: {
+          title: "Insalatona con uova, tonno e crostini",
+          ingredients: [
+            { name: "Insalata", quantity: "2 buste", category: "Verdura e frutta" },
+            { name: "Uova", quantity: "4", category: "Proteine" },
+            { name: "Tonno", quantity: "2 scatolette", category: "Proteine" },
+            { name: "Pane", quantity: "1 confezione", category: "Dispensa" }
+          ]
+        }
+      },
+      sabato: {
+        pranzo: {
+          title: "Lasagna semplice della casa",
+          ingredients: [
+            { name: "Lasagne", quantity: "1 confezione", category: "Dispensa" },
+            { name: "Ragù", quantity: "700 g", category: "Dispensa" },
+            { name: "Besciamella", quantity: "500 ml", category: "Latticini" }
+          ]
+        },
+        cena: {
+          title: "Tagliata di pollo con insalata mista",
+          ingredients: [
+            { name: "Petto di pollo", quantity: "500 g", category: "Carne e pesce" },
+            { name: "Insalata mista", quantity: "2 buste", category: "Verdura e frutta" }
+          ]
+        }
+      },
+      domenica: {
+        pranzo: {
+          title: "Pasta al forno",
+          ingredients: [
+            { name: "Pasta", quantity: "400 g", category: "Dispensa" },
+            { name: "Mozzarella", quantity: "2 confezioni", category: "Latticini" },
+            { name: "Passata di pomodoro", quantity: "1 bottiglia", category: "Dispensa" }
+          ]
+        },
+        cena: {
+          title: "Mozzarella, pomodori e pane tostato",
+          ingredients: [
+            { name: "Mozzarella", quantity: "2 confezioni", category: "Latticini" },
+            { name: "Pomodori", quantity: "500 g", category: "Verdura e frutta" },
+            { name: "Pane", quantity: "1 confezione", category: "Dispensa" }
+          ]
+        }
+      }
+    };
+
+    const dayLabels = {
+      lunedi: "Lunedì",
+      martedi: "Martedì",
+      mercoledi: "Mercoledì",
+      giovedi: "Giovedì",
+      venerdi: "Venerdì",
+      sabato: "Sabato",
+      domenica: "Domenica"
+    };
+
+    const weekContainer = document.getElementById("menuChefWeek");
+    const saveButton = document.getElementById("saveChefToShoppingList");
+    const messageBox = document.getElementById("menuChefMessage");
+
+    function renderChefMenu() {
+      weekContainer.innerHTML = Object.keys(chefMenu).map(day => `
+        <article class="menu-chef-day-card">
+          <h4>${dayLabels[day]}</h4>
+          <div class="menu-chef-meal-block">
+            <span class="meal-label">Pranzo</span>
+            <p>${chefMenu[day].pranzo.title}</p>
+          </div>
+          <div class="menu-chef-meal-block">
+            <span class="meal-label">Cena</span>
+            <p>${chefMenu[day].cena.title}</p>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function pushChefIngredientsToShoppingList() {
+      const current = JSON.parse(localStorage.getItem("cucinai_lista_spesa_premium") || "[]");
+      const items = [];
+
+      Object.values(chefMenu).forEach(day => {
+        [day.pranzo, day.cena].forEach(meal => {
+          meal.ingredients.forEach(item => {
+            items.push({
+              id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+              name: item.name,
+              quantity: item.quantity,
+              category: item.category || "Altro",
+              checked: false
+            });
+          });
+        });
+      });
+
+      localStorage.setItem("cucinai_lista_spesa_premium", JSON.stringify([...current, ...items]));
+      messageBox.textContent = "✅ Ingredienti del menu dello chef inviati alla Lista Spesa Premium.";
+      messageBox.style.display = "block";
+      setTimeout(() => {
+        messageBox.style.display = "none";
+      }, 2600);
+    }
+
+    saveButton.addEventListener("click", pushChefIngredientsToShoppingList);
+    renderChefMenu();
+  </script>
+</body>
+</html>

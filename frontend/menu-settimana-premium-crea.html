@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crea Menu Personalizzato - CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu-settimana-premium-crea.css?v=1" />
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
+    </nav>
+
+    <section class="menu-create-hero">
+      <span class="menu-create-tag">🧩 Costruisci la tua settimana</span>
+      <h1 class="page-title">Crea Menu Personalizzato</h1>
+      <p class="menu-create-sub">
+        Crea manualmente il tuo menu, usa le ricette salvate e le ricette inviate dalla ricerca,
+        poi salva tutto sulla Lista Spesa.
+      </p>
+    </section>
+
+    <section class="menu-create-top-grid">
+      <article class="menu-create-info-card">
+        <h2>📚 Ricette disponibili</h2>
+        <p>
+          Puoi usare le ricette salvate oppure eventuali ricette inviate dalla pagina Ricerca Ricette.
+        </p>
+      </article>
+
+      <article class="menu-create-info-card menu-create-highlight-card">
+        <h2>🛒 Passaggio finale</h2>
+        <p>
+          Quando hai finito di costruire la settimana, puoi inviare tutti gli ingredienti alla Lista Spesa Premium.
+        </p>
+      </article>
+    </section>
+
+    <section class="menu-create-library-card">
+      <div class="menu-create-section-head">
+        <h3>Libreria ricette disponibili</h3>
+        <p>Seleziona le ricette da inserire nei tuoi pasti.</p>
+      </div>
+      <div id="menuRecipeLibrary" class="menu-recipe-library"></div>
+    </section>
+
+    <section class="menu-create-week-card">
+      <div class="menu-create-section-head">
+        <h3>La tua settimana</h3>
+        <p>Per ogni giorno scegli pranzo e cena.</p>
+      </div>
+      <div id="menuCreateWeek" class="menu-create-week-grid"></div>
+
+      <div class="menu-create-actions">
+        <button type="button" id="saveManualMenuToShoppingList" class="menu-create-primary-btn">
+          Salva su Lista Spesa
+        </button>
+      </div>
+
+      <div id="menuCreateMessage" class="menu-create-message" style="display:none;"></div>
+    </section>
+  </div>
+
+  <script src="js/menu.js"></script>
+  <script src="js/menu-settimana-premium-crea.js"></script>
+</body>
+</html>

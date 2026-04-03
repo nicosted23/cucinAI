@@ -1,0 +1,154 @@
+body {
+  background: radial-gradient(circle at top, #5a1f24 0%, #34161a 42%, #191314 100%);
+  color: #f7f1ed;
+}
+
+.menu-chef-hero {
+  padding: 40px 0 16px;
+}
+
+.menu-chef-tag {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(205, 92, 92, 0.16);
+  color: #ffb0b0;
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.menu-chef-hero .page-title {
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.menu-chef-sub {
+  max-width: 780px;
+  color: #e1c7c7;
+  line-height: 1.75;
+  font-size: 1.03rem;
+}
+
+.menu-chef-note-card,
+.menu-chef-plan-card,
+.menu-chef-day-card {
+  border: 1px solid rgba(255, 180, 180, 0.10);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(71, 29, 35, 0.96) 0%, rgba(32, 18, 20, 0.98) 100%);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.26);
+}
+
+.menu-chef-note-card,
+.menu-chef-plan-card {
+  padding: 24px;
+}
+
+.menu-chef-note-card {
+  margin: 8px 0 24px;
+}
+
+.menu-chef-note-card h2,
+.menu-chef-plan-head h3,
+.menu-chef-day-card h4 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.menu-chef-note-card p,
+.menu-chef-plan-head p,
+.menu-chef-meal-block p,
+.menu-chef-message {
+  color: #e0caca;
+  line-height: 1.7;
+}
+
+.menu-chef-plan-head {
+  margin-bottom: 18px;
+}
+
+.menu-chef-days-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.menu-chef-day-card {
+  padding: 20px;
+}
+
+.menu-chef-meal-block {
+  padding: 14px 0;
+  border-top: 1px solid rgba(255, 180, 180, 0.12);
+}
+
+.menu-chef-meal-block:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.meal-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  color: #ffd3d3;
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.menu-chef-meal-block p {
+  margin: 0;
+}
+
+.menu-chef-actions {
+  margin-top: 22px;
+}
+
+.menu-chef-primary-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 46px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  background: #35a853;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu-chef-primary-btn:hover {
+  background: #2d8f47;
+}
+
+.menu-chef-message {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 179, 71, 0.12);
+  color: #ffd79a;
+}
+
+@media (max-width: 992px) {
+  .menu-chef-days-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  body { font-size: 16px; }
+  .menu-chef-hero { padding: 30px 0 14px; }
+  .menu-chef-sub { font-size: 0.98rem; }
+  .menu-chef-note-card,
+  .menu-chef-plan-card,
+  .menu-chef-day-card {
+    padding: 20px;
+    border-radius: 18px;
+  }
+  .menu-chef-primary-btn {
+    width: 100%;
+  }
+}

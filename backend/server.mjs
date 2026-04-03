@@ -422,6 +422,145 @@ creare una lista spesa realistica, utile e ben organizzata per il supermercato.
     });
   }
 });
+app.post("/api/genera-menu-settimanale-ai", async (req, res) => {
+  try {
+    const {
+      people,
+      days,
+      style,
+      budget,
+      meals,
+      preferences,
+      calories,
+      proteinPriority,
+      cookingTime
+    } = req.body || {};
+
+    if (!people || !days || !style || !budget || !meals) {
+      return res.status(400).json({ error: "Dati mancanti nel modulo AI del menu." });
+    }
+
+    const promptSistema = `
+Sei CucinAI, assistente culinario italiano.
+Genera un menu settimanale realistico e utile per una persona reale.
+
+Regole:
+- Rispetta persone, giorni, stile, budget, pasti e preferenze.
+- Interpreta bene allergie ed esclusioni.
+- Se l'utente scrive no pesce, evita pesce.
+- Se scrive vegetariano, evita carne e pesce.
+- Se scrive senza lattosio, evita latticini non compatibili.
+- Se c'è priorità proteine, aumenta la presenza di pasti proteici.
+- Se c'è vincolo calorie o tempo, rispettalo in modo sensato.
+- Il menu deve essere concreto, semplice, credibile, con cucina quotidiana.
+- Ogni giorno deve avere pranzo e cena.
+- Ogni pasto deve includere titolo e ingredienti essenziali.
+- Restituisci solo JSON valido.
+`;
+
+    const promptUtente = `
+Genera un menu settimanale con questi dati:
+
+- Persone: ${people}
+- Giorni: ${days}
+- Stile: ${style}
+- Budget: ${budget}
+- Pasti da coprire: ${meals}
+- Preferenze: ${preferences || "nessuna"}
+- Calorie settimanali indicative: ${calories || "non specificate"}
+- Priorità proteine: ${proteinPriority || "nessuna"}
+- Tempo medio cucina: ${cookingTime || "normale"}
+`;
+
+    const response = await client.responses.create({
+      model: "gpt-5.4",
+      input: [
+        { role: "developer", content: promptSistema },
+        { role: "user", content: promptUtente }
+      ],
+      text: {
+        format: {
+          type: "json_schema",
+          name: "weekly_menu_response",
+          strict: true,
+          schema: {
+            type: "object",
+            additionalProperties: false,
+            properties: {
+              meta: { type: "string" },
+              week: {
+                type: "array",
+                items: {
+                  type: "object",
+                  additionalProperties: false,
+                  properties: {
+                    day: { type: "string" },
+                    pranzo: {
+                      type: "object",
+                      additionalProperties: false,
+                      properties: {
+                        title: { type: "string" },
+                        ingredients: {
+                          type: "array",
+                          items: {
+                            type: "object",
+                            additionalProperties: false,
+                            properties: {
+                              name: { type: "string" },
+                              quantity: { type: "string" },
+                              category: { type: "string" }
+                            },
+                            required: ["name", "quantity", "category"]
+                          }
+                        }
+                      },
+                      required: ["title", "ingredients"]
+                    },
+                    cena: {
+                      type: "object",
+                      additionalProperties: false,
+                      properties: {
+                        title: { type: "string" },
+                        ingredients: {
+                          type: "array",
+                          items: {
+                            type: "object",
+                            additionalProperties: false,
+                            properties: {
+                              name: { type: "string" },
+                              quantity: { type: "string" },
+                              category: { type: "string" }
+                            },
+                            required: ["name", "quantity", "category"]
+                          }
+                        }
+                      },
+                      required: ["title", "ingredients"]
+                    }
+                  },
+                  required: ["day", "pranzo", "cena"]
+                }
+              }
+            },
+            required: ["meta", "week"]
+          }
+        }
+      }
+    });
+
+    const parsed = JSON.parse(response.output_text);
+
+    return res.json({
+      success: true,
+      data: parsed
+    });
+  } catch (error) {
+    console.error("Errore generazione menu settimanale AI:", error);
+    return res.status(500).json({
+      error: "Errore durante la generazione AI del menu settimanale."
+    });
+  }
+});
 app.listen(port, "0.0.0.0", () => {
   console.log("Server avviato su http://localhost:" + port);
 });
