@@ -1,7 +1,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #0f0f10;
+  background:
+    radial-gradient(circle at top left, rgba(167, 33, 74, 0.35), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(255, 94, 98, 0.22), transparent 30%),
+    linear-gradient(180deg, #121214 0%, #0d0d0f 100%);
   color: white;
 }
 
@@ -13,7 +16,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(15, 15, 16, 0.95);
+  background: rgba(13, 13, 15, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
@@ -67,27 +70,19 @@ body {
   cursor: pointer;
 }
 
-.hero,
-.hero-cards,
-.features-overview,
-.main-tools,
-.plans-preview,
-.about-preview,
-.fitness-preview,
-.final-cta {
+.about-hero,
+.about-main,
+.about-cta {
   padding: 70px 28px;
 }
 
-.hero-content,
-.section-title,
-.about-preview-content,
-.fitness-preview,
-.final-cta {
+.about-hero-content,
+.about-cta-box {
   max-width: 1000px;
   margin: 0 auto;
 }
 
-.hero-label {
+.about-label {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -95,80 +90,53 @@ body {
   margin-bottom: 14px;
 }
 
-.hero h1 {
-  font-size: 42px;
+.about-hero h1 {
+  font-size: 46px;
   line-height: 1.1;
   margin: 0 0 18px;
 }
 
-.hero-text,
-.section-title p,
-.overview-card p,
-.tool-card p,
-.plan-card p,
-.about-preview p,
-.fitness-preview p,
-.final-cta p,
-.hero-card p,
+.about-intro,
+.about-card p,
+.about-cta p,
 .site-footer p,
 .site-footer a {
   color: rgba(255,255,255,0.78);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-.hero-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 24px;
-}
-
-.hero-cards,
-.overview-grid,
-.tools-grid,
-.plans-grid,
+.about-grid,
 .footer-grid {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 20px;
 }
 
-.hero-cards,
-.overview-grid,
-.tools-grid,
-.plans-grid,
-.footer-grid {
-  grid-template-columns: 1fr;
-}
-
-.hero-card,
-.overview-card,
-.tool-card,
-.plan-card,
-.about-preview-content,
-.fitness-preview,
-.final-cta {
-  background: rgba(255,255,255,0.04);
+.about-card,
+.about-cta-box {
+  background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 20px;
-  padding: 24px;
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
-.tool-card {
-  text-decoration: none;
-  color: white;
-  display: block;
+.about-card h2,
+.about-cta-box h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
 }
 
-.section-title {
-  text-align: center;
-  margin: 0 auto 34px;
+.highlight {
+  background: linear-gradient(135deg, rgba(167, 33, 74, 0.35), rgba(255, 94, 98, 0.16));
+  border: 1px solid rgba(255,255,255,0.12);
 }
 
-.section-title h2,
-.about-preview h2,
-.fitness-preview h2,
-.final-cta h2 {
-  margin: 0 0 14px;
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
 }
 
 .site-footer {
@@ -183,13 +151,13 @@ body {
 }
 
 @media (min-width: 768px) {
-  .hero-cards,
-  .overview-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .about-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .tools-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .large,
+  .wide {
+    grid-column: span 2;
   }
 
   .footer-grid {
@@ -208,17 +176,7 @@ body {
     display: none;
   }
 
-  .hero h1 {
-    font-size: 56px;
-  }
-
-  .tools-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .plans-grid {
-    grid-template-columns: repeat(2, 1fr);
-    max-width: 1000px;
-    margin: 0 auto;
+  .about-hero h1 {
+    font-size: 60px;
   }
 }
