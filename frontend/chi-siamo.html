@@ -1,160 +1,164 @@
-powershell -Command "@'
 <!DOCTYPE html>
-<html lang=""it"">
+<html lang="it">
 <head>
-  <meta charset=""UTF-8"">
-  <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chi siamo - CucinAI</title>
-  <link rel=""stylesheet"" href=""css/style.css"">
-  <link rel=""stylesheet"" href=""css/chi-siamo.css"">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/chi-siamo.css?v=1" />
 </head>
 <body>
+  <div class="container">
+    <nav class="navbar">
+      <div class="nav-logo">CucinAI</div>
 
-  <header class=""site-header"">
-    <div class=""logo"">CucinAI</div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
 
-    <nav class=""nav-links"">
-      <a href=""index.html"">Home</a>
-      <a href=""tre-ingredienti.html"">3 Ingredienti</a>
-      <a href=""ricerca-ricette.html"">Ricerca Ricette</a>
-      <a href=""lista-spesa.html"">Lista Spesa</a>
-      <a href=""menu-settimana.html"">Menu Settimana</a>
-      <a href=""fitness.html"">Fitness</a>
-      <a href=""chi-siamo.html"">Chi siamo</a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+      </div>
     </nav>
 
-    <a href=""abbonamenti.html"" class=""header-btn"">Scopri Premium</a>
-
-    <button class=""menu-toggle"">☰</button>
-  </header>
-
-  <main>
-    <section class=""about-hero"">
-      <div class=""about-hero-content"">
-        <p class=""about-label"">Due cuochi italiani • Cucina vera • Visione moderna</p>
-        <h1>Chi siamo</h1>
-        <p class=""about-intro"">
-          CucinAI nasce dall’idea di due cuochi italiani che vogliono unire cucina vera, organizzazione quotidiana e strumenti moderni in un’unica esperienza semplice e utile.
-        </p>
-      </div>
+    <section class="about-hero">
+      <span class="about-tag">👨‍🍳 Due cuochi italiani, una visione precisa</span>
+      <h1 class="page-title">Chi siamo</h1>
+      <p class="about-sub">
+        CucinAI nasce dall’idea di unire esperienza reale in cucina e strumenti intelligenti
+        per aiutare le persone a mangiare meglio, organizzarsi con più semplicità
+        e valorizzare la cucina italiana nella vita quotidiana.
+      </p>
     </section>
 
-    <section class=""about-main"">
-      <div class=""about-grid"">
-        <div class=""about-card large"">
-          <h2>Un progetto nato dalla cucina reale</h2>
-          <p>
-            Non vogliamo creare solo un tool per generare ricette. Vogliamo costruire uno spazio che aiuti le persone a cucinare meglio, usare con più intelligenza ciò che hanno in casa e gestire in modo più pratico spesa, frigorifero e pasti.
-          </p>
-        </div>
-
-        <div class=""about-card small highlight"">
-          <h2>Cucina vera</h2>
-          <p>
-            Un progetto guidato da esperienza reale e attenzione alla qualità della cucina quotidiana.
-          </p>
-        </div>
-
-        <div class=""about-card"">
-          <h2>Organizzazione intelligente</h2>
-          <p>
-            Ricette, frigorifero, spesa e pasti pensati in modo più semplice, utile e pratico.
-          </p>
-        </div>
-
-        <div class=""about-card"">
-          <h2>Community utile</h2>
-          <p>
-            Uno spazio che vuole unire persone, idee e passione per la cucina in modo concreto.
-          </p>
-        </div>
-
-        <div class=""about-card"">
-          <h2>Che cos’è CucinAI</h2>
-          <p>
-            CucinAI è un progetto pensato per aiutare le persone a vivere la cucina in modo più semplice, intelligente e organizzato.
-          </p>
-          <p>
-            L’obiettivo non è solo proporre ricette, ma offrire strumenti utili per scegliere meglio cosa cucinare, gestire gli ingredienti che si hanno già in casa e ridurre gli sprechi nella vita di tutti i giorni.
-          </p>
-        </div>
-
-        <div class=""about-card"">
-          <h2>La nostra missione</h2>
-          <p>
-            La nostra missione è aiutare le persone a cucinare meglio, ridurre gli sprechi e gestire in modo più intelligente ingredienti, frigorifero, spesa e pasti della settimana.
-          </p>
-          <p>
-            Vogliamo rendere la cucina più accessibile, più ordinata e più utile per chi cucina per passione, per necessità o semplicemente per vivere meglio ogni giorno.
-          </p>
-        </div>
-
-        <div class=""about-card"">
-          <h2>Perché lo facciamo</h2>
-          <p>
-            Crediamo che la cucina debba restare qualcosa di vivo, concreto e condiviso. Per questo CucinAI nasce anche con il desiderio di valorizzare la cucina italiana e accompagnarla in una forma più moderna, pratica e utile per la vita quotidiana.
-          </p>
-          <p>
-            Dietro il progetto ci sono due persone del mestiere, con esperienza reale in cucina e la volontà di rispondere in modo serio alle esigenze di chi vuole imparare, organizzarsi meglio e usare davvero ciò che ha in casa.
-          </p>
-        </div>
-
-        <div class=""about-card"">
-          <h2>A chi si rivolge</h2>
-          <p>
-            CucinAI è pensato per chi vuole cucinare meglio, trovare nuove idee, organizzare i pasti in modo più intelligente e avere un supporto concreto nella gestione della cucina quotidiana.
-          </p>
-        </div>
-
-        <div class=""about-card wide"">
-          <h2>Uno sguardo al futuro</h2>
-          <p>
-            Nel tempo il progetto crescerà con nuove funzioni dedicate a ricette, organizzazione dei pasti, liste spesa, modalità fitness, community e creator, sempre con l’obiettivo di unire cucina vera e strumenti moderni in un’unica piattaforma.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class=""about-cta"">
-      <div class=""about-cta-box"">
-        <h2>Scopri il progetto da vicino</h2>
+    <section class="about-top-grid">
+      <article class="about-info-card">
+        <h2>La nostra base</h2>
         <p>
-          Esplora le funzioni principali di CucinAI e entra nell’ecosistema che stiamo costruendo.
+          Dietro CucinAI ci sono due cuochi italiani con esperienza vera nel mestiere.
+          Il progetto non nasce per creare un semplice tool automatico, ma per costruire
+          una piattaforma capace di aiutare davvero le persone in cucina ogni giorno.
         </p>
-        <div class=""cta-buttons"">
-          <a href=""index.html"" class=""btn-secondary"">Torna alla Home</a>
-          <a href=""abbonamenti.html"" class=""btn-primary"">Scopri Premium</a>
+      </article>
+
+      <article class="about-info-card about-highlight-card">
+        <h2>La nostra idea</h2>
+        <p>
+          Vogliamo rendere più semplice trovare ricette, organizzare i pasti,
+          usare meglio ciò che si ha in casa e ridurre gli sprechi, senza perdere qualità,
+          gusto e buon senso in cucina.
+        </p>
+      </article>
+    </section>
+
+    <section class="about-main-story">
+      <div class="about-story-card">
+        <div class="about-section-head">
+          <h2>Perché esiste CucinAI</h2>
+          <p>
+            Troppo spesso cucinare diventa confusione: non si sa cosa preparare,
+            si compra male, si spreca cibo e manca un’organizzazione reale.
+            CucinAI nasce per trasformare questa confusione in una guida pratica,
+            moderna e concreta.
+          </p>
+        </div>
+
+        <div class="about-story-grid">
+          <article class="about-mini-card">
+            <h3>🍝 Cucina più concreta</h3>
+            <p>
+              Vogliamo aiutare le persone a cucinare meglio partendo da situazioni reali,
+              non da idee astratte o troppo lontane dalla vita quotidiana.
+            </p>
+          </article>
+
+          <article class="about-mini-card">
+            <h3>🛒 Meno sprechi, più logica</h3>
+            <p>
+              Una cucina ben organizzata parte anche dalla spesa, dal frigorifero
+              e dalla capacità di usare bene ciò che si ha davvero.
+            </p>
+          </article>
+
+          <article class="about-mini-card">
+            <h3>📅 Più ordine nella settimana</h3>
+            <p>
+              Ricette, menu, lista spesa e funzioni smart devono lavorare insieme
+              per rendere più semplice tutta la gestione della cucina.
+            </p>
+          </article>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer class=""site-footer"">
-    <div class=""footer-grid"">
-      <div>
-        <h3>CucinAI</h3>
-        <p>La piattaforma per cucinare, organizzarti e trovare idee in modo intelligente.</p>
+    <section class="about-values-grid">
+      <article class="about-value-card">
+        <h3>🇮🇹 Cucina italiana al centro</h3>
+        <p>
+          La nostra cultura gastronomica è una base fondamentale. CucinAI vuole valorizzarla
+          con rispetto, semplicità e una visione moderna.
+        </p>
+      </article>
+
+      <article class="about-value-card">
+        <h3>🤖 Tecnologia con criterio</h3>
+        <p>
+          L’intelligenza artificiale per noi deve essere utile davvero: non solo stupire,
+          ma migliorare le scelte, il tempo e l’organizzazione.
+        </p>
+      </article>
+
+      <article class="about-value-card">
+        <h3>📌 Esperienza reale</h3>
+        <p>
+          Il progetto è guidato da persone del mestiere. Questo significa più concretezza,
+          più buon senso e soluzioni più vicine alla realtà della cucina.
+        </p>
+      </article>
+    </section>
+
+    <section class="about-mission-banner">
+      <div class="about-mission-box">
+        <span class="about-tag">Visione del progetto</span>
+        <h2>Dove vogliamo portare CucinAI</h2>
+        <p>
+          CucinAI vuole diventare una piattaforma completa di cucina smart:
+          ricette, organizzazione pasti, gestione spesa, salvataggi, community,
+          modalità alimentari e strumenti avanzati davvero utili nella vita di tutti i giorni.
+        </p>
+
+        <div class="about-mission-points">
+          <div class="about-point">
+            <strong>Oggi</strong>
+            <span>Ricette, 3 ingredienti, spesa, menu e strumenti AI utili</span>
+          </div>
+          <div class="about-point">
+            <strong>Domani</strong>
+            <span>Community, creator, challenge, funzioni premium evolute</span>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <div>
-        <h4>Navigazione</h4>
-        <a href=""index.html"">Home</a>
-        <a href=""ricerca-ricette.html"">Ricerca Ricette</a>
-        <a href=""tre-ingredienti.html"">3 Ingredienti</a>
-        <a href=""lista-spesa.html"">Lista Spesa</a>
-        <a href=""menu-settimana.html"">Menu Settimana</a>
-        <a href=""fitness.html"">Fitness</a>
+    <section class="about-bottom-cta">
+      <div class="about-cta-card">
+        <h2>CucinAI non vuole essere solo un tool</h2>
+        <p>
+          Vuole diventare un punto di riferimento per chi cerca una cucina più organizzata,
+          più intelligente e più vicina alla realtà.
+        </p>
       </div>
+    </section>
+  </div>
 
-      <div>
-        <h4>Info</h4>
-        <a href=""chi-siamo.html"">Chi siamo</a>
-        <a href=""abbonamenti.html"">Abbonamenti</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src=""js/menu.js""></script>
+  <script src="js/menu.js"></script>
 </body>
 </html>
-'@ | Set-Content -Path 'frontend\chi-siamo.html' -Encoding UTF8"
