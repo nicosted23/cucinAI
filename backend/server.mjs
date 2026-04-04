@@ -1,10 +1,14 @@
 import express from "express";
 import cors from "cors";
-import OpenAI from "openai";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
+import OpenAI from "openai";
+
+dotenv.config();
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,10 +33,10 @@ app.post("/api/recipe", async (req, res) => {
   try {
     const ingredients = normalizeIngredients(req.body.ingredients);
     const maxTimeRaw = String(req.body.maxTime || "qualsiasi");
-const difficultyRaw = String(req.body.difficulty || "qualsiasi");
+    const difficultyRaw = String(req.body.difficulty || "qualsiasi");
 
-const maxTime = maxTimeRaw === "qualsiasi" ? null : Number(maxTimeRaw);
-const difficulty = difficultyRaw === "qualsiasi" ? null : difficultyRaw;
+    const maxTime = maxTimeRaw === "qualsiasi" ? null : Number(maxTimeRaw);
+    const difficulty = difficultyRaw === "qualsiasi" ? null : difficultyRaw;
 
     if (ingredients.length !== 3) {
       return res.status(400).json({
@@ -40,7 +44,7 @@ const difficulty = difficultyRaw === "qualsiasi" ? null : difficultyRaw;
       });
     }
 
-   const prompt = `
+    const prompt = `
 Sei uno chef pratico, creativo e preciso.
 
 Genera ESATTAMENTE 3 ricette diverse tra loro usando principalmente questi 3 ingredienti:
@@ -91,9 +95,7 @@ Per ogni ricetta restituisci:
 
 Se è stato indicato un tempo massimo preciso, rispettalo.
 Se il tempo è qualsiasi, resta comunque entro un tempo realistico da cucina domestica.
-
 `;
-
 
     const response = await client.responses.create({
       model: "gpt-5.4",
@@ -119,25 +121,25 @@ Se il tempo è qualsiasi, resta comunque entro un tempo realistico da cucina dom
                     difficulty: { type: "string" },
                     servings: { type: "number" },
                     ingredients: {
-  type: "array",
-  minItems: 3,
-  items: { type: "string" }
-},
-   steps: {
-    type: "array",
-    minItems: 3,
-    maxItems: 5,
-    items: { type: "string" }
-  }
-},             
+                      type: "array",
+                      minItems: 3,
+                      items: { type: "string" }
+                    },
+                    steps: {
+                      type: "array",
+                      minItems: 3,
+                      maxItems: 5,
+                      items: { type: "string" }
+                    }
+                  },
                   required: [
-  "title",
-  "time_minutes",
-  "difficulty",
-  "servings",
-  "ingredients",
-  "steps"
-]
+                    "title",
+                    "time_minutes",
+                    "difficulty",
+                    "servings",
+                    "ingredients",
+                    "steps"
+                  ]
                 }
               }
             },
@@ -157,6 +159,7 @@ Se il tempo è qualsiasi, resta comunque entro un tempo realistico da cucina dom
     });
   }
 });
+
 app.post("/api/search-recipes", async (req, res) => {
   try {
     const query = String(req.body.query || "").trim();
@@ -289,7 +292,7 @@ Stile food photography premium, realistico, appetitoso, luce naturale, impiattam
     });
   }
 });
-const port = process.env.PORT || 3000;
+
 app.post("/api/genera-lista-spesa-ai", async (req, res) => {
   try {
     const { people, days, style, budget, meals, preferences } = req.body || {};
@@ -422,6 +425,7 @@ creare una lista spesa realistica, utile e ben organizzata per il supermercato.
     });
   }
 });
+
 app.post("/api/genera-menu-settimanale-ai", async (req, res) => {
   try {
     const {
@@ -561,6 +565,7 @@ Genera un menu settimanale con questi dati:
     });
   }
 });
+
 app.listen(port, "0.0.0.0", () => {
   console.log("Server avviato su http://localhost:" + port);
 });

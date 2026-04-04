@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accedi | CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home-desktop.css" />
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+<body class="auth-page auth-login-page">
+  <header class="auth-topbar">
+    <a href="index.html" class="auth-logo">CucinAI</a>
+    <nav class="auth-top-links">
+      <a href="abbonamenti.html">Premium</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+    </nav>
+  </header>
+
+  <main class="auth-main">
+    <section class="auth-shell">
+      <div class="auth-left">
+        <span class="auth-badge">Bentornato</span>
+        <h1>Accedi al tuo spazio CucinAI</h1>
+        <p>
+          Ritrova ricette salvate, lista spesa, menu settimana e tutte le funzioni del tuo piano.
+        </p>
+
+        <div class="auth-points">
+          <div class="auth-point">
+            <span>🍝</span>
+            <div>
+              <strong>Le tue ricette</strong>
+              <p>Ritrova tutto in un unico spazio personale.</p>
+            </div>
+          </div>
+
+          <div class="auth-point">
+            <span>🛒</span>
+            <div>
+              <strong>Spesa e organizzazione</strong>
+              <p>Continua da dove avevi lasciato.</p>
+            </div>
+          </div>
+
+          <div class="auth-point">
+            <span>⭐</span>
+            <div>
+              <strong>Funzioni Premium</strong>
+              <p>Accedi ai contenuti del tuo piano in modo immediato.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-card-head">
+          <h2>Accedi</h2>
+          <p>Inserisci email e password per entrare nel tuo account.</p>
+        </div>
+
+        <form id="loginForm" class="auth-form">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="Inserisci la tua email" required />
+
+          <label for="password">Password</label>
+          <div class="auth-password-wrap">
+            <input id="password" name="password" type="password" placeholder="Inserisci la tua password" required />
+            <button type="button" id="togglePassword" class="auth-toggle-password">Mostra</button>
+          </div>
+
+          <div class="auth-row auth-row-between">
+            <a href="recupera-password.html" class="auth-link">Password dimenticata?</a>
+          </div>
+
+          <div id="loginMessage" class="auth-message"></div>
+
+          <button type="submit" class="auth-submit">Accedi</button>
+        </form>
+
+        <div class="auth-footer">
+          <p>Non hai ancora un account?</p>
+          <a href="registrazione.html" class="auth-secondary-btn">Crea account</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

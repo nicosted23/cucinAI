@@ -1189,3 +1189,57 @@ button {
   }
 }
 
+.auth-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.nav-auth-link,
+.nav-auth-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.94rem;
+  transition: 0.2s ease;
+}
+
+.nav-auth-link {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.nav-auth-register,
+.nav-auth-account {
+  background: linear-gradient(135deg, #18a957, #0f7e42);
+  color: #ffffff;
+  border: 0;
+}
+
+.nav-auth-btn {
+  background: rgba(220, 38, 38, 0.14);
+  color: #ffd2d2;
+  border: 1px solid rgba(239, 68, 68, 0.24);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .auth-nav-links {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: 0;
+  }
+
+  .nav-auth-link,
+  .nav-auth-btn {
+    width: 100%;
+  }
+}

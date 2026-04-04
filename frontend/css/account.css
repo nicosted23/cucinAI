@@ -1,0 +1,240 @@
+body.account-page {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(22, 101, 52, 0.20), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(15, 118, 110, 0.14), transparent 34%),
+    #07110c;
+  color: #f4f7f5;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.account-topbar {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 22px 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-logo {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.account-top-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.account-top-links a,
+.account-top-logout {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.account-main {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 20px 0 42px;
+}
+
+.account-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 22px;
+  margin-bottom: 24px;
+}
+
+.account-hero-left,
+.account-status-card,
+.account-card {
+  border-radius: 26px;
+  background: rgba(10, 18, 13, 0.92);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
+}
+
+.account-hero-left {
+  padding: 28px;
+}
+
+.account-hero-left h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: 1.04;
+}
+
+.account-hero-left p {
+  margin: 0;
+  color: rgba(255,255,255,0.75);
+  font-size: 1rem;
+}
+
+.account-badge {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(20, 160, 95, 0.16);
+  border: 1px solid rgba(34, 197, 94, 0.28);
+  color: #89f0b6;
+  font-size: 0.88rem;
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+
+.account-status-card {
+  padding: 28px;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.account-status-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+}
+
+.account-status-card p {
+  margin: 0 0 18px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.6;
+}
+
+.account-primary-btn,
+.account-secondary-btn,
+.account-danger-btn {
+  min-height: 50px;
+  border-radius: 14px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.96rem;
+}
+
+.account-primary-btn {
+  background: linear-gradient(135deg, #18a957, #0f7e42);
+  color: #fff;
+  border: 0;
+}
+
+.account-secondary-btn {
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+.account-danger-btn {
+  background: rgba(220, 38, 38, 0.14);
+  color: #ffd2d2;
+  border: 1px solid rgba(239, 68, 68, 0.28);
+  cursor: pointer;
+}
+
+.account-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.account-card {
+  padding: 24px;
+}
+
+.account-card h2 {
+  margin: 0 0 18px;
+  font-size: 1.2rem;
+}
+
+.account-links-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.account-link-box {
+  min-height: 66px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-weight: 700;
+}
+
+.account-stats {
+  display: grid;
+  gap: 12px;
+}
+
+.account-stat {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-stat-label {
+  color: rgba(255,255,255,0.72);
+}
+
+.account-stat strong {
+  font-size: 1.2rem;
+}
+
+.account-info-list {
+  display: grid;
+  gap: 12px;
+}
+
+.account-info-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.account-info-row span {
+  color: rgba(255,255,255,0.7);
+}
+
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.account-message {
+  margin-top: 14px;
+  min-height: 20px;
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.72);
+}
+
+@media (max-width: 900px) {
+  .account-hero,
+  .account-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .account-links-grid {
+    grid-template-columns: 1fr;
+  }
+}

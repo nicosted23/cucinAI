@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registrazione | CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home-desktop.css" />
+  <link rel="stylesheet" href="css/registrazione.css" />
+</head>
+<body class="auth-page auth-register-page">
+  <header class="auth-topbar">
+    <a href="index.html" class="auth-logo">CucinAI</a>
+    <nav class="auth-top-links">
+      <a href="abbonamenti.html">Premium</a>
+      <a href="chi-siamo.html">Chi siamo</a>
+    </nav>
+  </header>
+
+  <main class="auth-main">
+    <section class="auth-shell">
+      <div class="auth-left">
+        <span class="auth-badge">Nuovo account</span>
+        <h1>Crea il tuo account CucinAI</h1>
+        <p>
+          Salva ricette, organizza i pasti, gestisci meglio la spesa e porta con te il tuo spazio personale.
+        </p>
+
+        <div class="auth-points">
+          <div class="auth-point">
+            <span>📌</span>
+            <div>
+              <strong>Ricette salvate</strong>
+              <p>Tieni tutto ordinato e sempre disponibile.</p>
+            </div>
+          </div>
+
+          <div class="auth-point">
+            <span>📅</span>
+            <div>
+              <strong>Menu settimana</strong>
+              <p>Organizza i pasti in modo più intelligente.</p>
+            </div>
+          </div>
+
+          <div class="auth-point">
+            <span>💎</span>
+            <div>
+              <strong>Upgrade semplice</strong>
+              <p>Passa al Premium quando vuoi, senza cambiare account.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-card-head">
+          <h2>Crea account</h2>
+          <p>Bastano pochi secondi per iniziare.</p>
+        </div>
+
+        <form id="registerForm" class="auth-form">
+          <label for="name">Nome</label>
+          <input id="name" name="name" type="text" placeholder="Il tuo nome" required />
+
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="La tua email" required />
+
+          <label for="password">Password</label>
+          <div class="auth-password-wrap">
+            <input id="password" name="password" type="password" placeholder="Almeno 6 caratteri" required />
+            <button type="button" id="togglePassword" class="auth-toggle-password">Mostra</button>
+          </div>
+
+          <label for="confirmPassword">Conferma password</label>
+          <div class="auth-password-wrap">
+            <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Ripeti la password" required />
+            <button type="button" id="toggleConfirmPassword" class="auth-toggle-password">Mostra</button>
+          </div>
+
+          <div id="registerMessage" class="auth-message"></div>
+
+          <button type="submit" class="auth-submit">Crea account</button>
+        </form>
+
+        <div class="auth-footer">
+          <p>Hai già un account?</p>
+          <a href="login.html" class="auth-secondary-btn">Accedi</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script src="js/registrazione.js"></script>
+</body>
+</html>

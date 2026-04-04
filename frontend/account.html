@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account | CucinAI</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home-desktop.css" />
+  <link rel="stylesheet" href="css/account.css" />
+</head>
+<body class="account-page">
+  <header class="account-topbar">
+    <a href="index.html" class="account-logo">CucinAI</a>
+    <nav class="account-top-links">
+      <a href="index.html">Home</a>
+      <a href="abbonamenti.html">Abbonamenti</a>
+      <button id="logoutBtnTop" class="account-top-logout" type="button">Logout</button>
+    </nav>
+  </header>
+
+  <main class="account-main">
+    <section class="account-hero">
+      <div class="account-hero-left">
+        <span class="account-badge" id="accountPlanBadge">Piano Free</span>
+        <h1 id="accountWelcome">Ciao</h1>
+        <p id="accountEmail">Caricamento account...</p>
+      </div>
+
+      <div class="account-hero-right">
+        <div class="account-status-card">
+          <h3>Stato account</h3>
+          <p id="accountStatusText">Stiamo caricando i dati del tuo profilo.</p>
+          <a id="upgradeBtnHero" href="abbonamenti.html" class="account-primary-btn">Passa a Premium</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="account-grid">
+      <article class="account-card">
+        <h2>Accesso rapido</h2>
+        <div class="account-links-grid">
+          <a href="ricette-salvate.html" class="account-link-box">Ricette salvate</a>
+          <a href="lista-spesa.html" class="account-link-box">Lista spesa</a>
+          <a href="menu-settimana.html" class="account-link-box">Menu settimana</a>
+          <a href="ricerca-ricette.html" class="account-link-box">Ricerca ricette</a>
+          <a href="tre-ingredienti.html" class="account-link-box">3 ingredienti</a>
+          <a href="fitness.html" class="account-link-box">Fitness</a>
+        </div>
+      </article>
+
+      <article class="account-card">
+        <h2>I tuoi dati</h2>
+        <div class="account-stats">
+          <div class="account-stat">
+            <span class="account-stat-label">Ricette salvate</span>
+            <strong id="savedRecipesCount">0</strong>
+          </div>
+          <div class="account-stat">
+            <span class="account-stat-label">Liste spesa</span>
+            <strong id="shoppingListsCount">0</strong>
+          </div>
+          <div class="account-stat">
+            <span class="account-stat-label">Menu settimana</span>
+            <strong id="weeklyMenusCount">0</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="account-card">
+        <h2>Profilo</h2>
+        <div class="account-info-list">
+          <div class="account-info-row">
+            <span>Nome</span>
+            <strong id="profileName">-</strong>
+          </div>
+          <div class="account-info-row">
+            <span>Email</span>
+            <strong id="profileEmail">-</strong>
+          </div>
+          <div class="account-info-row">
+            <span>Piano</span>
+            <strong id="profilePlan">-</strong>
+          </div>
+          <div class="account-info-row">
+            <span>Ruolo</span>
+            <strong id="profileRole">-</strong>
+          </div>
+          <div class="account-info-row">
+            <span>Creato il</span>
+            <strong id="profileCreatedAt">-</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="account-card">
+        <h2>Gestione account</h2>
+        <div class="account-actions">
+          <a href="abbonamenti.html" class="account-secondary-btn">Gestisci il tuo piano</a>
+          <button id="logoutBtnCard" class="account-danger-btn" type="button">Esci dal tuo account</button>
+        </div>
+        <div id="accountMessage" class="account-message"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="js/account.js"></script>
+</body>
+</html>

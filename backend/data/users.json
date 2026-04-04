@@ -1,0 +1,2184 @@
+[
+  {
+    "id": "0560c2ea-31f4-4b42-9339-adf7d9cfe433",
+    "name": "gabriele",
+    "email": "gspadini05@gmail.com",
+    "passwordHash": "7b2497af71287894321842a6721a1cf1cfc3e39c6313d99256f705d859245ae1",
+    "role": "user",
+    "plan": "free",
+    "subscriptionStatus": "none",
+    "isActive": true,
+    "emailVerified": false,
+    "createdAt": "2026-04-04T01:01:29.411Z",
+    "updatedAt": "2026-04-04T02:52:48.215Z",
+    "lastLoginAt": "2026-04-04T02:35:53.288Z",
+    "authToken": null,
+    "preferences": {
+      "foodPreferences": [],
+      "intolerances": [],
+      "goal": "",
+      "fitnessMode": false
+    },
+    "savedRecipes": [
+      {
+        "id": "crostini alla fiorentina con fegatini di pollo-45-media",
+        "title": "Crostini alla fiorentina con fegatini di pollo",
+        "description": "Ricetta trovata con Ricerca Ricette di CucinAI.",
+        "category": "Secondi",
+        "time": "45 min",
+        "difficulty": "media",
+        "servings": 4,
+        "image": "",
+        "tags": [
+          "Ricerca",
+          "media",
+          "45 min"
+        ],
+        "ingredients": [
+          {
+            "name": "300 g di fegatini di pollo puliti",
+            "quantity": "q.b.",
+            "category": "Carne e pesce"
+          },
+          {
+            "name": "40 g di burro",
+            "quantity": "q.b.",
+            "category": "Latticini"
+          },
+          {
+            "name": "20 ml di olio extravergine di oliva",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "80 g di cipolla bianca tritata",
+            "quantity": "q.b.",
+            "category": "Verdura e frutta"
+          },
+          {
+            "name": "6 filetti di acciuga sott'olio",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "2 cucchiai di capperi dissalati (20 g)",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "100 ml di vinsanto o vino bianco secco",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "150 ml di brodo di carne",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "1 cucchiaio di concentrato di pomodoro (15 g)",
+            "quantity": "q.b.",
+            "category": "Verdura e frutta"
+          },
+          {
+            "name": "4 g di sale",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "2 g di pepe nero",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "8 fette di pane toscano o casereccio (circa 320 g)",
+            "quantity": "q.b.",
+            "category": "Dispensa"
+          }
+        ],
+        "procedure": [
+          "Rosola la cipolla con burro e olio per 5 minuti a fuoco dolce, poi unisci acciughe e capperi e lasciali sciogliere.",
+          "Aggiungi i fegatini tritati grossolanamente e cuoci 8-10 minuti mescolando, quindi sfuma con il vinsanto.",
+          "Unisci concentrato e brodo, regola di sale e pepe e cuoci altri 10 minuti finché il composto è morbido ma non asciutto.",
+          "Frulla o trita finemente il tutto fino a ottenere una crema rustica e, se serve, ammorbidisci con 1-2 cucchiai di brodo caldo.",
+          "Tosta il pane, distribuisci sopra la crema di fegatini ben calda e servi subito."
+        ]
+      }
+    ],
+    "shoppingLists": [
+      {
+        "id": "1775160766999",
+        "name": "pane",
+        "quantity": "3kg",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775160778023",
+        "name": "pomodorini",
+        "quantity": "100gr",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775160797711",
+        "name": "guanciale fresco",
+        "quantity": "600 kg",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-e463188a8c4ce",
+        "name": "Pasta",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-1c13765e572048",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-807de410570208",
+        "name": "Basilico",
+        "quantity": "1 mazzetto",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-34920bd7de03d",
+        "name": "Petto di pollo",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-b94e2d7d9bfab8",
+        "name": "Zucchine",
+        "quantity": "600 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-910e3eaa8edd28",
+        "name": "Riso",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-10fded5ec15ba",
+        "name": "Zucchine",
+        "quantity": "500 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-53f73217db52c8",
+        "name": "Uova",
+        "quantity": "6",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-d394c27af43ad8",
+        "name": "Insalata",
+        "quantity": "2 buste",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-70a39d9777ee1",
+        "name": "Pasta",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-4403f9c04127",
+        "name": "Tonno",
+        "quantity": "2 scatolette",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-2107322382f91",
+        "name": "Olive",
+        "quantity": "100 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-b9bc54cd37fbe8",
+        "name": "Carne macinata",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-ab369dc3812278",
+        "name": "Patate",
+        "quantity": "800 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-5a73d2dd51361",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-998b0ea472d",
+        "name": "Riso",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-ae686b4754c85",
+        "name": "Pomodori",
+        "quantity": "500 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-2037d66c2f88f",
+        "name": "Mozzarella",
+        "quantity": "2 confezioni",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-d4fa4f5cf253c8",
+        "name": "Filetti di pesce",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-bfa43caa8ba56",
+        "name": "Verdure miste",
+        "quantity": "700 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-3d9eb4b15407e8",
+        "name": "Gnocchi",
+        "quantity": "500 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-af724f6a158d8",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-d9e5904d51c4c",
+        "name": "Insalata",
+        "quantity": "2 buste",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-e075a5290b2f1",
+        "name": "Uova",
+        "quantity": "4",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-5e6c0e58ee589",
+        "name": "Tonno",
+        "quantity": "2 scatolette",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-31e77cfc0432e",
+        "name": "Pane",
+        "quantity": "1 confezione",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-e9a30b7f91f39",
+        "name": "Lasagne",
+        "quantity": "1 confezione",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-3967e7495aac",
+        "name": "Ragù",
+        "quantity": "700 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-103903cd2bd858",
+        "name": "Besciamella",
+        "quantity": "500 ml",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-727b433d02cd78",
+        "name": "Petto di pollo",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-4c82665aadf7d",
+        "name": "Insalata mista",
+        "quantity": "2 buste",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-7a3a325f4500c8",
+        "name": "Pasta",
+        "quantity": "400 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-0f67622754a3a8",
+        "name": "Mozzarella",
+        "quantity": "2 confezioni",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-4873550bba0fe",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-17151f894285f8",
+        "name": "Mozzarella",
+        "quantity": "2 confezioni",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-605658ff28f9",
+        "name": "Pomodori",
+        "quantity": "500 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-882e357fbd064",
+        "name": "Pane",
+        "quantity": "1 confezione",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e9e6990a4859f8",
+        "name": "pasta",
+        "quantity": "180 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-17d379fd4f98f8",
+        "name": "passata di pomodoro",
+        "quantity": "300 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-9626f117b3a4",
+        "name": "basilico",
+        "quantity": "1 mazzetto",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7b18e4a0848e48",
+        "name": "insalata mista",
+        "quantity": "1 busta",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-538b4a1a24d46",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-eaba8aa10554b",
+        "name": "cosce di pollo",
+        "quantity": "500 g",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-98a851b0fbff4",
+        "name": "patate",
+        "quantity": "500 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-fdb3575f92bc98",
+        "name": "carote",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-8ea8f88d0748",
+        "name": "rosmarino",
+        "quantity": "q.b.",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-c20362c27b453",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-68c1106f5a51a",
+        "name": "riso",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-48f0f0c7ed5618",
+        "name": "zucchine",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-9a36a9999d21e",
+        "name": "parmigiano grattugiato",
+        "quantity": "40 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ad8a0f8713c15",
+        "name": "cipolla",
+        "quantity": "1 piccola",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-d11390a605c4b",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e0f7768716dd8",
+        "name": "uova",
+        "quantity": "6",
+        "category": "uova",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7c6cbc34ace0e",
+        "name": "cipolle",
+        "quantity": "250 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-5d85e172f7ed08",
+        "name": "pomodori",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-089077bf52d3f",
+        "name": "pane",
+        "quantity": "4 fette",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e36bec61ea4c48",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ba10a71ee591f8",
+        "name": "piadine",
+        "quantity": "4",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-246c2efa1252b8",
+        "name": "prosciutto cotto",
+        "quantity": "120 g",
+        "category": "salumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f614e55b31c06",
+        "name": "mozzarella",
+        "quantity": "200 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-4891a0901ffa58",
+        "name": "lattuga",
+        "quantity": "1 cespo",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-022ecd360c697",
+        "name": "lenticchie secche",
+        "quantity": "200 g",
+        "category": "legumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7157d769466d4",
+        "name": "passata di pomodoro",
+        "quantity": "200 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f8e68da65c1e4",
+        "name": "carota",
+        "quantity": "1",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e254b9a54fcb8",
+        "name": "sedano",
+        "quantity": "1 costa",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ccd48a53b96248",
+        "name": "farina di mais per polenta",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f7cc9d6c4b1928",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-fc9f32676fff8",
+        "name": "farro",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-3abcb5ac8bacc8",
+        "name": "tonno in scatola",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-92685393357908",
+        "name": "mais",
+        "quantity": "140 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ab2a18c485389",
+        "name": "pomodorini",
+        "quantity": "200 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-3ed9a1213aad",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-30291b99895668",
+        "name": "salsiccia",
+        "quantity": "300 g",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-df64d942c3026",
+        "name": "peperoni",
+        "quantity": "400 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7f77f6bcd64c2",
+        "name": "pane",
+        "quantity": "4 fette",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-069cffb5407c68",
+        "name": "aglio",
+        "quantity": "1 spicchio",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-2709fa3c0769d8",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-0776bfede46d9",
+        "name": "pasta corta",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-c0be1f22e42f8",
+        "name": "ceci cotti",
+        "quantity": "240 g",
+        "category": "legumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-c13dff2070dbf8",
+        "name": "rosmarino",
+        "quantity": "q.b.",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-70834b495b5e",
+        "name": "aglio",
+        "quantity": "1 spicchio",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-3e217e2a52043",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-2cb04bea3c1aa8",
+        "name": "filetti di merluzzo",
+        "quantity": "400 g",
+        "category": "pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-01e656e17e05f8",
+        "name": "zucchine",
+        "quantity": "400 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-dff93f70d4408",
+        "name": "limone",
+        "quantity": "1",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-2f1fbd0ba9197",
+        "name": "pangrattato",
+        "quantity": "2 cucchiai",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-19416e2f1cbbb",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7479dfe44819b8",
+        "name": "gnocchi di patate",
+        "quantity": "500 g",
+        "category": "fresco",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-430d4ff2d40e9",
+        "name": "burro",
+        "quantity": "40 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-63110d0277433",
+        "name": "salvia",
+        "quantity": "q.b.",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-6b76e3f2134dd8",
+        "name": "carote",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-8e634c1308f0f8",
+        "name": "hamburger di manzo",
+        "quantity": "2 grandi",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-1da8de95d46798",
+        "name": "patate",
+        "quantity": "500 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7cca3ecd41cf3",
+        "name": "insalata",
+        "quantity": "1 cespo",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-0dfeaecdf4cec8",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f887d03b9a113",
+        "name": "sfoglie per lasagne",
+        "quantity": "250 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-735783f5a27d5",
+        "name": "carne macinata mista",
+        "quantity": "300 g",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-576fb62b72cf28",
+        "name": "passata di pomodoro",
+        "quantity": "400 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-dd3c03d330bee8",
+        "name": "besciamella",
+        "quantity": "500 ml",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-19413227c5931",
+        "name": "parmigiano grattugiato",
+        "quantity": "50 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-434fc9e03ade58",
+        "name": "minestrone misto surgelato",
+        "quantity": "600 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-009eba9b2d18b",
+        "name": "fagioli cannellini cotti",
+        "quantity": "240 g",
+        "category": "legumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-cbdbd801dd31a8",
+        "name": "pane",
+        "quantity": "4 fette",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-75796edc55459",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      }
+    ],
+    "weeklyMenus": [
+      {
+        "lunedi": {
+          "pranzo": {
+            "id": "saved-1775173700094-0-risotto-al-nero-di-seppia-con-punte-di-stracciatella-e-tartare-di-gambero-rosso",
+            "title": "Risotto al nero di seppia con punte di stracciatella e tartare di gambero rosso",
+            "category": "Primi",
+            "time": "30 min",
+            "difficulty": "media",
+            "servings": 4,
+            "ingredients": [
+              {
+                "name": "320 g riso Carnaroli",
+                "quantity": "q.b.",
+                "category": "Dispensa"
+              },
+              {
+                "name": "12 gamberi rossi freschissimi",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "500 g seppie pulite con le loro sacche di nero oppure 2 bustine di nero di seppia (8 g totali)",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "120 g stracciatella",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "1,2 l brodo di pesce leggero caldo",
+                "quantity": "q.b.",
+                "category": "Carne e pesce"
+              },
+              {
+                "name": "40 g burro freddo",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "2 cucchiai olio extravergine d'oliva",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "1 scalogno piccolo (40 g)",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "60 ml vino bianco secco",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "1 limone non trattato",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "sale fino q.b.",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "pepe bianco q.b.",
+                "quantity": "q.b.",
+                "category": "Altro"
+              }
+            ]
+          },
+          "cena": null
+        },
+        "martedi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "mercoledi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "giovedi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "venerdi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "sabato": {
+          "pranzo": null,
+          "cena": null
+        },
+        "domenica": {
+          "pranzo": null,
+          "cena": null
+        }
+      },
+      {
+        "id": "risotto ai funghi porcini-40-media",
+        "title": "Risotto ai funghi porcini",
+        "description": "Ricetta trovata con Ricerca Ricette di CucinAI.",
+        "category": "Primi",
+        "time": "40 min",
+        "difficulty": "media",
+        "servings": 4,
+        "image": "",
+        "tags": [
+          "Ricerca",
+          "media",
+          "40 min"
+        ],
+        "ingredients": [
+          {
+            "name": "320 g di riso Carnaroli",
+            "quantity": "q.b.",
+            "category": "Dispensa"
+          },
+          {
+            "name": "250 g di funghi porcini freschi o 30 g secchi reidratati",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "1 l di brodo vegetale caldo",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "1 scalogno",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "40 g di burro",
+            "quantity": "q.b.",
+            "category": "Latticini"
+          },
+          {
+            "name": "2 cucchiai di olio extravergine d'oliva",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "80 ml di vino bianco secco",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "50 g di Parmigiano Reggiano grattugiato",
+            "quantity": "q.b.",
+            "category": "Latticini"
+          },
+          {
+            "name": "1 spicchio d'aglio",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "2 cucchiai di prezzemolo tritato",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "Sale q.b.",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "Pepe nero q.b.",
+            "quantity": "q.b.",
+            "category": "Altro"
+          }
+        ],
+        "procedure": [
+          "Pulisci i funghi e tagliali a fette; in una padella rosola l'aglio con 1 cucchiaio di olio, aggiungi i funghi e cuoci per 5-6 minuti con sale e pepe, poi elimina l'aglio.",
+          "In una casseruola fai appassire lo scalogno tritato con 1 cucchiaio di olio e 20 g di burro per 3 minuti; unisci il riso e tostalo per 2 minuti.",
+          "Sfuma con il vino bianco, lascia evaporare e cuoci aggiungendo il brodo caldo un mestolo alla volta per circa 16-18 minuti, mescolando spesso.",
+          "A metà cottura aggiungi i funghi; quando il riso è cotto ma all'onda, spegni il fuoco e manteca con il burro restante e il Parmigiano.",
+          "Lascia riposare 1 minuto, completa con prezzemolo tritato e servi subito."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c4cabc69-4a88-4df1-a7cd-d674b7dd4439",
+    "name": "gianfranco",
+    "email": "gianfrancocazzo@gmail.com",
+    "passwordHash": "f120bb5698d520c5691b6d603a00bfd662d13bf177a04571f9d10c0745dfa2a5",
+    "role": "user",
+    "plan": "free",
+    "subscriptionStatus": "none",
+    "isActive": true,
+    "emailVerified": false,
+    "createdAt": "2026-04-04T01:11:32.551Z",
+    "updatedAt": "2026-04-04T01:11:32.551Z",
+    "lastLoginAt": "2026-04-04T01:11:32.551Z",
+    "authToken": "8543a68df8ce2c378aab78c4f30d74d2e66ce429bab83508d5eb8ea0222011e4",
+    "preferences": {
+      "foodPreferences": [],
+      "intolerances": [],
+      "goal": "",
+      "fitnessMode": false
+    },
+    "savedRecipes": [],
+    "shoppingLists": [],
+    "weeklyMenus": []
+  },
+  {
+    "id": "06e110b1-d40c-491b-8834-e7d58046c043",
+    "name": "nicolò",
+    "email": "nicosted@gmail.com",
+    "passwordHash": "c12c8e553c1ba649f0b118459959764be925b0dfbb15ef8844fbe78dd040ee35",
+    "role": "user",
+    "plan": "free",
+    "subscriptionStatus": "none",
+    "isActive": true,
+    "emailVerified": false,
+    "createdAt": "2026-04-04T01:26:59.738Z",
+    "updatedAt": "2026-04-04T02:53:37.037Z",
+    "lastLoginAt": "2026-04-04T02:53:37.037Z",
+    "authToken": "11bd7fcb76ec6ed7cb57ae03acb7a531372f6763ecb89dd9f202bec7454073c2",
+    "preferences": {
+      "foodPreferences": [],
+      "intolerances": [],
+      "goal": "",
+      "fitnessMode": false
+    },
+    "savedRecipes": [],
+    "shoppingLists": [],
+    "weeklyMenus": []
+  },
+  {
+    "id": "2b6b00ef-4062-4893-bdf9-05d67c598e1c",
+    "name": "gianfilippo",
+    "email": "gianfilippo.03@gmail.com",
+    "passwordHash": "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92",
+    "role": "user",
+    "plan": "free",
+    "subscriptionStatus": "none",
+    "isActive": true,
+    "emailVerified": false,
+    "createdAt": "2026-04-04T01:39:32.877Z",
+    "updatedAt": "2026-04-04T01:39:32.919Z",
+    "lastLoginAt": "2026-04-04T01:39:32.877Z",
+    "authToken": "78228966131af79043bc9d7fe3d205e697d8728e9837b11749f2a85c01433985",
+    "preferences": {
+      "foodPreferences": [],
+      "intolerances": [],
+      "goal": "",
+      "fitnessMode": false
+    },
+    "savedRecipes": [
+      {
+        "id": "crostini alla fiorentina con fegatini di pollo-45-media",
+        "title": "Crostini alla fiorentina con fegatini di pollo",
+        "description": "Ricetta trovata con Ricerca Ricette di CucinAI.",
+        "category": "Secondi",
+        "time": "45 min",
+        "difficulty": "media",
+        "servings": 4,
+        "image": "",
+        "tags": [
+          "Ricerca",
+          "media",
+          "45 min"
+        ],
+        "ingredients": [
+          {
+            "name": "300 g di fegatini di pollo puliti",
+            "quantity": "q.b.",
+            "category": "Carne e pesce"
+          },
+          {
+            "name": "40 g di burro",
+            "quantity": "q.b.",
+            "category": "Latticini"
+          },
+          {
+            "name": "20 ml di olio extravergine di oliva",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "80 g di cipolla bianca tritata",
+            "quantity": "q.b.",
+            "category": "Verdura e frutta"
+          },
+          {
+            "name": "6 filetti di acciuga sott'olio",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "2 cucchiai di capperi dissalati (20 g)",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "100 ml di vinsanto o vino bianco secco",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "150 ml di brodo di carne",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "1 cucchiaio di concentrato di pomodoro (15 g)",
+            "quantity": "q.b.",
+            "category": "Verdura e frutta"
+          },
+          {
+            "name": "4 g di sale",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "2 g di pepe nero",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "8 fette di pane toscano o casereccio (circa 320 g)",
+            "quantity": "q.b.",
+            "category": "Dispensa"
+          }
+        ],
+        "procedure": [
+          "Rosola la cipolla con burro e olio per 5 minuti a fuoco dolce, poi unisci acciughe e capperi e lasciali sciogliere.",
+          "Aggiungi i fegatini tritati grossolanamente e cuoci 8-10 minuti mescolando, quindi sfuma con il vinsanto.",
+          "Unisci concentrato e brodo, regola di sale e pepe e cuoci altri 10 minuti finché il composto è morbido ma non asciutto.",
+          "Frulla o trita finemente il tutto fino a ottenere una crema rustica e, se serve, ammorbidisci con 1-2 cucchiai di brodo caldo.",
+          "Tosta il pane, distribuisci sopra la crema di fegatini ben calda e servi subito."
+        ]
+      }
+    ],
+    "shoppingLists": [
+      {
+        "id": "1775160766999",
+        "name": "pane",
+        "quantity": "3kg",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775160778023",
+        "name": "pomodorini",
+        "quantity": "100gr",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775160797711",
+        "name": "guanciale fresco",
+        "quantity": "600 kg",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-e463188a8c4ce",
+        "name": "Pasta",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-1c13765e572048",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-807de410570208",
+        "name": "Basilico",
+        "quantity": "1 mazzetto",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-34920bd7de03d",
+        "name": "Petto di pollo",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-b94e2d7d9bfab8",
+        "name": "Zucchine",
+        "quantity": "600 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-910e3eaa8edd28",
+        "name": "Riso",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-10fded5ec15ba",
+        "name": "Zucchine",
+        "quantity": "500 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-53f73217db52c8",
+        "name": "Uova",
+        "quantity": "6",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-d394c27af43ad8",
+        "name": "Insalata",
+        "quantity": "2 buste",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-70a39d9777ee1",
+        "name": "Pasta",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631023-4403f9c04127",
+        "name": "Tonno",
+        "quantity": "2 scatolette",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-2107322382f91",
+        "name": "Olive",
+        "quantity": "100 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-b9bc54cd37fbe8",
+        "name": "Carne macinata",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-ab369dc3812278",
+        "name": "Patate",
+        "quantity": "800 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-5a73d2dd51361",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-998b0ea472d",
+        "name": "Riso",
+        "quantity": "320 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-ae686b4754c85",
+        "name": "Pomodori",
+        "quantity": "500 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-2037d66c2f88f",
+        "name": "Mozzarella",
+        "quantity": "2 confezioni",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-d4fa4f5cf253c8",
+        "name": "Filetti di pesce",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-bfa43caa8ba56",
+        "name": "Verdure miste",
+        "quantity": "700 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-3d9eb4b15407e8",
+        "name": "Gnocchi",
+        "quantity": "500 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-af724f6a158d8",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-d9e5904d51c4c",
+        "name": "Insalata",
+        "quantity": "2 buste",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-e075a5290b2f1",
+        "name": "Uova",
+        "quantity": "4",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-5e6c0e58ee589",
+        "name": "Tonno",
+        "quantity": "2 scatolette",
+        "category": "Proteine",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-31e77cfc0432e",
+        "name": "Pane",
+        "quantity": "1 confezione",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-e9a30b7f91f39",
+        "name": "Lasagne",
+        "quantity": "1 confezione",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-3967e7495aac",
+        "name": "Ragù",
+        "quantity": "700 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-103903cd2bd858",
+        "name": "Besciamella",
+        "quantity": "500 ml",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-727b433d02cd78",
+        "name": "Petto di pollo",
+        "quantity": "500 g",
+        "category": "Carne e pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-4c82665aadf7d",
+        "name": "Insalata mista",
+        "quantity": "2 buste",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-7a3a325f4500c8",
+        "name": "Pasta",
+        "quantity": "400 g",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-0f67622754a3a8",
+        "name": "Mozzarella",
+        "quantity": "2 confezioni",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-4873550bba0fe",
+        "name": "Passata di pomodoro",
+        "quantity": "1 bottiglia",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-17151f894285f8",
+        "name": "Mozzarella",
+        "quantity": "2 confezioni",
+        "category": "Latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-605658ff28f9",
+        "name": "Pomodori",
+        "quantity": "500 g",
+        "category": "Verdura e frutta",
+        "checked": false
+      },
+      {
+        "id": "1775185631024-882e357fbd064",
+        "name": "Pane",
+        "quantity": "1 confezione",
+        "category": "Dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e9e6990a4859f8",
+        "name": "pasta",
+        "quantity": "180 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-17d379fd4f98f8",
+        "name": "passata di pomodoro",
+        "quantity": "300 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-9626f117b3a4",
+        "name": "basilico",
+        "quantity": "1 mazzetto",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7b18e4a0848e48",
+        "name": "insalata mista",
+        "quantity": "1 busta",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-538b4a1a24d46",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-eaba8aa10554b",
+        "name": "cosce di pollo",
+        "quantity": "500 g",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-98a851b0fbff4",
+        "name": "patate",
+        "quantity": "500 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-fdb3575f92bc98",
+        "name": "carote",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-8ea8f88d0748",
+        "name": "rosmarino",
+        "quantity": "q.b.",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-c20362c27b453",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-68c1106f5a51a",
+        "name": "riso",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-48f0f0c7ed5618",
+        "name": "zucchine",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-9a36a9999d21e",
+        "name": "parmigiano grattugiato",
+        "quantity": "40 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ad8a0f8713c15",
+        "name": "cipolla",
+        "quantity": "1 piccola",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-d11390a605c4b",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e0f7768716dd8",
+        "name": "uova",
+        "quantity": "6",
+        "category": "uova",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7c6cbc34ace0e",
+        "name": "cipolle",
+        "quantity": "250 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-5d85e172f7ed08",
+        "name": "pomodori",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-089077bf52d3f",
+        "name": "pane",
+        "quantity": "4 fette",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e36bec61ea4c48",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ba10a71ee591f8",
+        "name": "piadine",
+        "quantity": "4",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-246c2efa1252b8",
+        "name": "prosciutto cotto",
+        "quantity": "120 g",
+        "category": "salumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f614e55b31c06",
+        "name": "mozzarella",
+        "quantity": "200 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-4891a0901ffa58",
+        "name": "lattuga",
+        "quantity": "1 cespo",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-022ecd360c697",
+        "name": "lenticchie secche",
+        "quantity": "200 g",
+        "category": "legumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7157d769466d4",
+        "name": "passata di pomodoro",
+        "quantity": "200 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f8e68da65c1e4",
+        "name": "carota",
+        "quantity": "1",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-e254b9a54fcb8",
+        "name": "sedano",
+        "quantity": "1 costa",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ccd48a53b96248",
+        "name": "farina di mais per polenta",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f7cc9d6c4b1928",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-fc9f32676fff8",
+        "name": "farro",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-3abcb5ac8bacc8",
+        "name": "tonno in scatola",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-92685393357908",
+        "name": "mais",
+        "quantity": "140 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-ab2a18c485389",
+        "name": "pomodorini",
+        "quantity": "200 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-3ed9a1213aad",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-30291b99895668",
+        "name": "salsiccia",
+        "quantity": "300 g",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-df64d942c3026",
+        "name": "peperoni",
+        "quantity": "400 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7f77f6bcd64c2",
+        "name": "pane",
+        "quantity": "4 fette",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-069cffb5407c68",
+        "name": "aglio",
+        "quantity": "1 spicchio",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-2709fa3c0769d8",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-0776bfede46d9",
+        "name": "pasta corta",
+        "quantity": "160 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-c0be1f22e42f8",
+        "name": "ceci cotti",
+        "quantity": "240 g",
+        "category": "legumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-c13dff2070dbf8",
+        "name": "rosmarino",
+        "quantity": "q.b.",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-70834b495b5e",
+        "name": "aglio",
+        "quantity": "1 spicchio",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-3e217e2a52043",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-2cb04bea3c1aa8",
+        "name": "filetti di merluzzo",
+        "quantity": "400 g",
+        "category": "pesce",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-01e656e17e05f8",
+        "name": "zucchine",
+        "quantity": "400 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-dff93f70d4408",
+        "name": "limone",
+        "quantity": "1",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-2f1fbd0ba9197",
+        "name": "pangrattato",
+        "quantity": "2 cucchiai",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-19416e2f1cbbb",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7479dfe44819b8",
+        "name": "gnocchi di patate",
+        "quantity": "500 g",
+        "category": "fresco",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-430d4ff2d40e9",
+        "name": "burro",
+        "quantity": "40 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-63110d0277433",
+        "name": "salvia",
+        "quantity": "q.b.",
+        "category": "verdure e aromi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-6b76e3f2134dd8",
+        "name": "carote",
+        "quantity": "300 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-8e634c1308f0f8",
+        "name": "hamburger di manzo",
+        "quantity": "2 grandi",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-1da8de95d46798",
+        "name": "patate",
+        "quantity": "500 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-7cca3ecd41cf3",
+        "name": "insalata",
+        "quantity": "1 cespo",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-0dfeaecdf4cec8",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-f887d03b9a113",
+        "name": "sfoglie per lasagne",
+        "quantity": "250 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-735783f5a27d5",
+        "name": "carne macinata mista",
+        "quantity": "300 g",
+        "category": "carne",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-576fb62b72cf28",
+        "name": "passata di pomodoro",
+        "quantity": "400 g",
+        "category": "dispensa",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-dd3c03d330bee8",
+        "name": "besciamella",
+        "quantity": "500 ml",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-19413227c5931",
+        "name": "parmigiano grattugiato",
+        "quantity": "50 g",
+        "category": "latticini",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-434fc9e03ade58",
+        "name": "minestrone misto surgelato",
+        "quantity": "600 g",
+        "category": "verdure",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-009eba9b2d18b",
+        "name": "fagioli cannellini cotti",
+        "quantity": "240 g",
+        "category": "legumi",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-cbdbd801dd31a8",
+        "name": "pane",
+        "quantity": "4 fette",
+        "category": "panetteria",
+        "checked": false
+      },
+      {
+        "id": "1775185791540-75796edc55459",
+        "name": "olio extravergine d'oliva",
+        "quantity": "q.b.",
+        "category": "condimenti",
+        "checked": false
+      }
+    ],
+    "weeklyMenus": [
+      {
+        "lunedi": {
+          "pranzo": {
+            "id": "saved-1775173700094-0-risotto-al-nero-di-seppia-con-punte-di-stracciatella-e-tartare-di-gambero-rosso",
+            "title": "Risotto al nero di seppia con punte di stracciatella e tartare di gambero rosso",
+            "category": "Primi",
+            "time": "30 min",
+            "difficulty": "media",
+            "servings": 4,
+            "ingredients": [
+              {
+                "name": "320 g riso Carnaroli",
+                "quantity": "q.b.",
+                "category": "Dispensa"
+              },
+              {
+                "name": "12 gamberi rossi freschissimi",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "500 g seppie pulite con le loro sacche di nero oppure 2 bustine di nero di seppia (8 g totali)",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "120 g stracciatella",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "1,2 l brodo di pesce leggero caldo",
+                "quantity": "q.b.",
+                "category": "Carne e pesce"
+              },
+              {
+                "name": "40 g burro freddo",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "2 cucchiai olio extravergine d'oliva",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "1 scalogno piccolo (40 g)",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "60 ml vino bianco secco",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "1 limone non trattato",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "sale fino q.b.",
+                "quantity": "q.b.",
+                "category": "Altro"
+              },
+              {
+                "name": "pepe bianco q.b.",
+                "quantity": "q.b.",
+                "category": "Altro"
+              }
+            ]
+          },
+          "cena": null
+        },
+        "martedi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "mercoledi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "giovedi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "venerdi": {
+          "pranzo": null,
+          "cena": null
+        },
+        "sabato": {
+          "pranzo": null,
+          "cena": null
+        },
+        "domenica": {
+          "pranzo": null,
+          "cena": null
+        }
+      },
+      {
+        "id": "risotto ai funghi porcini-40-media",
+        "title": "Risotto ai funghi porcini",
+        "description": "Ricetta trovata con Ricerca Ricette di CucinAI.",
+        "category": "Primi",
+        "time": "40 min",
+        "difficulty": "media",
+        "servings": 4,
+        "image": "",
+        "tags": [
+          "Ricerca",
+          "media",
+          "40 min"
+        ],
+        "ingredients": [
+          {
+            "name": "320 g di riso Carnaroli",
+            "quantity": "q.b.",
+            "category": "Dispensa"
+          },
+          {
+            "name": "250 g di funghi porcini freschi o 30 g secchi reidratati",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "1 l di brodo vegetale caldo",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "1 scalogno",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "40 g di burro",
+            "quantity": "q.b.",
+            "category": "Latticini"
+          },
+          {
+            "name": "2 cucchiai di olio extravergine d'oliva",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "80 ml di vino bianco secco",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "50 g di Parmigiano Reggiano grattugiato",
+            "quantity": "q.b.",
+            "category": "Latticini"
+          },
+          {
+            "name": "1 spicchio d'aglio",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "2 cucchiai di prezzemolo tritato",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "Sale q.b.",
+            "quantity": "q.b.",
+            "category": "Altro"
+          },
+          {
+            "name": "Pepe nero q.b.",
+            "quantity": "q.b.",
+            "category": "Altro"
+          }
+        ],
+        "procedure": [
+          "Pulisci i funghi e tagliali a fette; in una padella rosola l'aglio con 1 cucchiaio di olio, aggiungi i funghi e cuoci per 5-6 minuti con sale e pepe, poi elimina l'aglio.",
+          "In una casseruola fai appassire lo scalogno tritato con 1 cucchiaio di olio e 20 g di burro per 3 minuti; unisci il riso e tostalo per 2 minuti.",
+          "Sfuma con il vino bianco, lascia evaporare e cuoci aggiungendo il brodo caldo un mestolo alla volta per circa 16-18 minuti, mescolando spesso.",
+          "A metà cottura aggiungi i funghi; quando il riso è cotto ma all'onda, spegni il fuoco e manteca con il burro restante e il Parmigiano.",
+          "Lascia riposare 1 minuto, completa con prezzemolo tritato e servi subito."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "676e4b36-e50c-48f4-802e-4338691b3f9d",
+    "name": "totti",
+    "email": "tottigol@gmail.com",
+    "passwordHash": "052b948dae9ad466e9498679c3d42ba6c20d299bc0e83d1cbfc273b7822fe982",
+    "role": "user",
+    "plan": "free",
+    "subscriptionStatus": "none",
+    "isActive": true,
+    "emailVerified": false,
+    "createdAt": "2026-04-04T02:19:52.854Z",
+    "updatedAt": "2026-04-04T02:19:52.854Z",
+    "lastLoginAt": "2026-04-04T02:19:52.854Z",
+    "authToken": "775702ee344d23a0ecbf214ce9edd666d72f6bd637434910b02d67de3c593d4c",
+    "preferences": {
+      "foodPreferences": [],
+      "intolerances": [],
+      "goal": "",
+      "fitnessMode": false
+    },
+    "savedRecipes": [],
+    "shoppingLists": [],
+    "weeklyMenus": []
+  },
+  {
+    "id": "85fd3f4b-f11f-4c0d-9f3c-7e684189da28",
+    "name": "hitler",
+    "email": "hitleramaifornieledocce@gmail.com",
+    "passwordHash": "94bb9e9c65bf58cb6443e9ddf865e5971291f754cf003bcd0698d48c6902ce62",
+    "role": "user",
+    "plan": "free",
+    "subscriptionStatus": "none",
+    "isActive": true,
+    "emailVerified": false,
+    "createdAt": "2026-04-04T02:28:42.734Z",
+    "updatedAt": "2026-04-04T02:28:42.734Z",
+    "lastLoginAt": "2026-04-04T02:28:42.734Z",
+    "authToken": "59c3a6d30fb06277d3576b454ec5c0700dba94ed54e53adee3496e33dffbdba2",
+    "preferences": {
+      "foodPreferences": [],
+      "intolerances": [],
+      "goal": "",
+      "fitnessMode": false
+    },
+    "savedRecipes": [],
+    "shoppingLists": [],
+    "weeklyMenus": []
+  }
+]
