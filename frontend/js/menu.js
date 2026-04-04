@@ -37,7 +37,7 @@ function renderAuthLinks() {
     if (logoutBtn) {
       logoutBtn.addEventListener("click", async () => {
         try {
-          await fetch("http://localhost:3001/api/auth/logout", {
+          await fetch("https://cucinai-login.onrender.com/api/auth/logout", {
             method: "POST",
             headers: {
               Authorization: `Bearer ${token}`

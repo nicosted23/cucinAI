@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     setMessage("Caricamento account...");
 
     try {
-      const response = await fetch("http://localhost:3001/api/account", {
+      const response = await fetch("https://cucinai-login.onrender.com/api/account", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`

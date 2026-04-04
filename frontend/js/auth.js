@@ -1,5 +1,5 @@
 (function () {
-  const API_BASE = "http://localhost:3001";
+  const API_BASE = "https://cucinai-login.onrender.com";
   const TOKEN_KEY = "cucinai_auth_token";
   const USER_KEY = "cucinai_current_user";
 
