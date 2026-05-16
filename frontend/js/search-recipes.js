@@ -4,6 +4,8 @@ const searchRegenerateBtn = document.getElementById("searchRegenerateBtn");
 
 let lastSearchPayload = null;
 
+const AUTH_API_BASE = "https://cucinai-login.onrender.com";
+
 const SAVED_RECIPE_KEYS = [
   "cucinai_saved_recipes",
   "savedRecipes",
@@ -11,6 +13,21 @@ const SAVED_RECIPE_KEYS = [
 ];
 
 const CUSTOM_MENU_PENDING_KEY = "cucinai_menu_pending_recipe";
+
+function getAuthToken() {
+  return localStorage.getItem("cucinai_auth_token") || "";
+}
+
+function isUserLoggedIn() {
+  return Boolean(getAuthToken());
+}
+
+function getAuthHeaders() {
+  return {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${getAuthToken()}`
+  };
+}
 
 function getSavedRecipes() {
   for (const key of SAVED_RECIPE_KEYS) {
@@ -34,6 +51,45 @@ function setSavedRecipes(recipes) {
   SAVED_RECIPE_KEYS.forEach((key) => {
     localStorage.setItem(key, JSON.stringify(recipes));
   });
+}
+
+async function saveRecipeToAccount(recipe) {
+  const response = await fetch(`${AUTH_API_BASE}/api/user/saved-recipes`, {
+    method: "POST",
+    headers: getAuthHeaders(),
+    body: JSON.stringify({ recipe })
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.message || "Errore durante il salvataggio della ricetta sull'account.");
+  }
+
+  if (Array.isArray(data.recipes)) {
+    setSavedRecipes(data.recipes);
+  }
+
+  return data;
+}
+
+async function deleteRecipeFromAccount(recipeId) {
+  const response = await fetch(`${AUTH_API_BASE}/api/user/saved-recipes/${encodeURIComponent(recipeId)}`, {
+    method: "DELETE",
+    headers: getAuthHeaders()
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.message || "Errore durante la rimozione della ricetta dall'account.");
+  }
+
+  if (Array.isArray(data.recipes)) {
+    setSavedRecipes(data.recipes);
+  }
+
+  return data;
 }
 
 function normalizeCategory(recipe) {
@@ -198,12 +254,16 @@ function normalizeRecipeForSave(recipe) {
       `${recipe.time_minutes || 30} min`
     ],
     ingredients: normalizeIngredients(recipe),
-    procedure: normalizeProcedure(recipe)
+    procedure: normalizeProcedure(recipe),
+    savedAt: new Date().toISOString()
   };
 }
 
 function makeRecipeId(recipe) {
-  return `${recipe.title}-${recipe.time_minutes || recipe.time}-${recipe.difficulty}`.toLowerCase();
+  return `${recipe.title}-${recipe.time_minutes || recipe.time}-${recipe.difficulty}`
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-");
 }
 
 function isRecipeSaved(recipe) {
@@ -212,25 +272,44 @@ function isRecipeSaved(recipe) {
   return saved.some((item) => (item.id || makeRecipeId(item)) === recipeId);
 }
 
-function toggleSaveRecipe(recipe, button, messageElement) {
+async function toggleSaveRecipe(recipe, button, messageElement) {
   const saved = getSavedRecipes();
   const normalizedRecipe = normalizeRecipeForSave(recipe);
   const recipeId = normalizedRecipe.id;
 
   const existingIndex = saved.findIndex((item) => (item.id || makeRecipeId(item)) === recipeId);
 
-  if (existingIndex >= 0) {
-    saved.splice(existingIndex, 1);
-    setSavedRecipes(saved);
-    button.textContent = "☆";
-    button.classList.remove("saved");
-    showCardMessage(messageElement, "Ricetta rimossa dalle salvate.");
-  } else {
-    saved.push(normalizedRecipe);
-    setSavedRecipes(saved);
-    button.textContent = "★";
-    button.classList.add("saved");
-    showCardMessage(messageElement, "Ricetta salvata con successo.");
+  button.disabled = true;
+
+  try {
+    if (existingIndex >= 0) {
+      if (isUserLoggedIn()) {
+        await deleteRecipeFromAccount(recipeId);
+      } else {
+        saved.splice(existingIndex, 1);
+        setSavedRecipes(saved);
+      }
+
+      button.textContent = "☆";
+      button.classList.remove("saved");
+      showCardMessage(messageElement, "Ricetta rimossa dalle salvate.");
+    } else {
+      if (isUserLoggedIn()) {
+        await saveRecipeToAccount(normalizedRecipe);
+      } else {
+        saved.push(normalizedRecipe);
+        setSavedRecipes(saved);
+      }
+
+      button.textContent = "★";
+      button.classList.add("saved");
+      showCardMessage(messageElement, "Ricetta salvata con successo.");
+    }
+  } catch (error) {
+    console.error(error);
+    showCardMessage(messageElement, "Errore durante il salvataggio della ricetta.");
+  } finally {
+    button.disabled = false;
   }
 }
 
@@ -342,10 +421,10 @@ function renderSearchRecipes(recipes) {
   }).join("");
 
   document.querySelectorAll(".save-star").forEach((button) => {
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       const recipe = recipes[Number(button.dataset.index)];
       const messageElement = document.getElementById(`recipe-message-${button.dataset.index}`);
-      toggleSaveRecipe(recipe, button, messageElement);
+      await toggleSaveRecipe(recipe, button, messageElement);
     });
   });
 
