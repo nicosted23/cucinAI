@@ -1,5 +1,6 @@
 const PREMIUM_STORAGE_KEY = "cucinai_lista_spesa_premium";
 const PREMIUM_AI_STORAGE_KEY = "cucinai_lista_spesa_premium_ai";
+const AUTH_API_BASE = "https://cucinai-login.onrender.com";
 
 const premiumForm = document.getElementById("shoppingPremiumForm");
 const premiumNameInput = document.getElementById("premium-product-name");
@@ -34,51 +35,228 @@ const premiumCategoryIcons = {
 
 let premiumItems = loadPremiumItems();
 let generatedAiItems = loadAiGeneratedItems();
+let saveAccountTimeout = null;
 
-aiGeneratorSection.style.display = "none";
+initPremiumShoppingList();
 
-renderPremiumList();
-updatePremiumSummary();
-renderAiOutput([]);
-
-toggleAiGeneratorButton.addEventListener("click", function () {
-  const isHidden = aiGeneratorSection.style.display === "none";
-  aiGeneratorSection.style.display = isHidden ? "block" : "none";
-  toggleAiGeneratorButton.textContent = isHidden ? "Chiudi generatore AI" : "Apri generatore AI";
-});
-
-premiumForm.addEventListener("submit", function (event) {
-  event.preventDefault();
-
-  const name = premiumNameInput.value.trim();
-  const quantity = premiumQtyInput.value.trim();
-  const category = premiumCategoryInput.value || "Altro";
-
-  if (!name) {
-    alert("Inserisci il nome del prodotto.");
-    premiumNameInput.focus();
-    return;
+async function initPremiumShoppingList() {
+  if (aiGeneratorSection) {
+    aiGeneratorSection.style.display = "none";
   }
 
-  premiumItems.push({
-    id: Date.now().toString(),
-    name,
-    quantity: quantity || "-",
-    category,
-    checked: false
-  });
-
-  savePremiumItems();
   renderPremiumList();
   updatePremiumSummary();
+  renderAiOutput([]);
 
-  premiumForm.reset();
-  premiumCategoryInput.value = "Altro";
-  premiumNameInput.focus();
-});
+  if (isUserLoggedIn()) {
+    await loadPremiumItemsFromAccount();
+  }
 
-premiumAiForm.addEventListener("submit", async function (event) {
+  if (toggleAiGeneratorButton && aiGeneratorSection) {
+    toggleAiGeneratorButton.addEventListener("click", function () {
+      const isHidden = aiGeneratorSection.style.display === "none";
+      aiGeneratorSection.style.display = isHidden ? "block" : "none";
+      toggleAiGeneratorButton.textContent = isHidden ? "Chiudi generatore AI" : "Apri generatore AI";
+    });
+  }
+
+  if (premiumForm) {
+    premiumForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const name = premiumNameInput.value.trim();
+      const quantity = premiumQtyInput.value.trim();
+      const category = premiumCategoryInput.value || "Altro";
+
+      if (!name) {
+        alert("Inserisci il nome del prodotto.");
+        premiumNameInput.focus();
+        return;
+      }
+
+      premiumItems.push({
+        id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        name,
+        quantity: quantity || "-",
+        category,
+        checked: false,
+        updatedAt: new Date().toISOString()
+      });
+
+      await savePremiumItems();
+      renderPremiumList();
+      updatePremiumSummary();
+
+      premiumForm.reset();
+      premiumCategoryInput.value = "Altro";
+      premiumNameInput.focus();
+    });
+  }
+
+  if (premiumAiForm) {
+    premiumAiForm.addEventListener("submit", handleAiShoppingSubmit);
+  }
+
+  if (addAiListToPremiumButton) {
+    addAiListToPremiumButton.addEventListener("click", async function () {
+      if (generatedAiItems.length === 0) {
+        return;
+      }
+
+      const itemsToAdd = generatedAiItems.map(item => ({
+        ...item,
+        id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        checked: false,
+        updatedAt: new Date().toISOString()
+      }));
+
+      premiumItems = [...premiumItems, ...itemsToAdd];
+
+      await savePremiumItems();
+      renderPremiumList();
+      updatePremiumSummary();
+    });
+  }
+
+  if (resetAiListButton) {
+    resetAiListButton.addEventListener("click", function () {
+      generatedAiItems = [];
+      aiOutputMeta.textContent = "Qui comparirà la tua proposta generata.";
+      saveAiGeneratedItems();
+      renderAiOutput([]);
+    });
+  }
+}
+
+function getAuthToken() {
+  return localStorage.getItem("cucinai_auth_token") || "";
+}
+
+function isUserLoggedIn() {
+  return Boolean(getAuthToken());
+}
+
+function getAuthHeaders() {
+  return {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${getAuthToken()}`
+  };
+}
+
+async function loadPremiumItemsFromAccount() {
+  try {
+    const response = await fetch(`${AUTH_API_BASE}/api/user/shopping-list`, {
+      method: "GET",
+      headers: getAuthHeaders()
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (response.status === 401) {
+      return;
+    }
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Errore caricamento lista spesa account.");
+    }
+
+    premiumItems = Array.isArray(data.items)
+      ? data.items.map(normalizeShoppingItem)
+      : [];
+
+    savePremiumItemsLocal();
+    renderPremiumList();
+    updatePremiumSummary();
+  } catch (error) {
+    console.error("Errore caricamento lista spesa account:", error);
+  }
+}
+
+async function savePremiumItemsToAccountNow() {
+  if (!isUserLoggedIn()) {
+    return false;
+  }
+
+  try {
+    const response = await fetch(`${AUTH_API_BASE}/api/user/shopping-list`, {
+      method: "PUT",
+      headers: getAuthHeaders(),
+      body: JSON.stringify({
+        items: premiumItems.map(normalizeShoppingItem)
+      })
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (response.status === 401) {
+      return false;
+    }
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Errore salvataggio lista spesa account.");
+    }
+
+    if (Array.isArray(data.items)) {
+      premiumItems = data.items.map(normalizeShoppingItem);
+      savePremiumItemsLocal();
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Errore salvataggio lista spesa account:", error);
+    return false;
+  }
+}
+
+function scheduleSavePremiumItemsToAccount() {
+  clearTimeout(saveAccountTimeout);
+
+  saveAccountTimeout = setTimeout(async () => {
+    await savePremiumItemsToAccountNow();
+  }, 300);
+}
+
+async function savePremiumItems() {
+  savePremiumItemsLocal();
+
+  if (isUserLoggedIn()) {
+    scheduleSavePremiumItemsToAccount();
+  }
+}
+
+function savePremiumItemsLocal() {
+  localStorage.setItem(PREMIUM_STORAGE_KEY, JSON.stringify(premiumItems));
+}
+
+function loadPremiumItems() {
+  try {
+    const raw = localStorage.getItem(PREMIUM_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.map(normalizeShoppingItem) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function normalizeShoppingItem(item, index = 0) {
+  return {
+    id: item?.id || `${Date.now()}-${index}-${Math.random().toString(16).slice(2)}`,
+    name: String(item?.name || "").trim(),
+    quantity: String(item?.quantity || "q.b.").trim(),
+    category: String(item?.category || "Altro").trim(),
+    checked: Boolean(item?.checked),
+    updatedAt: item?.updatedAt || new Date().toISOString()
+  };
+}
+
+async function handleAiShoppingSubmit(event) {
   event.preventDefault();
+
+  if (!isUserLoggedIn()) {
+    alert("Devi effettuare il login per usare questa funzione.");
+    window.location.href = "login.html";
+    return;
+  }
 
   const people = document.getElementById("ai-people").value;
   const days = document.getElementById("ai-days").value;
@@ -92,24 +270,34 @@ premiumAiForm.addEventListener("submit", async function (event) {
   submitButton.textContent = "Generazione in corso...";
 
   try {
-    const token = localStorage.getItem("cucinai_auth_token");
+    const response = await fetch("/api/genera-lista-spesa-ai", {
+      method: "POST",
+      headers: getAuthHeaders(),
+      body: JSON.stringify({
+        people,
+        days,
+        style,
+        budget,
+        meals,
+        preferences
+      })
+    });
 
-const response = await fetch("/api/genera-lista-spesa-ai", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${token || ""}`
-  },
-  body: JSON.stringify({
-    people,
-    days,
-    style,
-    budget,
-    meals,
-    preferences
-  })
-});
-    const result = await response.json();
+    const result = await response.json().catch(() => ({}));
+
+    if (response.status === 401) {
+      alert("Sessione scaduta. Effettua di nuovo il login.");
+      localStorage.removeItem("cucinai_auth_token");
+      localStorage.removeItem("cucinai_current_user");
+      window.location.href = "login.html";
+      return;
+    }
+
+    if (response.status === 403) {
+      alert("Questa funzione è riservata agli utenti Premium.");
+      window.location.href = "abbonamenti.html";
+      return;
+    }
 
     if (!response.ok || !result.success) {
       throw new Error(result.error || "Errore nella risposta AI.");
@@ -131,49 +319,13 @@ const response = await fetch("/api/genera-lista-spesa-ai", {
     submitButton.disabled = false;
     submitButton.textContent = "Genera lista intelligente";
   }
-});
-
-addAiListToPremiumButton.addEventListener("click", function () {
-  if (generatedAiItems.length === 0) {
-    return;
-  }
-
-  const itemsToAdd = generatedAiItems.map(item => ({
-    ...item,
-    id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
-    checked: false
-  }));
-
-  premiumItems = [...premiumItems, ...itemsToAdd];
-  savePremiumItems();
-  renderPremiumList();
-  updatePremiumSummary();
-});
-
-resetAiListButton.addEventListener("click", function () {
-  generatedAiItems = [];
-  aiOutputMeta.textContent = "Qui comparirà la tua proposta generata.";
-  saveAiGeneratedItems();
-  renderAiOutput([]);
-});
-
-function loadPremiumItems() {
-  try {
-    const raw = localStorage.getItem(PREMIUM_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch (error) {
-    return [];
-  }
-}
-
-function savePremiumItems() {
-  localStorage.setItem(PREMIUM_STORAGE_KEY, JSON.stringify(premiumItems));
 }
 
 function loadAiGeneratedItems() {
   try {
     const raw = localStorage.getItem(PREMIUM_AI_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.map(normalizeShoppingItem) : [];
   } catch (error) {
     return [];
   }
@@ -223,8 +375,8 @@ function renderPremiumList() {
       const checkbox = document.createElement("input");
       checkbox.type = "checkbox";
       checkbox.checked = item.checked;
-      checkbox.addEventListener("change", function () {
-        togglePremiumItem(item.id);
+      checkbox.addEventListener("change", async function () {
+        await togglePremiumItem(item.id);
       });
 
       const nameText = document.createElement("span");
@@ -241,8 +393,8 @@ function renderPremiumList() {
       deleteButton.className = "item-delete";
       deleteButton.textContent = "×";
       deleteButton.setAttribute("aria-label", `Elimina ${item.name}`);
-      deleteButton.addEventListener("click", function () {
-        deletePremiumItem(item.id);
+      deleteButton.addEventListener("click", async function () {
+        await deletePremiumItem(item.id);
       });
 
       itemRow.appendChild(label);
@@ -320,13 +472,23 @@ function renderAiOutput(notes = []) {
 function flattenAiCategories(categories) {
   const result = [];
 
+  if (!Array.isArray(categories)) {
+    return result;
+  }
+
   categories.forEach(categoryBlock => {
+    if (!categoryBlock || !Array.isArray(categoryBlock.items)) {
+      return;
+    }
+
     categoryBlock.items.forEach(item => {
       result.push({
+        id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
         name: item.name,
-        quantity: item.quantity,
-        category: categoryBlock.category,
-        checked: false
+        quantity: item.quantity || "q.b.",
+        category: categoryBlock.category || "Altro",
+        checked: false,
+        updatedAt: new Date().toISOString()
       });
     });
   });
@@ -336,31 +498,39 @@ function flattenAiCategories(categories) {
 
 function groupItemsByCategory(items) {
   return items.reduce((groups, item) => {
-    if (!groups[item.category]) {
-      groups[item.category] = [];
+    const category = item.category || "Altro";
+
+    if (!groups[category]) {
+      groups[category] = [];
     }
 
-    groups[item.category].push(item);
+    groups[category].push(item);
     return groups;
   }, {});
 }
 
-function togglePremiumItem(itemId) {
+async function togglePremiumItem(itemId) {
   premiumItems = premiumItems.map(item => {
     if (item.id === itemId) {
-      return { ...item, checked: !item.checked };
+      return {
+        ...item,
+        checked: !item.checked,
+        updatedAt: new Date().toISOString()
+      };
     }
+
     return item;
   });
 
-  savePremiumItems();
+  await savePremiumItems();
   renderPremiumList();
   updatePremiumSummary();
 }
 
-function deletePremiumItem(itemId) {
+async function deletePremiumItem(itemId) {
   premiumItems = premiumItems.filter(item => item.id !== itemId);
-  savePremiumItems();
+
+  await savePremiumItems();
   renderPremiumList();
   updatePremiumSummary();
 }

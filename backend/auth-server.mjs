@@ -155,6 +155,25 @@ function createRecipeId(recipe) {
   return `${baseTitle || "ricetta"}-${Date.now()}`;
 }
 
+function normalizeShoppingListItems(items = []) {
+  if (!Array.isArray(items)) {
+    return [];
+  }
+
+  return items
+    .filter((item) => item && item.name)
+    .map((item, index) => {
+      return {
+        id: item.id || `shopping-${Date.now()}-${index}`,
+        name: String(item.name || "").trim(),
+        quantity: String(item.quantity || "q.b.").trim(),
+        category: String(item.category || "Altro").trim(),
+        checked: Boolean(item.checked),
+        updatedAt: item.updatedAt || new Date().toISOString()
+      };
+    });
+}
+
 app.get("/", (req, res) => {
   return res.json({
     success: true,
@@ -507,6 +526,106 @@ app.delete("/api/user/saved-recipes/:recipeId", requireAuth, (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Errore interno durante l'eliminazione della ricetta."
+    });
+  }
+});
+
+app.get("/api/user/shopping-list", requireAuth, (req, res) => {
+  try {
+    const users = readUsers();
+    const user = users.find((item) => item.id === req.user.id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Utente non trovato."
+      });
+    }
+
+    return res.json({
+      success: true,
+      items: Array.isArray(user.shoppingLists) ? user.shoppingLists : []
+    });
+  } catch (error) {
+    console.error("Errore lettura lista spesa:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Errore interno durante la lettura della lista spesa."
+    });
+  }
+});
+
+app.put("/api/user/shopping-list", requireAuth, (req, res) => {
+  try {
+    const incomingItems = req.body?.items;
+
+    if (!Array.isArray(incomingItems)) {
+      return res.status(400).json({
+        success: false,
+        message: "Lista spesa non valida."
+      });
+    }
+
+    const users = readUsers();
+    const userIndex = users.findIndex((item) => item.id === req.user.id);
+
+    if (userIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Utente non trovato."
+      });
+    }
+
+    const normalizedItems = normalizeShoppingListItems(incomingItems);
+
+    users[userIndex].shoppingLists = normalizedItems;
+    users[userIndex].updatedAt = new Date().toISOString();
+
+    writeUsers(users);
+
+    return res.json({
+      success: true,
+      message: "Lista spesa salvata correttamente.",
+      items: users[userIndex].shoppingLists,
+      user: sanitizeUser(users[userIndex])
+    });
+  } catch (error) {
+    console.error("Errore salvataggio lista spesa:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Errore interno durante il salvataggio della lista spesa."
+    });
+  }
+});
+
+app.delete("/api/user/shopping-list", requireAuth, (req, res) => {
+  try {
+    const users = readUsers();
+    const userIndex = users.findIndex((item) => item.id === req.user.id);
+
+    if (userIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Utente non trovato."
+      });
+    }
+
+    users[userIndex].shoppingLists = [];
+    users[userIndex].updatedAt = new Date().toISOString();
+
+    writeUsers(users);
+
+    return res.json({
+      success: true,
+      message: "Lista spesa svuotata correttamente.",
+      items: [],
+      user: sanitizeUser(users[userIndex])
+    });
+  } catch (error) {
+    console.error("Errore svuotamento lista spesa:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Errore interno durante lo svuotamento della lista spesa."
     });
   }
 });
