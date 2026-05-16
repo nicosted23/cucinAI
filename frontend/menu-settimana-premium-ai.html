@@ -11,7 +11,11 @@
   <div class="container">
     <nav class="navbar">
       <div class="nav-logo">CucinAI</div>
-      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
+
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="tre-ingredienti.html">3 Ingredienti</a>
@@ -22,6 +26,8 @@
         <a href="menu-settimana.html">Menu settimana</a>
         <a href="chi-siamo.html">Chi siamo</a>
         <a href="abbonamenti.html">Abbonamenti</a>
+        <a href="login.html" data-auth-button>Accedi</a>
+        <a href="#" data-logout-button style="display: none;">Logout</a>
       </div>
     </nav>
 
@@ -144,6 +150,14 @@
   </div>
 
   <script src="js/menu.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.CucinAIAuth) {
+        window.CucinAIAuth.requirePremium();
+      }
+    });
+  </script>
   <script src="js/menu-settimana-premium-ai.js"></script>
 </body>
 </html>
