@@ -144,6 +144,17 @@ function mergeUniqueItems(existing = [], incoming = []) {
   return Array.from(map.values());
 }
 
+function createRecipeId(recipe) {
+  const baseTitle = String(recipe?.title || "ricetta")
+    .trim()
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .slice(0, 60);
+
+  return `${baseTitle || "ricetta"}-${Date.now()}`;
+}
+
 app.get("/", (req, res) => {
   return res.json({
     success: true,
@@ -372,6 +383,130 @@ app.post("/api/account/import-local-data", requireAuth, (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Errore interno durante l'importazione dei dati."
+    });
+  }
+});
+
+app.get("/api/user/saved-recipes", requireAuth, (req, res) => {
+  try {
+    const users = readUsers();
+    const user = users.find((item) => item.id === req.user.id);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Utente non trovato."
+      });
+    }
+
+    return res.json({
+      success: true,
+      recipes: Array.isArray(user.savedRecipes) ? user.savedRecipes : []
+    });
+  } catch (error) {
+    console.error("Errore lettura ricette salvate:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Errore interno durante la lettura delle ricette salvate."
+    });
+  }
+});
+
+app.post("/api/user/saved-recipes", requireAuth, (req, res) => {
+  try {
+    const recipe = req.body?.recipe;
+
+    if (!recipe || !recipe.title) {
+      return res.status(400).json({
+        success: false,
+        message: "Ricetta non valida."
+      });
+    }
+
+    const users = readUsers();
+    const userIndex = users.findIndex((item) => item.id === req.user.id);
+
+    if (userIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Utente non trovato."
+      });
+    }
+
+    const currentRecipes = Array.isArray(users[userIndex].savedRecipes)
+      ? users[userIndex].savedRecipes
+      : [];
+
+    const normalizedRecipe = {
+      ...recipe,
+      id: recipe.id || createRecipeId(recipe),
+      savedAt: recipe.savedAt || new Date().toISOString()
+    };
+
+    const alreadySaved = currentRecipes.some((item) => {
+      return (
+        String(item.id) === String(normalizedRecipe.id) ||
+        String(item.title || "").trim().toLowerCase() ===
+          String(normalizedRecipe.title || "").trim().toLowerCase()
+      );
+    });
+
+    if (!alreadySaved) {
+      users[userIndex].savedRecipes = [...currentRecipes, normalizedRecipe];
+      users[userIndex].updatedAt = new Date().toISOString();
+      writeUsers(users);
+    }
+
+    return res.json({
+      success: true,
+      message: alreadySaved ? "Ricetta già salvata." : "Ricetta salvata correttamente.",
+      recipes: users[userIndex].savedRecipes
+    });
+  } catch (error) {
+    console.error("Errore salvataggio ricetta:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Errore interno durante il salvataggio della ricetta."
+    });
+  }
+});
+
+app.delete("/api/user/saved-recipes/:recipeId", requireAuth, (req, res) => {
+  try {
+    const recipeId = req.params.recipeId;
+
+    const users = readUsers();
+    const userIndex = users.findIndex((item) => item.id === req.user.id);
+
+    if (userIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Utente non trovato."
+      });
+    }
+
+    const currentRecipes = Array.isArray(users[userIndex].savedRecipes)
+      ? users[userIndex].savedRecipes
+      : [];
+
+    users[userIndex].savedRecipes = currentRecipes.filter((recipe) => {
+      return String(recipe.id) !== String(recipeId);
+    });
+
+    users[userIndex].updatedAt = new Date().toISOString();
+
+    writeUsers(users);
+
+    return res.json({
+      success: true,
+      message: "Ricetta eliminata correttamente.",
+      recipes: users[userIndex].savedRecipes
+    });
+  } catch (error) {
+    console.error("Errore eliminazione ricetta:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Errore interno durante l'eliminazione della ricetta."
     });
   }
 });

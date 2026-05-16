@@ -6,6 +6,7 @@ const SAVED_RECIPES_KEYS = [
 
 const PREMIUM_LIST_KEY = "cucinai_lista_spesa_premium";
 const WEEKLY_MENU_KEY = "cucinai_menu_settimana";
+const AUTH_API_BASE = "https://cucinai-login.onrender.com";
 
 const savedSearchInput = document.getElementById("savedSearchInput");
 const savedFilterButtons = document.querySelectorAll(".saved-filter-btn");
@@ -17,44 +18,127 @@ const savedTotalCount = document.getElementById("savedTotalCount");
 const savedVisibleCount = document.getElementById("savedVisibleCount");
 const savedCurrentFilter = document.getElementById("savedCurrentFilter");
 
-let allRecipes = loadSavedRecipes();
+let allRecipes = [];
 let currentFilter = "Tutte";
 let currentSearch = "";
 let visibleLimit = 6;
 
-renderSavedRecipes();
+initSavedRecipesPage();
 
-savedSearchInput.addEventListener("input", function () {
-  currentSearch = savedSearchInput.value.trim().toLowerCase();
-  visibleLimit = 6;
+async function initSavedRecipesPage() {
+  allRecipes = loadSavedRecipesFromLocal();
   renderSavedRecipes();
-});
 
-savedFilterButtons.forEach(button => {
-  button.addEventListener("click", function () {
-    currentFilter = button.dataset.filter;
+  if (isUserLoggedIn()) {
+    await loadSavedRecipesFromAccount();
+  }
+
+  savedSearchInput.addEventListener("input", function () {
+    currentSearch = savedSearchInput.value.trim().toLowerCase();
     visibleLimit = 6;
+    renderSavedRecipes();
+  });
 
-    savedFilterButtons.forEach(btn => btn.classList.remove("active"));
-    button.classList.add("active");
+  savedFilterButtons.forEach(button => {
+    button.addEventListener("click", function () {
+      currentFilter = button.dataset.filter;
+      visibleLimit = 6;
+
+      savedFilterButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      renderSavedRecipes();
+    });
+  });
+
+  savedLoadMoreBtn.addEventListener("click", function () {
+    const filteredRecipes = getFilteredRecipes();
+
+    if (visibleLimit >= filteredRecipes.length) {
+      visibleLimit = 6;
+    } else {
+      visibleLimit += 6;
+    }
 
     renderSavedRecipes();
   });
-});
+}
 
-savedLoadMoreBtn.addEventListener("click", function () {
-  const filteredRecipes = getFilteredRecipes();
+function isUserLoggedIn() {
+  return Boolean(localStorage.getItem("cucinai_auth_token"));
+}
 
-  if (visibleLimit >= filteredRecipes.length) {
-    visibleLimit = 6;
-  } else {
-    visibleLimit += 6;
+function getAuthHeaders() {
+  const token = localStorage.getItem("cucinai_auth_token");
+
+  return {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token || ""}`
+  };
+}
+
+async function loadSavedRecipesFromAccount() {
+  try {
+    const response = await fetch(`${AUTH_API_BASE}/api/user/saved-recipes`, {
+      method: "GET",
+      headers: getAuthHeaders()
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (response.status === 401) {
+      allRecipes = loadSavedRecipesFromLocal();
+      renderSavedRecipes();
+      return;
+    }
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Errore nel caricamento delle ricette salvate.");
+    }
+
+    allRecipes = Array.isArray(data.recipes)
+      ? data.recipes.map((recipe, index) => normalizeRecipe(recipe, index))
+      : [];
+
+    saveSavedRecipesToLocal(allRecipes);
+    renderSavedRecipes();
+  } catch (error) {
+    console.error("Errore caricamento ricette account:", error);
+    allRecipes = loadSavedRecipesFromLocal();
+    renderSavedRecipes();
+  }
+}
+
+async function deleteSavedRecipeFromAccount(recipeId) {
+  if (!isUserLoggedIn()) {
+    return false;
   }
 
-  renderSavedRecipes();
-});
+  try {
+    const response = await fetch(`${AUTH_API_BASE}/api/user/saved-recipes/${encodeURIComponent(recipeId)}`, {
+      method: "DELETE",
+      headers: getAuthHeaders()
+    });
 
-function loadSavedRecipes() {
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || !data.success) {
+      throw new Error(data.message || "Errore durante l'eliminazione della ricetta.");
+    }
+
+    if (Array.isArray(data.recipes)) {
+      allRecipes = data.recipes.map((recipe, index) => normalizeRecipe(recipe, index));
+      saveSavedRecipesToLocal(allRecipes);
+    }
+
+    return true;
+  } catch (error) {
+    console.error("Errore eliminazione ricetta account:", error);
+    return false;
+  }
+}
+
+function loadSavedRecipesFromLocal() {
   for (const key of SAVED_RECIPES_KEYS) {
     try {
       const raw = localStorage.getItem(key);
@@ -72,7 +156,7 @@ function loadSavedRecipes() {
   return [];
 }
 
-function saveSavedRecipes(recipes) {
+function saveSavedRecipesToLocal(recipes) {
   const normalized = recipes.map((recipe, index) => normalizeRecipe(recipe, index));
   SAVED_RECIPES_KEYS.forEach(key => {
     localStorage.setItem(key, JSON.stringify(normalized));
@@ -107,7 +191,7 @@ function normalizeRecipe(recipe, index = 0) {
       recipe?.summary ||
       `Una ricetta ${category.toLowerCase()} salvata nella tua raccolta CucinAI.`,
     category,
-    time: recipe?.time || recipe?.readyInMinutes || recipe?.duration || "30 min",
+    time: recipe?.time || recipe?.readyInMinutes || recipe?.duration || recipe?.time_minutes || "30 min",
     difficulty: recipe?.difficulty || "Facile",
     servings: recipe?.servings || recipe?.people || 2,
     image: recipe?.image || "",
@@ -193,7 +277,7 @@ function buildDefaultTags(recipe, category) {
   return [
     category,
     recipe?.difficulty || "Facile",
-    recipe?.time || recipe?.readyInMinutes || "30 min"
+    recipe?.time || recipe?.readyInMinutes || recipe?.time_minutes || "30 min"
   ];
 }
 
@@ -535,12 +619,29 @@ function createRecipeCard(recipe) {
     showCardMessage(messageBox, "✅ Ingredienti aggiunti alla Lista Spesa Premium.");
   });
 
-  removeButton.addEventListener("click", function () {
+  removeButton.addEventListener("click", async function () {
     const confirmed = confirm(`Vuoi rimuovere "${recipe.title}" dalle ricette salvate?`);
     if (!confirmed) return;
 
+    removeButton.disabled = true;
+    removeButton.textContent = "Rimozione...";
+
+    if (isUserLoggedIn()) {
+      const deletedFromAccount = await deleteSavedRecipeFromAccount(recipe.id);
+
+      if (!deletedFromAccount) {
+        alert("Errore durante l'eliminazione dall'account.");
+        removeButton.disabled = false;
+        removeButton.textContent = "Rimuovi";
+        return;
+      }
+
+      renderSavedRecipes();
+      return;
+    }
+
     allRecipes = allRecipes.filter(item => item.id !== recipe.id);
-    saveSavedRecipes(allRecipes);
+    saveSavedRecipesToLocal(allRecipes);
     renderSavedRecipes();
   });
 
