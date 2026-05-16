@@ -28,13 +28,16 @@ menuAiForm.addEventListener("submit", async function (event) {
   };
 
   try {
-    const response = await fetch("/api/genera-menu-settimanale-ai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+    const token = localStorage.getItem("cucinai_auth_token");
+
+const response = await fetch("/api/genera-menu-settimanale-ai", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token || ""}`
+  },
+  body: JSON.stringify(payload)
+});
 
     const result = await response.json();
 

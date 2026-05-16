@@ -92,21 +92,23 @@ premiumAiForm.addEventListener("submit", async function (event) {
   submitButton.textContent = "Generazione in corso...";
 
   try {
-    const response = await fetch("/api/genera-lista-spesa-ai", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        people,
-        days,
-        style,
-        budget,
-        meals,
-        preferences
-      })
-    });
+    const token = localStorage.getItem("cucinai_auth_token");
 
+const response = await fetch("/api/genera-lista-spesa-ai", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${token || ""}`
+  },
+  body: JSON.stringify({
+    people,
+    days,
+    style,
+    budget,
+    meals,
+    preferences
+  })
+});
     const result = await response.json();
 
     if (!response.ok || !result.success) {

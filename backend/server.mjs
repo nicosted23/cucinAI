@@ -9,6 +9,7 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+const AUTH_API_BASE = process.env.AUTH_API_BASE || "https://cucinai-login.onrender.com";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +22,48 @@ app.use(express.static(frontendPath));
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
+async function requirePremiumApi(req, res, next) {
+  try {
+    const authHeader = req.headers.authorization || "";
+
+    if (!authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({
+        error: "Accesso richiesto. Effettua il login."
+      });
+    }
+
+    const response = await fetch(`${AUTH_API_BASE}/api/account`, {
+      method: "GET",
+      headers: {
+        Authorization: authHeader
+      }
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok || !data.account) {
+      return res.status(401).json({
+        error: "Sessione non valida. Effettua di nuovo il login."
+      });
+    }
+
+    if (data.account.plan !== "premium") {
+      return res.status(403).json({
+        error: "Funzione riservata agli utenti Premium."
+      });
+    }
+
+    req.user = data.account;
+    next();
+  } catch (error) {
+    console.error("Errore controllo premium:", error);
+
+    return res.status(500).json({
+      error: "Errore durante il controllo dell'abbonamento."
+    });
+  }
+}
 
 function normalizeIngredients(ingredients = []) {
   return ingredients
@@ -293,7 +336,7 @@ Stile food photography premium, realistico, appetitoso, luce naturale, impiattam
   }
 });
 
-app.post("/api/genera-lista-spesa-ai", async (req, res) => {
+app.post("/api/genera-lista-spesa-ai", requirePremiumApi, async (req, res) => {
   try {
     const { people, days, style, budget, meals, preferences } = req.body || {};
 
@@ -426,7 +469,7 @@ creare una lista spesa realistica, utile e ben organizzata per il supermercato.
   }
 });
 
-app.post("/api/genera-menu-settimanale-ai", async (req, res) => {
+app.post("/api/genera-menu-settimanale-ai", requirePremiumApi, async (req, res) => {
   try {
     const {
       people,
