@@ -1072,7 +1072,7 @@
     "email": "nicosted@gmail.com",
     "passwordHash": "c12c8e553c1ba649f0b118459959764be925b0dfbb15ef8844fbe78dd040ee35",
     "role": "user",
-    "plan": "free",
+    "plan": "premium",
     "subscriptionStatus": "none",
     "isActive": true,
     "emailVerified": false,

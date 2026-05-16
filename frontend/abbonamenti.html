@@ -9,24 +9,27 @@
 <body>
   <div class="container">
     <nav class="navbar">
-  <div class="nav-logo">CucinAI</div>
+      <div class="nav-logo">CucinAI</div>
 
-  <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
-    ☰
-  </button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">
+        ☰
+      </button>
 
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="tre-ingredienti.html">3 Ingredienti</a>
-    <a href="ricerca-ricette.html">Ricerca ricette</a>
-    <a href="ricette-salvate.html">Ricette salvate</a>
-    <a href="fitness.html">Fitness</a>
-    <a href="lista-spesa.html">Lista spesa</a>
-    <a href="menu-settimana.html">Menu settimana</a>
-    <a href="chi-siamo.html">Chi siamo</a>
-    <a href="abbonamenti.html">Abbonamenti</a>
-  </div>
-</nav>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="tre-ingredienti.html">3 Ingredienti</a>
+        <a href="ricerca-ricette.html">Ricerca ricette</a>
+        <a href="ricette-salvate.html">Ricette salvate</a>
+        <a href="fitness.html">Fitness</a>
+        <a href="lista-spesa.html">Lista spesa</a>
+        <a href="menu-settimana.html">Menu settimana</a>
+        <a href="chi-siamo.html">Chi siamo</a>
+        <a href="abbonamenti.html">Abbonamenti</a>
+        <a href="login.html" data-auth-button>Accedi</a>
+        <a href="#" data-logout-button style="display: none;">Logout</a>
+      </div>
+    </nav>
+
     <h1 class="page-title">Scegli il tuo piano</h1>
     <p class="sub">Inizia gratis oppure sblocca tutte le funzioni premium.</p>
 
@@ -35,11 +38,14 @@
         <h2>Free</h2>
         <div class="plan-price">0€</div>
         <ul>
-          <li>3 ricerche al giorno</li>
-          <li>Accesso base</li>
-          <li>Nessun salvataggio</li>
+          <li>3 ricette gratuite a settimana</li>
+          <li>Accesso alle funzioni base</li>
+          <li>Lista spesa Free</li>
+          <li>Menu settimana Free</li>
         </ul>
-        <button>Inizia gratis</button>
+        <a href="registrazione.html" class="btn">
+          Inizia gratis
+        </a>
       </div>
 
       <div class="plan-card">
@@ -48,10 +54,13 @@
         <ul>
           <li>Ricette illimitate</li>
           <li>Salvataggio ricette</li>
-          <li>Condivisione ricette</li>
-          <li>Più varietà e risultati migliori</li>
+          <li>Lista spesa Premium</li>
+          <li>Menu settimana Premium</li>
+          <li>Generazione AI più avanzata</li>
         </ul>
-        <button>Abbonati</button>
+        <a href="registrazione.html" class="btn">
+          Abbonati
+        </a>
       </div>
 
       <div class="plan-card">
@@ -59,16 +68,20 @@
         <div class="plan-price">9€/mese</div>
         <ul>
           <li>Tutte le funzioni Premium</li>
-          <li>Ricette più avanzate</li>
-          <li>Esperienza prioritaria</li>
+          <li>Funzioni creator future</li>
+          <li>Ricette pubblicabili nella community</li>
           <li>Nuove funzioni in anteprima</li>
         </ul>
-        <button>Passa a Pro</button>
+        <a href="registrazione.html" class="btn">
+          Passa a Pro
+        </a>
       </div>
     </section>
 
     <img src="assets/images/premium.jpg" alt="Abbonamenti premium" class="hero-image" />
   </div>
-<script src="js/menu.js"></script>
+
+  <script src="js/menu.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>

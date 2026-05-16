@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lista spesa - CucinAI</title>
   <link rel="stylesheet" href="css/style.css" />
-<link rel="stylesheet" href="css/lista-spesa.css?v=3" />
+  <link rel="stylesheet" href="css/lista-spesa.css?v=3" />
 </head>
 <body>
   <div class="container">
@@ -26,67 +26,73 @@
         <a href="menu-settimana.html">Menu settimana</a>
         <a href="chi-siamo.html">Chi siamo</a>
         <a href="abbonamenti.html">Abbonamenti</a>
+        <a href="login.html" data-auth-button>Accedi</a>
+        <a href="#" data-logout-button style="display: none;">Logout</a>
       </div>
     </nav>
-<section class="shopping-entry-hero">
-  <span class="shopping-entry-tag">🛒 Scegli come organizzare la tua spesa</span>
-  <h1 class="page-title">Lista spesa</h1>
-  <p class="shopping-entry-sub">
-    Una sezione pensata per aiutarti a gestire meglio acquisti, ingredienti e organizzazione quotidiana.
-    Parti dalla versione Free oppure passa alla Premium per una gestione più smart.
-  </p>
-</section>
 
-<section class="shopping-entry-actions">
-  <div class="shopping-entry-grid">
-    <article class="shopping-entry-card">
-      <span class="entry-badge free-badge">Gratis</span>
-      <h2>Lista Spesa Free</h2>
-      <p>
-        Una lista manuale semplice, ordinata e veloce da usare ogni giorno.
+    <section class="shopping-entry-hero">
+      <span class="shopping-entry-tag">🛒 Scegli come organizzare la tua spesa</span>
+      <h1 class="page-title">Lista spesa</h1>
+      <p class="shopping-entry-sub">
+        Una sezione pensata per aiutarti a gestire meglio acquisti, ingredienti e organizzazione quotidiana.
+        Parti dalla versione Free oppure passa alla Premium per una gestione più smart.
       </p>
-      <a href="lista-spesa-free.html" class="shopping-entry-btn shopping-entry-btn-green">
-        Apri Lista Spesa Free
-      </a>
-    </article>
+    </section>
 
-    <article class="shopping-entry-card shopping-entry-card-premium">
-      <span class="entry-badge premium-badge">Premium</span>
-      <h2>Lista Spesa Premium</h2>
-      <p>
-        Una versione più completa con strumenti smart, organizzazione avanzata e generatore intelligente.
-      </p>
-      <a href="lista-spesa-premium.html" class="shopping-entry-btn shopping-entry-btn-green">
-        Apri Lista Spesa Premium
-      </a>
-    </article>
+    <section class="shopping-entry-actions">
+      <div class="shopping-entry-grid">
+        <article class="shopping-entry-card">
+          <span class="entry-badge free-badge">Gratis</span>
+          <h2>Lista Spesa Free</h2>
+          <p>
+            Una lista manuale semplice, ordinata e veloce da usare ogni giorno.
+          </p>
+          <a href="lista-spesa-free.html" class="shopping-entry-btn shopping-entry-btn-green">
+            Apri Lista Spesa Free
+          </a>
+        </article>
+
+        <article class="shopping-entry-card shopping-entry-card-premium">
+          <span class="entry-badge premium-badge">Premium</span>
+          <h2>Lista Spesa Premium</h2>
+          <p>
+            Una versione più completa con strumenti smart, organizzazione avanzata e generatore intelligente.
+          </p>
+          <a href="lista-spesa-premium.html" class="shopping-entry-btn shopping-entry-btn-green">
+            Apri Lista Spesa Premium
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="shopping-entry-features">
+      <div class="shopping-entry-feature-grid">
+        <article class="shopping-entry-feature-card">
+          <h3>✅ Più ordine</h3>
+          <p>
+            Tieni sotto controllo cosa comprare, cosa hai già preso e cosa ti serve davvero.
+          </p>
+        </article>
+
+        <article class="shopping-entry-feature-card">
+          <h3>📌 Più collegamenti</h3>
+          <p>
+            La lista spesa diventa il punto di contatto tra cucina quotidiana, ricette e organizzazione dei pasti.
+          </p>
+        </article>
+
+        <article class="shopping-entry-feature-card">
+          <h3>🤖 Più intelligenza</h3>
+          <p>
+            Con la Premium puoi generare una proposta più smart in base a esigenze, budget e stile alimentare.
+          </p>
+        </article>
+      </div>
+    </section>
   </div>
-</section>
 
-<section class="shopping-entry-features">
-  <div class="shopping-entry-feature-grid">
-    <article class="shopping-entry-feature-card">
-      <h3>✅ Più ordine</h3>
-      <p>
-        Tieni sotto controllo cosa comprare, cosa hai già preso e cosa ti serve davvero.
-      </p>
-    </article>
-
-    <article class="shopping-entry-feature-card">
-      <h3>📌 Più collegamenti</h3>
-      <p>
-        La lista spesa diventa il punto di contatto tra cucina quotidiana, ricette e organizzazione dei pasti.
-      </p>
-    </article>
-
-    <article class="shopping-entry-feature-card">
-      <h3>🤖 Più intelligenza</h3>
-      <p>
-        Con la Premium puoi generare una proposta più smart in base a esigenze, budget e stile alimentare.
-      </p>
-    </article>
-  </div>
-</section>
   <script src="js/menu.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
